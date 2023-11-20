@@ -1,11 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import Home from './components/Home/Home';
+import ThemeContextProvider from './components/ThemeContext/ThemeContext';
 
 export default function App() {
   return (
    <>
-    <Home/>
+    <ThemeContextProvider>
+      <Home/>
+    </ThemeContextProvider>
    </>
   );
 }
