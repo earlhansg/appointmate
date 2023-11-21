@@ -1,7 +1,5 @@
-import { useContext } from "react";
-import { Text, View, SafeAreaView } from "react-native";
+import { View, SafeAreaView } from "react-native";
 import Header from "../Header/Header";
-import { ThemeContext } from "../ThemeContext/ThemeContext";
 import { HomeStyle } from "./HomeStyle";
 
 const Home = () => {

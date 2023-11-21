@@ -18,6 +18,6 @@ export const LocationStyle = StyleSheet.create({
     fontWeight: "500"
   },
   contentSecondary: {
-    fontSize: 11,
+    fontSize: 10,
   },
 });
