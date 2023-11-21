@@ -1,11 +1,12 @@
-import {View, Text} from 'react-native'
+import { View, Text } from "react-native";
+import Location from "../Location/Location";
 
 const Header = () => {
   return (
     <View>
-        <Text>Header</Text>
+      <Location />
     </View>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
