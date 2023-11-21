@@ -9,14 +9,13 @@ export const LocationStyle = StyleSheet.create({
   },
   iconContainer: {
     flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "red",
+    alignItems: "center"
   },
   contentContainer: {
     marginLeft: 5,
   },
   contentPrimary: {
-    fontWeight: "500",
+    fontWeight: "500"
   },
   contentSecondary: {
     fontSize: 11,
