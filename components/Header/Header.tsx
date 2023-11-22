@@ -7,8 +7,8 @@ const Header = () => {
   return (
     <View>
       <Location />
-      <Service/>
-      <Search/>
+      <Service />
+      <Search />
     </View>
   );
 };
