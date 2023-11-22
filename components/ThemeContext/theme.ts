@@ -8,7 +8,7 @@ export const theme = {
     text: "",
   },
   tertiary: {
-    color: "A799B7",
+    color: "#A799B7",
     text: "",
   },
 };
