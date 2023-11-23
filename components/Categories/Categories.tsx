@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { View, FlatList, SafeAreaView, Text } from "react-native";
+import { FlatList, SafeAreaView, Text } from "react-native";
 import { CategoriesStyle } from "./CatergoriesStyle";
 import CategoryList from "../CategoryList/CategoryList";
 
