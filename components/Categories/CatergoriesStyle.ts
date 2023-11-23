@@ -8,10 +8,15 @@ export const CategoriesStyle = StyleSheet.create({
     paddingRight: 3
   },
   catergoryListContainer: {
-    backgroundColor: 'gray',
     height: 55,
     width: 55,
     marginLeft: 7,
     marginBottom: 20
+  },
+  primaryText: {
+    fontSize: 16,
+    fontWeight: "500",
+    marginLeft: 10,
+    marginBottom: 5
   }
 });

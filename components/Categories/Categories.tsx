@@ -9,14 +9,14 @@ export type GroupedData = {
 };
 
 const data = [
-  { id: "1", name: "Item 1" },
-  { id: "2", name: "Item 2" },
-  { id: "3", name: "Item 3" },
-  { id: "4", name: "Item 4" },
-  { id: "5", name: "Item 5" },
-  { id: "6", name: "Item 6" },
-  { id: "7", name: "Item 7" },
-  { id: "8", name: "Item 8" },
+  { id: "1", name: "Cleaning" },
+  { id: "2", name: "Events" },
+  { id: "3", name: "Security" },
+  { id: "4", name: "Health" },
+  { id: "5", name: "Technician" },
+  { id: "6", name: "Education" },
+  { id: "7", name: "Beauty" },
+  { id: "8", name: "Treatment" },
   { id: "9", name: "Item 9" },
   { id: "10", name: "Item 10" },
   { id: "11", name: "Item 11" },
@@ -48,7 +48,7 @@ const Categories = () => {
   const keyExtractor = (item: GroupedData) => item.group.toString();
   return (
     <SafeAreaView style={CategoriesStyle.container}>
-      <Text>Services</Text>
+      <Text style={CategoriesStyle.primaryText}>Services</Text>
       {groupDataByTwo ? (
         <FlatList
           data={groupDataByTwo}
