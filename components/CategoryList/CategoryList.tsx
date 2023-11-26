@@ -11,36 +11,24 @@ type CatergoryListProps = {
 const CategoryList = ({ category }: CatergoryListProps) => {
   const imageUrl = require("../../assets/sampleimage2.png");
 
-  const navigate = () => {
+  const navigate = (isClick: boolean) => {
     console.log("im click in Try");
-    // setIsClick(!isClick);
   };
   return (
     <View style={CategoryListStyle.categoryContainer}>
       {category.list.map((list) => (
-        // <ImageButton
-        //   key={list.id}
-        //   containerSyle={{
-        //     backgroundColor: "#f7f7f7",
-        //     height: 60,
-        //     width: 65,
-        //     marginLeft: 10,
-        //     marginBottom: 20,
-        //     borderRadius: 10,
-        //   }}
-        //   handleClick={({ isClick }) => (isClick ? navigate() : null)}
-        // >
         <ImageButton
           key={list.id}
           containerStyle={{
             backgroundColor: "#f7f7f7",
             height: 60,
             width: 65,
+            marginTop: 5,
             marginLeft: 10,
-            marginBottom: 20,
+            marginBottom: 5,
             borderRadius: 10
           }}
-          handleClick={({ isClick }) => (isClick ? navigate() : null)}
+          handleClick={({ onPress }) => (onPress ? navigate(onPress) : null)}
         >
           <Text style={CategoryListStyle.text}>{list.name}</Text>
         </ImageButton>
