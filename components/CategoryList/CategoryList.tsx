@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, Image } from "react-native";
 import { GroupedData } from "../Categories/Categories";
 import { CategoryListStyle } from "./CategoryListStyle";
@@ -13,19 +13,32 @@ const CategoryList = ({ category }: CatergoryListProps) => {
 
   const navigate = () => {
     console.log("im click in Try");
+    // setIsClick(!isClick);
   };
   return (
     <View style={CategoryListStyle.categoryContainer}>
       {category.list.map((list) => (
+        // <ImageButton
+        //   key={list.id}
+        //   containerSyle={{
+        //     backgroundColor: "#f7f7f7",
+        //     height: 60,
+        //     width: 65,
+        //     marginLeft: 10,
+        //     marginBottom: 20,
+        //     borderRadius: 10,
+        //   }}
+        //   handleClick={({ isClick }) => (isClick ? navigate() : null)}
+        // >
         <ImageButton
           key={list.id}
-          containerSyle={{
+          containerStyle={{
             backgroundColor: "#f7f7f7",
             height: 60,
             width: 65,
             marginLeft: 10,
             marginBottom: 20,
-            borderRadius: 10,
+            borderRadius: 10
           }}
           handleClick={({ isClick }) => (isClick ? navigate() : null)}
         >
