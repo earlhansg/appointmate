@@ -2,7 +2,6 @@ import { StyleSheet } from "react-native";
 
 export const TopStyle = StyleSheet.create({
   topContainer: {
-    // flexDirection: "row"
     marginTop: 25,
     marginLeft: 10
   },
@@ -10,33 +9,37 @@ export const TopStyle = StyleSheet.create({
     fontSize: 16,
     fontWeight: "500"
   },
-  listsContainer: {
-    flexDirection: "row",
-    marginTop: 20,
-    gap: 20
+  textName: {
+    color: "#ffffff",
+    fontWeight: "500"
+  },
+  textSkill: {
+    color: "#e5e5e5",
+    fontSize: 11,
+    marginTop: 3
+  },
+  textAddress:{
+    color: "#e5e5e5",
+    fontSize: 11
   },
   listContainer: {
-    backgroundColor:"#542E71",
-    minWidth: 175,
-    height: 270,
-    paddingTop: 15,
-    borderRadius: 20,
-    // paddingLeft: 10,
-    // paddingRight: 10
-    overflow: "hidden"
+    flexDirection: "row",
+    marginTop: 15,
+    padding: 3,
+    gap: 20
   },
-  listPrimaryText: {
-    marginBottom: "auto",
-    paddingTop: 10,
-    paddingLeft: 15,
-    paddingRight: 15,
+  imgListContainer: {
+    minWidth: 170,
+    minHeight: 230,
+  },
+  listPrimaryText2: {
+    marginTop: 20,
+    marginLeft: 10
+
   },
   imageContainer: {
-    alignItems: "flex-end",
-    // backgroundColor: "pink",
-    flexBasis: 150
-  },
-  textColorWhite: {
-    color: "white"
+    flexGrow: 1,
+    justifyContent: "flex-end",
+    alignItems: "flex-end"
   }
 });
