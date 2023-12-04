@@ -30,7 +30,7 @@ export const TopStyle = StyleSheet.create({
   },
   imgListContainer: {
     minWidth: 170,
-    minHeight: 230,
+    minHeight: 230
   },
   listPrimaryText2: {
     marginTop: 20,

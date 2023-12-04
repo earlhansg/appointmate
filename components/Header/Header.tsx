@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <View>
       <Location />
-      <Service />
+      {/* <Service /> */}
       <Search />
     </View>
   );
