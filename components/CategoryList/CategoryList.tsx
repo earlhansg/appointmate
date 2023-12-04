@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { View, Text, Image } from "react-native";
+import React from "react";
+import { View, Text, Image, TouchableHighlight } from "react-native";
 import { GroupedData } from "../Categories/Categories";
 import { CategoryListStyle } from "./CategoryListStyle";
-import ImageButton from "../ImageButton/ImageButton";
+import TouchableImageButton from "../Buttons/TouchableImageButton";
 
 type CatergoryListProps = {
   category: GroupedData;
@@ -11,27 +11,30 @@ type CatergoryListProps = {
 const CategoryList = ({ category }: CatergoryListProps) => {
   const imageUrl = require("../../assets/sampleimage2.png");
 
-  const navigate = (isClick: boolean) => {
+  const navigate = () => {
     console.log("im click in Try");
   };
   return (
     <View style={CategoryListStyle.categoryContainer}>
       {category.list.map((list) => (
-        <ImageButton
+        <TouchableImageButton
           key={list.id}
-          containerStyle={{
-            backgroundColor: "#f7f7f7",
-            height: 60,
-            width: 65,
-            marginTop: 5,
-            marginLeft: 10,
-            marginBottom: 5,
-            borderRadius: 10
-          }}
-          handleClick={({ onPress }) => (onPress ? navigate(onPress) : null)}
+          renderImage={(settings) => (
+            <TouchableHighlight
+              style={[{ ...settings.containerStyle }]}
+              underlayColor={settings.underlayColor}
+              onPress={navigate}
+            >
+              <Image
+                source={imageUrl}
+                resizeMode="contain"
+                style={{ width: "100%", height: "100%" }}
+              />
+            </TouchableHighlight>
+          )}
         >
           <Text style={CategoryListStyle.text}>{list.name}</Text>
-        </ImageButton>
+        </TouchableImageButton>
       ))}
     </View>
   );
