@@ -2,8 +2,8 @@ import React from "react";
 import { TextInput, View } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { SearchStyle } from "./SearchStyle";
-import CustomButton from "../Button/Button";
-import { IconType } from "../Button/Button";
+import CustomButton from "../Buttons/Button";
+import { IconType } from "../Buttons/Button";
 
 const Search = () => {
   return (

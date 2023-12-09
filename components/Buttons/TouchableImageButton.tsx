@@ -7,7 +7,7 @@ type ImageProps = {
   underlayColor: string;
 };
 
-type ButtonProps = {
+type TouchableImageButtonProps = {
   children: ReactNode;
   imageUrl?: any;
   renderImage: (settings: {
@@ -16,7 +16,7 @@ type ButtonProps = {
   }) => ReactElement<ImageProps>;
 };
 
-const TouchableImageButton = ({ children, renderImage }: ButtonProps) => {
+const TouchableImageButton = ({ children, renderImage }: TouchableImageButtonProps) => {
   const image = renderImage({
     containerStyle: {
       backgroundColor: "#f7f7f7",
