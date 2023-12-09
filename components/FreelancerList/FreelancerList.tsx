@@ -1,8 +1,9 @@
 import { View, Text, Image, ImageBackground } from "react-native";
-import { TopData } from "../Top/Top";
 import { FreelancerListStyle } from "./FreelancerListStyle";
+import { TopItem } from "../Top/Top";
 
-const FreelancerList = ({ freelancer }: { freelancer: TopData }) => {
+
+const FreelancerList = ({ freelancer }: { freelancer: TopItem }) => {
   const backgroundColorSecondary = require("../../assets/background-images/top-bg-secondary.png");
   const backgroundColorTertiary = require("../../assets/background-images/top-bg-tertiary.png");
 

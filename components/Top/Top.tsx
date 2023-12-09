@@ -5,62 +5,31 @@ import { TopStyle } from "./TopStyle";
 
 import FreelancerList from "../FreelancerList/FreelancerList";
 
-export type TopData = {
+export type TopItem = {
   id: number;
   imageUrl: any;
-  firstName: string;
-  lastName: string;
+  firstName?: string;
+  lastName?: string;
+  name?: string;
   position: string;
   address: string;
-};
+}
 
-const Top = () => {
-  const imageUrl1 = require("../../assets/business-images/business-picture1.png");
-  const imageUrl2 = require("../../assets/business-images/business-picture2.png");
+export type TopProps<T> = {
+  header?: string;
+  items: T[];
+}
 
-  const topData = [
-    {
-      id: 1,
-      imageUrl: imageUrl1,
-      firstName: "Esther",
-      lastName: "Howard",
-      position: "Consultant",
-      address: "Camaman-an",
-    },
-    {
-      id: 2,
-      imageUrl: imageUrl2,
-      firstName: "Mia",
-      lastName: "Lester",
-      position: "Doctor",
-      address: "Bulua",
-    },
-    {
-      id: 3,
-      imageUrl: imageUrl1,
-      firstName: "Mia",
-      lastName: "Lester",
-      position: "Doctor",
-      address: "Bulua",
-    },
-    {
-      id: 4,
-      imageUrl: imageUrl2,
-      firstName: "Mia",
-      lastName: "Lester",
-      position: "Doctor",
-      address: "Bulua",
-    }
-  ];
 
-  const keyExtractor = (item: TopData) => item.id.toString();
+const Top = <T extends TopItem> ({header, items} : TopProps<T> ) => {
+  const keyExtractor = (item: TopItem) => item.id.toString();
   return (
     <View style={TopStyle.topContainer}>
       <View>
-        <Text style={TopStyle.topHeaderText}>Top Freelancer</Text>
+        <Text style={TopStyle.topHeaderText}>{header}</Text>
       </View>
       <FlatList
-        data={topData}
+        data={items}
         renderItem={({ item }) => (
           <FreelancerList key={item.id} freelancer={item}/>
         )}
