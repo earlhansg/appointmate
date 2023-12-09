@@ -1,9 +1,7 @@
 import React from "react";
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, ViewStyle } from "react-native";
 
 import { TopStyle } from "./TopStyle";
-
-import FreelancerList from "../FreelancerList/FreelancerList";
 
 export type TopItem = {
   id: number;
@@ -18,10 +16,12 @@ export type TopItem = {
 export type TopProps<T> = {
   header?: string;
   items: T[];
+  styles?: ViewStyle
+  children: (item: TopItem) => React.ReactNode;
 }
 
 
-const Top = <T extends TopItem> ({header, items} : TopProps<T> ) => {
+const Top = <T extends TopItem> ({header, items, styles, children } : TopProps<T> ) => {
   const keyExtractor = (item: TopItem) => item.id.toString();
   return (
     <View style={TopStyle.topContainer}>
@@ -31,11 +31,15 @@ const Top = <T extends TopItem> ({header, items} : TopProps<T> ) => {
       <FlatList
         data={items}
         renderItem={({ item }) => (
-          <FreelancerList key={item.id} freelancer={item}/>
+          // <FreelancerList key={item.id} freelancer={item}/>
+          <>
+            {children(item)}
+          </>
         )}
         keyExtractor={keyExtractor}
         horizontal
         showsHorizontalScrollIndicator={false}
+        style={[styles]}
       />
     </View>
   );

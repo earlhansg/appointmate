@@ -16,7 +16,7 @@ export const FreelancerListStyle = StyleSheet.create({
   },
   listContainer: {
     flexDirection: "row",
-    marginTop: 15,
+    // marginTop: 15,
     padding: 3,
     gap: 20
   },

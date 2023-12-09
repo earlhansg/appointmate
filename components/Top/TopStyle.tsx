@@ -7,7 +7,8 @@ export const TopStyle = StyleSheet.create({
   },
   topHeaderText: {
     fontSize: 16,
-    fontWeight: "500"
+    fontWeight: "500",
+    marginBottom: 15,
   },
   textName: {
     color: "#ffffff",

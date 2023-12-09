@@ -1,13 +1,19 @@
-import { View, SafeAreaView } from "react-native";
+import { View, SafeAreaView, ScrollView } from "react-native";
 import Header from "../Header/Header";
 import { HomeStyle } from "./HomeStyle";
 import Categories from "../Categories/Categories";
 import Top from "../Top/Top";
+import FreelancerList from "../FreelancerList/FreelancerList";
+import ShopsList from "../ShopsList/ShopsList";
 
 const Home = () => {
   const imageUrl1 = require("../../assets/business-images/business-picture1.png");
   const imageUrl2 = require("../../assets/business-images/business-picture2.png");
 
+  const shopImage1 = require("../../assets/service-images/car.jpg");
+  const shopImage2 = require("../../assets/service-images/beauty.jpg");
+  const shopImage3 = require("../../assets/service-images/homecleaning.jpg");
+  
   const topData = [
     {
       id: 1,
@@ -32,23 +38,60 @@ const Home = () => {
       lastName: "Lester",
       position: "Doctor",
       address: "Bulua",
+    }
+  ];
+
+  const shopData = [
+    {
+      id: 1,
+      imageUrl: shopImage1,
+      name: "Advance Car Repair",
+      position: "Shop",
+      address: "Camaman-an"
+    },
+    {
+      id: 2,
+      imageUrl: shopImage2,
+      name: "Miran Curl",
+      position: "Shop",
+      address: "Pabayo"
+    },
+    {
+      id: 3,
+      imageUrl: shopImage3,
+      name: "Dirt Bag",
+      position: "Shop",
+      address: "12th Nazareth"
     },
     {
       id: 4,
-      imageUrl: imageUrl2,
-      firstName: "Mia",
-      lastName: "Lester",
-      position: "Doctor",
-      address: "Bulua",
+      imageUrl: shopImage3,
+      name: "Dirt Bag",
+      position: "Shop",
+      address: "12th Nazareth"
+    },
+    {
+      id: 5,
+      imageUrl: shopImage3,
+      name: "Dirt Bag",
+      position: "Shop",
+      address: "12th Nazareth"
     }
-  ];
+  ]
+
+
   return (
     <SafeAreaView style={HomeStyle.container}>
-      <View>
+      <ScrollView>
         <Header />
         <Categories/>
-        <Top header="Top freelancers" items={topData}/>
-      </View>
+        <Top header="Top freelancers" items={topData}>
+          {(item) => <FreelancerList key={item.id} freelancer={item}/>}
+        </Top>
+        <Top header="Popular Shops" items={shopData} styles={{flexDirection: "row"}}>
+          {(item) => <ShopsList key={item.id} shop={item}/>}
+        </Top>
+      </ScrollView>
     </SafeAreaView>
   );
 };

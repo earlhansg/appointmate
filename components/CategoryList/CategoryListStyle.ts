@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 export const CategoryListStyle = StyleSheet.create({
   container: {
-    marginTop: 20
+    // marginTop: 20
   },
   categoryContainer: {
     paddingRight: 3
