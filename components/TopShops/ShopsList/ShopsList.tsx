@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, TouchableHighlight, Image } from "react-native";
-import { TopItem } from "../Top/Top";
-import TouchableImageButton from "../Buttons/TouchableImageButton";
+import { TopItem } from "../../Top/Top";
+import TouchableImageButton from "../../Buttons/TouchableImageButton";
 import { ShopListStyle } from "./ShopsStyle";
 
 const ShopsList = ({ shop }: { shop: TopItem }) => {
