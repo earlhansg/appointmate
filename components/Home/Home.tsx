@@ -3,8 +3,10 @@ import Header from "../Header/Header";
 import { HomeStyle } from "./HomeStyle";
 import Categories from "../Categories/Categories";
 import Top from "../Top/Top";
-import FreelancerList from "../FreelancerList/FreelancerList";
+import FreelancerList from "../TopFreelancers/FreelancerList/FreelancerList";
 import ShopsList from "../ShopsList/ShopsList";
+import Deals from "../Deals/Deals";
+import TopFreelancers from "../TopFreelancers/TopFreelancers";
 
 const Home = () => {
   const imageUrl1 = require("../../assets/business-images/business-picture1.png");
@@ -85,9 +87,10 @@ const Home = () => {
       <ScrollView>
         <Header />
         <Categories />
-        <Top header="Top freelancers" items={topData}>
+        {/* <Top header="Top freelancers" items={topData}>
           {(item) => <FreelancerList key={item.id} freelancer={item} />}
-        </Top>
+        </Top> */}
+        <TopFreelancers/>
         <Top
           header="Popular Shops"
           items={shopData}
@@ -95,6 +98,7 @@ const Home = () => {
         >
           {(item) => <ShopsList key={item.id} shop={item} />}
         </Top>
+        {/* <Deals/> */}
       </ScrollView>
     </SafeAreaView>
   );

@@ -1,11 +1,11 @@
 import { View, Text, Image, ImageBackground } from "react-native";
 import { FreelancerListStyle } from "./FreelancerListStyle";
-import { TopItem } from "../Top/Top";
+import { Freelancers } from "../TopFreelancers";
 
 
-const FreelancerList = ({ freelancer }: { freelancer: TopItem }) => {
-  const backgroundColorSecondary = require("../../assets/background-images/top-bg-secondary.png");
-  const backgroundColorTertiary = require("../../assets/background-images/top-bg-tertiary.png");
+const FreelancerList = ({ freelancer }: { freelancer: Freelancers }) => {
+  const backgroundColorSecondary = require("../../../assets/background-images/top-bg-secondary.png");
+  const backgroundColorTertiary = require("../../../assets/background-images/top-bg-tertiary.png");
 
   return (
     <View style={FreelancerListStyle.listContainer}>
@@ -19,7 +19,7 @@ const FreelancerList = ({ freelancer }: { freelancer: TopItem }) => {
           FreelancerListStyle.imgListContainer,
           {
             marginLeft: freelancer.id === 1 ? 0 : 15,
-            marginRight: freelancer.id === 4 ? 15 : 0,
+            marginRight: freelancer.id === 3 ? 15 : 0,
           },
         ]}
         imageStyle={{ borderRadius: 20 }}
