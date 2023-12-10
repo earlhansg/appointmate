@@ -1,16 +1,8 @@
 import React from "react";
-import { View, SafeAreaView, ScrollView, Text, FlatList } from "react-native";
+import { View, Text, FlatList } from "react-native";
 import FreelancerList from "./FreelancerList/FreelancerList";
 import { TopFreelancersStyle } from "./TopFreelancersStyle";
-
-export type Freelancers = {
-    id: number;
-    imageUrl: any;
-    firstName: string;
-    lastName: string;
-    position: string;
-    address: string;
-}
+import { Freelancers } from "./model/Freelancer";
 
 const TopFreelancers = () => {
   const imageUrl1 = require("../../assets/business-images/business-picture1.png");

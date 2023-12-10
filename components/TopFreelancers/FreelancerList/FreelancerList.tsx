@@ -1,6 +1,6 @@
 import { View, Text, Image, ImageBackground } from "react-native";
 import { FreelancerListStyle } from "./FreelancerListStyle";
-import { Freelancers } from "../TopFreelancers";
+import { Freelancers } from "../model/Freelancer";
 
 
 const FreelancerList = ({ freelancer }: { freelancer: Freelancers }) => {

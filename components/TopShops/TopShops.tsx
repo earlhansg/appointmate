@@ -2,14 +2,7 @@ import React from "react";
 import { View, Text, FlatList } from "react-native";
 import { TopShopsStyle } from "./TopShopsStyle";
 import ShopsList from "./ShopsList/ShopsList";
-
-export type Shop = {
-    id: number;
-    imageUrl: any;
-    name: string;
-    position: string;
-    address: string;
-}
+import { Shop } from "./model/Shop";
 
 const TopShops = () => {
   const shopImage1 = require("../../assets/service-images/car.jpg");
