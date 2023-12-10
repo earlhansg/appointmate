@@ -2,13 +2,15 @@ import { StyleSheet } from "react-native";
 
 export const ShopListStyle = StyleSheet.create({
   container: {
-    // width: 110, 
-    // flexWrap: "wrap"
-    // backgroundColor: "blue"
+  },
+  textContainer: {
+    flexDirection: "row", 
+    flexWrap: "wrap", 
+    justifyContent: "center", 
+    width: 95
   },
   text: {
-    // textAlign: "center",
-    fontSize: 11,
+    fontSize: 12,
     fontWeight: "600",
     marginTop: 5
   }

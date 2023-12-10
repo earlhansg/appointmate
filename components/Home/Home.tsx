@@ -45,7 +45,7 @@ const Home = () => {
     {
       id: 1,
       imageUrl: shopImage1,
-      name: "Advance Car Repair",
+      name: "Advance Car Repairsss",
       position: "Shop",
       address: "Camaman-an"
     },
@@ -84,12 +84,16 @@ const Home = () => {
     <SafeAreaView style={HomeStyle.container}>
       <ScrollView>
         <Header />
-        <Categories/>
+        <Categories />
         <Top header="Top freelancers" items={topData}>
-          {(item) => <FreelancerList key={item.id} freelancer={item}/>}
+          {(item) => <FreelancerList key={item.id} freelancer={item} />}
         </Top>
-        <Top header="Popular Shops" items={shopData} styles={{flexDirection: "row"}}>
-          {(item) => <ShopsList key={item.id} shop={item}/>}
+        <Top
+          header="Popular Shops"
+          items={shopData}
+          styles={{ flexDirection: "row" }}
+        >
+          {(item) => <ShopsList key={item.id} shop={item} />}
         </Top>
       </ScrollView>
     </SafeAreaView>

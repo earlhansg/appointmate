@@ -8,7 +8,7 @@ type ImageProps = {
 };
 
 type TouchableImageButtonProps = {
-  children: ReactNode;
+  children?: ReactNode;
   imageUrl?: any;
   renderImage: (settings: {
     containerStyle: ViewStyle;
