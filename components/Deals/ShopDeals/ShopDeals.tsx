@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { View, Text, TouchableHighlight, Image, FlatList } from "react-native";
 
 import TouchableImageButton from "../../Buttons/TouchableImageButton";
 import { AntDesign } from "@expo/vector-icons";
 import { ShopDealsStyle } from "./ShopDealsStyle";
+import { ThemeContext } from "../../ThemeContext/ThemeContext";
 
 type ShopDeal = {
   id: number;
@@ -15,6 +16,7 @@ type ShopDeal = {
 };
 
 const ShopDeals = ({ shopDeals }: { shopDeals: ShopDeal[] }) => {
+  const appTheme =  useContext(ThemeContext)
   const navigate = () => {
     console.log("im click in Try");
   };
@@ -33,6 +35,15 @@ const ShopDeals = ({ shopDeals }: { shopDeals: ShopDeal[] }) => {
                 onPress={navigate}
               >
                 <View style={ShopDealsStyle.ImageButtonContainer}>
+                  
+                  <View style={[{
+                    backgroundColor: appTheme.secondary.color,
+                    },
+                    ShopDealsStyle.promoContainer
+                    ]}>
+                    <Text style={ShopDealsStyle.promoText}>20% off</Text>
+                  </View>
+
                   <Image
                     source={item.imageUrl}
                     resizeMode="cover"
