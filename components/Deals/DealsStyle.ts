@@ -2,15 +2,17 @@ import { StyleSheet } from "react-native";
 
 export const DealsStyle = StyleSheet.create({
   container: {
-    // marginTop: 20
-    flexDirection: "row"
+    marginTop: 25,
+    marginBottom: 20,
+    // marginLeft: 10,
+    // backgroundColor: "#cedfef"
+    // backgroundColor: "#d6ebde"
+    // backgroundColor: "#eff3f7"
   },
-  textContainer: {
-    paddingRight: 3
-  },
-  text: {
-    textAlign: "center",
-    fontSize: 11,
-    fontWeight: "600"
+  header: {
+    fontSize: 16,
+    fontWeight: "500",
+    marginBottom: 15,
+    marginLeft: 10
   }
 });

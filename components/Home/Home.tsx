@@ -14,7 +14,7 @@ const Home = () => {
         <Categories />
         <TopFreelancers/>
         <TopShops/>
-        {/* <Deals/> */}
+        <Deals/>
       </ScrollView>
     </SafeAreaView>
   );

@@ -1,8 +1,18 @@
 import React from "react";
 
-import { View, Text, TouchableHighlight, Image } from "react-native";
+import { View, Text, TouchableHighlight, Image, FlatList } from "react-native";
 import { DealsStyle } from "./DealsStyle";
 import TouchableImageButton from "../Buttons/TouchableImageButton";
+
+import { AntDesign } from '@expo/vector-icons';
+
+type ShopDeal = {
+  id: number;
+  imageUrl: any;
+  name: string;
+  position: string;
+  address: string;
+};
 
 const Deals = () => {
   const dealsImage1 = require("../../assets/deals-images/cleaning.jpg");
@@ -27,40 +37,79 @@ const Deals = () => {
   const navigate = () => {
     console.log("im click in Try");
   };
+  const keyExtractor = (item: ShopDeal) => item.id.toString();
   return (
-    <View>
-      <Text>Your Daily Deals</Text>
-      <View style={DealsStyle.container}>
-        {shopDeals.map((deal) => (
+    <View style={DealsStyle.container}>
+      <View>
+        <Text style={DealsStyle.header}>Your daily deals</Text>
+      </View>
+      <View style={{backgroundColor: "#eff3f7"}}>
+      <FlatList
+        data={shopDeals}
+        renderItem={({ item }) => (
           <TouchableImageButton
-            key={deal.id}
+            key={item.id}
             renderImage={(settings) => (
               <TouchableHighlight
                 style={[
                   {
-                    backgroundColor: "#f7f7f7",
-                    height: 60,
-                    width: 120,
-                    marginTop: 5,
+                    backgroundColor: "white",
+                    maxHeight: 210,
+                    width: 280,
+                    marginTop: 35,
+                    marginBottom: 20,
                     marginLeft: 10,
-                    marginBottom: 5,
-                    borderRadius: 10,
+                    marginRight: 10,
+                    borderRadius: 10
                   },
                 ]}
                 underlayColor={settings.underlayColor}
                 onPress={navigate}
               >
-                <Image
-                  source={deal.imageUrl}
-                  resizeMode="contain"
-                  style={{ width: "100%", height: "100%" }}
-                />
+                <View style={{
+                  width: "100%",
+                  height: "85%",
+                  margin: 6,
+                  padding: 3
+                }}>
+                  <Image
+                    source={item.imageUrl}
+                    resizeMode="cover"
+                    style={{ width: "96%", height: "90%", borderRadius: 10 }}
+                  />
+                  <View style={{flexDirection: "row", width: "95%", marginTop: 5}}>
+                    <View style={{marginRight: "auto"}}>
+                      <Text style={{
+                        fontSize: 12,
+                        fontWeight: "600"
+                      }}>{item.name}</Text>
+                      <Text style={{
+                        fontSize: 12,
+                        fontWeight: "500",
+                        color: "#ababab"
+                      }}>{item.address}</Text>
+                    </View>
+                    <View style={{flexDirection: "row", alignContent: "center"}}>
+                      <AntDesign name="star" size={12} color="#ffb413" style={{
+                        margin: 2
+                      }} />
+                      <Text style={{
+                        fontSize: 12,
+                        fontWeight: "600",
+                        marginRight: 5
+                      }}>4.6</Text>
+                    </View>
+                  </View>
+                </View>
               </TouchableHighlight>
             )}
           >
-            <Text style={DealsStyle.text}>{deal.name}</Text>
           </TouchableImageButton>
-        ))}
+        )}
+        keyExtractor={keyExtractor}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+      />
       </View>
     </View>
   );
