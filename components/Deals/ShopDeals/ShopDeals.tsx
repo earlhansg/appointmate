@@ -6,14 +6,7 @@ import TouchableImageButton from "../../Buttons/TouchableImageButton";
 import { AntDesign } from "@expo/vector-icons";
 import { ShopDealsStyle } from "./ShopDealsStyle";
 import { ThemeContext } from "../../ThemeContext/ThemeContext";
-
-type ShopDeal = {
-  id: number;
-  imageUrl: any;
-  name: string;
-  position: string;
-  address: string;
-};
+import { ShopDeal } from "../model/ShopDeal";
 
 const ShopDeals = ({ shopDeals }: { shopDeals: ShopDeal[] }) => {
   const appTheme =  useContext(ThemeContext)
