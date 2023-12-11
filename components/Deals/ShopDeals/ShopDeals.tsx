@@ -3,7 +3,8 @@ import React from "react";
 import { View, Text, TouchableHighlight, Image, FlatList } from "react-native";
 
 import TouchableImageButton from "../../Buttons/TouchableImageButton";
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign } from "@expo/vector-icons";
+import { ShopDealsStyle } from "./ShopDealsStyle";
 
 type ShopDeal = {
   id: number;
@@ -27,59 +28,26 @@ const ShopDeals = ({ shopDeals }: { shopDeals: ShopDeal[] }) => {
             key={item.id}
             renderImage={(settings) => (
               <TouchableHighlight
-                style={[
-                  {
-                    backgroundColor: "white",
-                    maxHeight: 210,
-                    width: 280,
-                    marginTop: 35,
-                    marginBottom: 20,
-                    marginLeft: 10,
-                    marginRight: 10,
-                    borderRadius: 10,
-                  },
-                ]}
+                style={[ShopDealsStyle.imageButton]}
                 underlayColor={settings.underlayColor}
                 onPress={navigate}
               >
-                <View
-                  style={{
-                    width: "100%",
-                    height: "85%",
-                    margin: 6,
-                    padding: 3,
-                  }}
-                >
+                <View style={ShopDealsStyle.ImageButtonContainer}>
                   <Image
                     source={item.imageUrl}
                     resizeMode="cover"
-                    style={{ width: "96%", height: "90%", borderRadius: 10 }}
+                    style={ShopDealsStyle.contentImage}
                   />
-                  <View
-                    style={{ flexDirection: "row", width: "95%", marginTop: 5 }}
-                  >
-                    <View style={{ marginRight: "auto" }}>
-                      <Text
-                        style={{
-                          fontSize: 12,
-                          fontWeight: "600",
-                        }}
-                      >
+                  <View style={ShopDealsStyle.textContainer}>
+                    <View style={ShopDealsStyle.primaryTextContainer}>
+                      <Text style={ShopDealsStyle.shopNameText}>
                         {item.name}
                       </Text>
-                      <Text
-                        style={{
-                          fontSize: 12,
-                          fontWeight: "500",
-                          color: "#ababab",
-                        }}
-                      >
+                      <Text style={ShopDealsStyle.shopAddressTest}>
                         {item.address}
                       </Text>
                     </View>
-                    <View
-                      style={{ flexDirection: "row", alignContent: "center" }}
-                    >
+                    <View style={ShopDealsStyle.reviewContainer}>
                       <AntDesign
                         name="star"
                         size={12}
@@ -88,15 +56,7 @@ const ShopDeals = ({ shopDeals }: { shopDeals: ShopDeal[] }) => {
                           margin: 2,
                         }}
                       />
-                      <Text
-                        style={{
-                          fontSize: 12,
-                          fontWeight: "600",
-                          marginRight: 5,
-                        }}
-                      >
-                        4.6
-                      </Text>
+                      <Text style={ShopDealsStyle.reviewText}>4.6</Text>
                     </View>
                   </View>
                 </View>
