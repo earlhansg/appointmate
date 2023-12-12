@@ -19,6 +19,6 @@ export const DealsStyle = StyleSheet.create({
   },
   freelancerDealsContainer: {
     marginTop: 15,
-    marginBottom: 20,
+    marginBottom: 10
   },
 });

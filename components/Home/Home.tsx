@@ -5,6 +5,7 @@ import Categories from "../Categories/Categories";
 import Deals from "../Deals/Deals";
 import TopFreelancers from "../TopFreelancers/TopFreelancers";
 import TopShops from "../TopShops/TopShops";
+import Membership from "../Membership/Membership";
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
         <TopFreelancers/>
         <TopShops/>
         <Deals/>
+        <Membership/>
       </ScrollView>
     </SafeAreaView>
   );
