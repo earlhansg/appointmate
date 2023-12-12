@@ -1,23 +1,19 @@
 import React from "react";
 
-import { View, Text, TouchableHighlight, Image, FlatList } from "react-native";
+import { View, Text } from "react-native";
 import { DealsStyle } from "./DealsStyle";
-import TouchableImageButton from "../Buttons/TouchableImageButton";
 
-import { AntDesign } from '@expo/vector-icons';
 import ShopDeals  from "./ShopDeals/ShopDeals";
-
-// type ShopDeal = {
-//   id: number;
-//   imageUrl: any;
-//   name: string;
-//   position: string;
-//   address: string;
-// };
+import FreelancerDeals from "./FreelancerDeals/FreelancerDeals";
 
 const Deals = () => {
   const dealsImage1 = require("../../assets/deals-images/cleaning.jpg");
   const dealsImage2 = require("../../assets/deals-images/beauty.jpg");
+
+  const freelancerDealsImage1 = require("../../assets/deals-images/freelance-deals1.png")
+  const freelancerDealsImage2 = require("../../assets/deals-images/freelance-deals2.png")
+  const freelancerDealsImage3 = require("../../assets/deals-images/freelance-deals3.png")
+  const freelancerDealsImage4 = require("../../assets/deals-images/freelance-deals4.png")
 
   const shopDeals = [
     {
@@ -35,83 +31,52 @@ const Deals = () => {
       address: "CM Recto",
     },
   ];
-  const navigate = () => {
-    console.log("im click in Try");
-  };
-  // const keyExtractor = (item: ShopDeal) => item.id.toString();
+
+  const freelancerDeals = [
+    {
+      id: 1,
+      imageUrl: freelancerDealsImage1,
+      firstName: "Mia",
+      lastName: "Lester",
+      position: "freelancer",
+      address: "CDO"
+    },
+    {
+      id: 2,
+      imageUrl: freelancerDealsImage2,
+      firstName: "John",
+      lastName: "Doe",
+      position: "freelancer",
+      address: "CDO"
+    },
+    {
+      id: 3,
+      imageUrl: freelancerDealsImage3,
+      firstName: "John",
+      lastName: "dela Cruz",
+      position: "freelancer",
+      address: "CDO"
+    },
+    {
+      id: 4,
+      imageUrl: freelancerDealsImage4,
+      firstName: "John",
+      lastName: "Jose",
+      position: "freelancer",
+      address: "CDO"
+    }
+  ]
+
   return (
     <View style={DealsStyle.container}>
       <View>
         <Text style={DealsStyle.header}>Your daily deals</Text>
       </View>
-      <View style={{backgroundColor: "#eff3f7"}}>
-        {/* <FlatList
-          data={shopDeals}
-          renderItem={({ item }) => (
-            <TouchableImageButton
-              key={item.id}
-              renderImage={(settings) => (
-                <TouchableHighlight
-                  style={[
-                    {
-                      backgroundColor: "white",
-                      maxHeight: 210,
-                      width: 280,
-                      marginTop: 35,
-                      marginBottom: 20,
-                      marginLeft: 10,
-                      marginRight: 10,
-                      borderRadius: 10
-                    },
-                  ]}
-                  underlayColor={settings.underlayColor}
-                  onPress={navigate}
-                >
-                  <View style={{
-                    width: "100%",
-                    height: "85%",
-                    margin: 6,
-                    padding: 3
-                  }}>
-                    <Image
-                      source={item.imageUrl}
-                      resizeMode="cover"
-                      style={{ width: "96%", height: "90%", borderRadius: 10 }}
-                    />
-                    <View style={{flexDirection: "row", width: "95%", marginTop: 5}}>
-                      <View style={{marginRight: "auto"}}>
-                        <Text style={{
-                          fontSize: 12,
-                          fontWeight: "600"
-                        }}>{item.name}</Text>
-                        <Text style={{
-                          fontSize: 12,
-                          fontWeight: "500",
-                          color: "#ababab"
-                        }}>{item.address}</Text>
-                      </View>
-                      <View style={{flexDirection: "row", alignContent: "center"}}>
-                        <AntDesign name="star" size={12} color="#ffb413" style={{
-                          margin: 2
-                        }} />
-                        <Text style={{
-                          fontSize: 12,
-                          fontWeight: "600",
-                          marginRight: 5
-                        }}>4.6</Text>
-                      </View>
-                    </View>
-                  </View>
-                </TouchableHighlight>
-              )}
-            >
-            </TouchableImageButton>
-          )}
-          keyExtractor={keyExtractor}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-        /> */}
+      <View style={DealsStyle.shopDealsContainer}>
         <ShopDeals shopDeals={shopDeals}/>
+      </View>
+      <View style={DealsStyle.freelancerDealsContainer}>
+        <FreelancerDeals freelanceDeals={freelancerDeals}/>
       </View>
     </View>
   );
