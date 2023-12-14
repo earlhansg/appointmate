@@ -15,7 +15,7 @@ const Search = () => {
         />
         <TextInput
           style={SearchStyle.input}
-          placeholder="Find service"
+          placeholder="Search..."
           underlineColorAndroid="transparent"
         />
       </View>

@@ -10,8 +10,8 @@ import Membership from "../../components/Membership/Membership";
 const Home = () => {
   return (
     <SafeAreaView style={HomeStyle.container}>
+      <Header />
       <ScrollView>
-        <Header />
         <Categories />
         <TopFreelancers/>
         <TopShops/>

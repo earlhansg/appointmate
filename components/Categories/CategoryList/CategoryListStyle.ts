@@ -9,7 +9,8 @@ export const CategoryListStyle = StyleSheet.create({
   },
   text: {
     textAlign: "center",
-    fontSize: 11,
-    fontWeight: "600"
+    fontSize: 12,
+    fontWeight: "500",
+    marginLeft: 5
   }
 });

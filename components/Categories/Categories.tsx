@@ -48,7 +48,7 @@ const Categories = () => {
   const keyExtractor = (item: GroupedData) => item.group.toString();
   return (
     <SafeAreaView style={CategoriesStyle.container}>
-      <Text style={CategoriesStyle.primaryText}>Services</Text>
+      <Text style={CategoriesStyle.primaryText}>SERVICES</Text>
       {groupDataByTwo ? (
         <FlatList
           data={groupDataByTwo}

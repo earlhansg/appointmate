@@ -27,7 +27,7 @@ const TouchableImageButton = ({ children, renderImage }: TouchableImageButtonPro
       marginBottom: 5,
       borderRadius: 10,
     },
-    underlayColor: "#e0e0e0",
+    underlayColor: "#e0e0e0"
   });
   return (
     <>
