@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 
 export const ShopListStyle = StyleSheet.create({
   container: {
+    marginTop: 5
   },
   textContainer: {
     flexDirection: "row", 
@@ -11,7 +12,7 @@ export const ShopListStyle = StyleSheet.create({
   },
   text: {
     fontSize: 12,
-    fontWeight: "600",
+    fontWeight: "500",
     marginTop: 5
   }
 });

@@ -6,8 +6,7 @@ export const TopShopsStyle = StyleSheet.create({
     marginLeft: 10
   },
   header: {
-    fontSize: 16,
-    fontWeight: "500",
-    marginBottom: 15,
+    fontSize: 15,
+    fontWeight: "500"
   }
 });

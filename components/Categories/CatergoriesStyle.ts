@@ -7,12 +7,6 @@ export const CategoriesStyle = StyleSheet.create({
   categoryContainer: {
     paddingRight: 3
   },
-  catergoryListContainer: {
-    height: 55,
-    width: 55,
-    marginLeft: 7,
-    marginBottom: 20
-  },
   primaryText: {
     fontSize: 15,
     fontWeight: "500",

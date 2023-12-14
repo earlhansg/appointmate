@@ -7,7 +7,7 @@ import { Freelancers } from "./model/Freelancer";
 const TopFreelancers = () => {
   const imageUrl1 = require("../../assets/business-images/business-picture1.png");
   const imageUrl2 = require("../../assets/business-images/business-picture2.png");
-
+  
   const topFreelancers = [
     {
       id: 1,

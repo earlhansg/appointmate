@@ -50,7 +50,7 @@ const TopShops = () => {
   return (
     <View style={TopShopsStyle.container}>
       <View>
-        <Text style={TopShopsStyle.header}>Top shops</Text>
+        <Text style={TopShopsStyle.header}>POPULAR SHOPS</Text>
       </View>
       <FlatList
         data={topShops}
