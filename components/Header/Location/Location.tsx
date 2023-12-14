@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Text, View } from "react-native";
 import { LocationStyle } from "./LocationStyle";
 import { Feather } from '@expo/vector-icons';
-import { ThemeContext } from "../ThemeContext/ThemeContext";
+import { ThemeContext } from "../../ThemeContext/ThemeContext";
 
 const Location = () => {
   const appTheme =  useContext(ThemeContext)

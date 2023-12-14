@@ -1,11 +1,11 @@
 import { SafeAreaView, ScrollView } from "react-native";
-import Header from "../Header/Header";
+import Header from "../../components/Header/Header";
 import { HomeStyle } from "./HomeStyle";
-import Categories from "../Categories/Categories";
-import Deals from "../Deals/Deals";
-import TopFreelancers from "../TopFreelancers/TopFreelancers";
-import TopShops from "../TopShops/TopShops";
-import Membership from "../Membership/Membership";
+import Categories from "../../components/Categories/Categories";
+import Deals from "../../components/Deals/Deals";
+import TopFreelancers from "../../components/TopFreelancers/TopFreelancers";
+import TopShops from "../../components/TopShops/TopShops";
+import Membership from "../../components/Membership/Membership";
 
 const Home = () => {
   return (
