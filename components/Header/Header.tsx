@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import Location from "./Location/Location";
 import Search from "./Search/Search";
 

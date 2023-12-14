@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 export const SearchStyle = StyleSheet.create({
     container: {
-        marginTop: 5,
+        marginTop: 20,
         paddingRight: 10,
         paddingLeft: 10,
         flexDirection: "row",
@@ -13,21 +13,20 @@ export const SearchStyle = StyleSheet.create({
         flexDirection: "row",
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#f7f7f7'
+        backgroundColor: '#f7f7f7',
+        borderRadius: 10
     },
     searchIcon: {
         padding: 5
     },
     input: {
         flex: 1,
-        paddingTop: 5,
+        paddingTop: 10,
         paddingRight: 5,
-        paddingBottom: 5,
-        paddingLeft: 0,
+        paddingBottom: 10,
+        paddingLeft: 10,
         backgroundColor: '#f7f7f7',
         color: '#424242',
+        borderRadius: 10
     },
-    filterContainer: {
-        justifyContent: "center"
-    }
 });

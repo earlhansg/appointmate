@@ -2,9 +2,9 @@ import React from "react";
 import { View, Text, TouchableHighlight, Image } from "react-native";
 import TouchableImageButton from "../../Buttons/TouchableImageButton";
 import { ShopListStyle } from "./ShopsStyle";
-import { TopItem } from "../../Top/Top";
+import { Shop } from "../model/Shop";
 
-const ShopsList = ({ shop }: { shop: TopItem }) => {
+const ShopsList = ({ shop }: { shop: Shop }) => {
   const navigate = () => {
     console.log("im click in Try");
   };

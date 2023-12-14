@@ -21,7 +21,7 @@ const Location = () => {
                 LocationStyle.firstContentText,
               ]}
             >
-              <Feather name="map-pin" size={15} color={appTheme.white.color} />
+              <Feather name="map-pin" size={13} color={appTheme.white.color} />
               &nbsp;CDO
             </Text>
           </View>

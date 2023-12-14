@@ -2,8 +2,6 @@ import React from "react";
 import { TextInput, View } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { SearchStyle } from "./SearchStyle";
-import CustomButton from "../../Buttons/Button";
-import { IconType } from "../../Buttons/Button";
 
 const Search = () => {
   return (
@@ -17,19 +15,8 @@ const Search = () => {
         />
         <TextInput
           style={SearchStyle.input}
-          placeholder="Find Services"
+          placeholder="Find service"
           underlineColorAndroid="transparent"
-        />
-      </View>
-      <View style={SearchStyle.filterContainer}>
-        <CustomButton
-          icon={{ type: IconType.Ionicon, name: "filter-outline" }}
-          size={24}
-          customStyle={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-          }}
         />
       </View>
     </View>
