@@ -1,28 +1,23 @@
-import { View, Text, Image, ImageBackground } from "react-native";
+import { View, Text, Image } from "react-native";
 import { FreelancerListStyle } from "./FreelancerListStyle";
 import { Freelancers } from "../model/Freelancer";
+import { useContext } from "react";
+import { ThemeContext } from "../../ThemeContext/ThemeContext";
 
 
 const FreelancerList = ({ freelancer }: { freelancer: Freelancers }) => {
-  const backgroundColorSecondary = require("../../../assets/background-images/top-bg-secondary.png");
-  const backgroundColorTertiary = require("../../../assets/background-images/top-bg-tertiary.png");
-
+  const appTheme =  useContext(ThemeContext)
   return (
     <View style={FreelancerListStyle.listContainer}>
-      <ImageBackground
-        source={
-          freelancer.id % 2 === 0
-            ? backgroundColorTertiary
-            : backgroundColorSecondary
-        }
+      <View
         style={[
           FreelancerListStyle.imgListContainer,
           {
             marginLeft: freelancer.id === 1 ? 0 : 15,
             marginRight: freelancer.id === 3 ? 15 : 0,
+            backgroundColor: freelancer.id % 2 === 0 ? appTheme.secondary.color : appTheme.primary.color
           },
         ]}
-        imageStyle={{ borderRadius: 20 }}
       >
         <View style={FreelancerListStyle.listPrimaryText2}>
           <Text
@@ -42,7 +37,7 @@ const FreelancerList = ({ freelancer }: { freelancer: Freelancers }) => {
             style={{ width: 130, height: 150 }}
           />
         </View>
-      </ImageBackground>
+      </View>
     </View>
   );
 };

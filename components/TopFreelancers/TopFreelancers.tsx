@@ -39,7 +39,7 @@ const TopFreelancers = () => {
   return (
     <View style={TopFreelancersStyle.container}>
        <View>
-        <Text style={TopFreelancersStyle.header}>Top freelancers</Text>
+        <Text style={TopFreelancersStyle.header}>TOP FREELANCERS</Text>
       </View>
       <FlatList
         data={topFreelancers}

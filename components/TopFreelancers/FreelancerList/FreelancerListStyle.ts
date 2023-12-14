@@ -6,8 +6,10 @@ export const FreelancerListStyle = StyleSheet.create({
     fontWeight: "500"
   },
   textSkill: {
-    color: "#e5e5e5",
+    // color: "#e5e5e5",
+    color: "#ffffff",
     fontSize: 11,
+    fontWeight: "500",
     marginTop: 3
   },
   textAddress:{
@@ -22,12 +24,12 @@ export const FreelancerListStyle = StyleSheet.create({
   },
   imgListContainer: {
     minWidth: 170,
-    minHeight: 230
+    minHeight: 230,
+    borderRadius: 20
   },
   listPrimaryText2: {
     marginTop: 20,
     marginLeft: 10
-
   },
   imageContainer: {
     flexGrow: 1,

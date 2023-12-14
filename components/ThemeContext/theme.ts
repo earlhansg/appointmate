@@ -2,16 +2,13 @@ export const theme = {
   primary: {
     // color: "#FB3640",
     color: "#5F6F52",
-    text: "",
   },
   secondary: {
-    color: "#542E71",
-    // color: "#5F6F52",
-    text: "",
+    // color: "#542E71",
+    color: "#B99470"
   },
   tertiary: {
-    color: "#A799B7",
-    text: "",
+    color: "#A799B7"
   },
   white: {
     color: "#ffffff"

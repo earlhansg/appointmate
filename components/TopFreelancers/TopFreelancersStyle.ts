@@ -6,7 +6,7 @@ export const TopFreelancersStyle = StyleSheet.create({
     marginLeft: 10
   },
   header: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: "500",
     marginBottom: 15,
   }
