@@ -1,21 +1,34 @@
 import React, { useContext } from "react";
 import { Text, View } from "react-native";
 import { LocationStyle } from "./LocationStyle";
-import { Feather } from '@expo/vector-icons';
+import { Feather, FontAwesome5 } from "@expo/vector-icons";
 import { ThemeContext } from "../../ThemeContext/ThemeContext";
 
 const Location = () => {
-  const appTheme =  useContext(ThemeContext)
+  const appTheme = useContext(ThemeContext);
   return (
     <View style={LocationStyle.mainContainer}>
       <View style={LocationStyle.iconContainer}>
-        <Feather name="map-pin" size={20} color={appTheme.primary.color} />
+        <Feather name="menu" size={20} />
       </View>
       <View style={LocationStyle.contentContainer}>
-        <Text style={LocationStyle.contentPrimary}>Home</Text>
-        <Text style={LocationStyle.contentSecondary}>
-          Cagayan De Oro City Misamis
-        </Text>
+        <View style={[LocationStyle.firstContent]}>
+          <View>
+            <Text
+              style={[
+                { color: appTheme.white.color },
+                { backgroundColor: appTheme.primary.color },
+                LocationStyle.firstContentText,
+              ]}
+            >
+              <Feather name="map-pin" size={15} color={appTheme.white.color} />
+              &nbsp;CDO
+            </Text>
+          </View>
+        </View>
+        <View style={LocationStyle.secondContent}>
+          <FontAwesome5 name="calendar-check" size={20} />
+        </View>
       </View>
     </View>
   );

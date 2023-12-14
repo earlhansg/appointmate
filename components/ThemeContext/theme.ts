@@ -1,6 +1,7 @@
 export const theme = {
   primary: {
-    color: "#FB3640",
+    // color: "#FB3640",
+    color: "#5F6F52",
     text: "",
   },
   secondary: {
@@ -12,6 +13,9 @@ export const theme = {
     color: "#A799B7",
     text: "",
   },
+  white: {
+    color: "#ffffff"
+  }
 };
 
 // https://colorhunt.co/palette/542e71fb3640fdca40a799b7
