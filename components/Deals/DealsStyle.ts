@@ -9,7 +9,7 @@ export const DealsStyle = StyleSheet.create({
     // backgroundColor: "#eff3f7"
   },
   header: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: "500",
     marginBottom: 15,
     marginLeft: 10,

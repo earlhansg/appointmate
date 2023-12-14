@@ -30,7 +30,7 @@ const ShopDeals = ({ shopDeals }: { shopDeals: ShopDeal[] }) => {
                 <View style={ShopDealsStyle.ImageButtonContainer}>
                   
                   <View style={[{
-                    backgroundColor: appTheme.secondary.color,
+                    backgroundColor: appTheme.primary.color,
                     },
                     ShopDealsStyle.promoContainer
                     ]}>

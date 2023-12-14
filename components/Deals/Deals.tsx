@@ -70,7 +70,7 @@ const Deals = () => {
   return (
     <View style={DealsStyle.container}>
       <View>
-        <Text style={DealsStyle.header}>Your daily deals</Text>
+        <Text style={DealsStyle.header}>DAILY DEALS</Text>
       </View>
       <View style={DealsStyle.shopDealsContainer}>
         <ShopDeals shopDeals={shopDeals}/>
