@@ -1,15 +1,15 @@
 import React from "react";
 import { View, Text, Image, TouchableHighlight } from "react-native";
-import { GroupedData } from "../Categories/Categories";
+import { GroupedData } from "../Categories";
 import { CategoryListStyle } from "./CategoryListStyle";
-import TouchableImageButton from "../Buttons/TouchableImageButton";
+import TouchableImageButton from "../../Buttons/TouchableImageButton";
 
 type CatergoryListProps = {
   category: GroupedData;
 };
 
 const CategoryList = ({ category }: CatergoryListProps) => {
-  const imageUrl = require("../../assets/sampleimage2.png");
+  const imageUrl = require("../../../assets/sampleimage2.png");
 
   const navigate = () => {
     console.log("im click in Try");

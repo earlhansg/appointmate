@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { FlatList, SafeAreaView, Text } from "react-native";
 import { CategoriesStyle } from "./CatergoriesStyle";
-import CategoryList from "../CategoryList/CategoryList";
+import CategoryList from "./CategoryList/CategoryList";
 
 export type GroupedData = {
   group: number;
