@@ -3,13 +3,14 @@ import { Text, View } from "react-native";
 import { LocationStyle } from "./LocationStyle";
 import { Feather, FontAwesome5 } from "@expo/vector-icons";
 import { ThemeContext } from "../../ThemeContext/ThemeContext";
+import { Navigation } from "../../../pages/model/Navigation";
 
-const Location = () => {
+const Location = ({navigation}: Navigation) => {
   const appTheme = useContext(ThemeContext);
   return (
     <View style={LocationStyle.mainContainer}>
       <View style={LocationStyle.iconContainer}>
-        <Feather name="menu" size={20} />
+        <Feather name="menu" size={20} onPress={() => navigation.openDrawer()}/>
       </View>
       <View style={LocationStyle.contentContainer}>
         <View style={[LocationStyle.firstContent]}>

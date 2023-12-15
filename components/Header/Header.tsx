@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import { Animated } from "react-native";
 import Location from "./Location/Location";
 import Search from "./Search/Search";
@@ -8,9 +8,10 @@ const Header_Min_Height = 60;
 
 interface DynamicHeaderProps {
   animHeaderValue: Animated.Value;
+  children: ReactElement
 }
 
-const Header = ({ animHeaderValue }: DynamicHeaderProps) => {
+const Header = ({ animHeaderValue, children }: DynamicHeaderProps) => {
   const animateHeaderHeight = animHeaderValue.interpolate({
     inputRange: [0, Header_Max_Height],
     outputRange: [Header_Max_Height, Header_Min_Height],
@@ -40,7 +41,7 @@ const Header = ({ animHeaderValue }: DynamicHeaderProps) => {
         },
       ]}
     >
-      <Location />
+      {children}
       {scrollValue < 20 && <Search />}
     </Animated.View>
   );

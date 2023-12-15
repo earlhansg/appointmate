@@ -1,15 +1,17 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import Home from "./pages/Home/Home";
-import ThemeContextProvider from "./components/ThemeContext/ThemeContext";
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+
+const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
-    <>
-      <ThemeContextProvider>
-        <Home />
-      </ThemeContextProvider>
-    </>
+    <NavigationContainer>
+        <Drawer.Navigator>
+          <Drawer.Screen name="Home" component={Home} options={{ headerShown: false }} />
+        </Drawer.Navigator>
+    </NavigationContainer>
   );
 }
 
