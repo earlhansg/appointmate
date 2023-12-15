@@ -3,10 +3,7 @@ import { StyleSheet } from "react-native";
 export const DealsStyle = StyleSheet.create({
   container: {
     marginTop: 30,
-    marginBottom: 20,
-    // backgroundColor: "#cedfef"
-    // backgroundColor: "#d6ebde"
-    // backgroundColor: "#eff3f7"
+    marginBottom: 20
   },
   header: {
     fontSize: 15,

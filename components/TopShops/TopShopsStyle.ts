@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 export const TopShopsStyle = StyleSheet.create({
   container: {
-    marginTop: 25,
+    marginTop: 20,
     marginLeft: 10
   },
   header: {

@@ -11,6 +11,6 @@ export const CategoriesStyle = StyleSheet.create({
     fontSize: 15,
     fontWeight: "500",
     marginLeft: 10,
-    marginBottom: 5
+    marginBottom: 10
   }
 });

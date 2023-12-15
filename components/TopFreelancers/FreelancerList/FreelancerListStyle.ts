@@ -6,7 +6,6 @@ export const FreelancerListStyle = StyleSheet.create({
     fontWeight: "500"
   },
   textSkill: {
-    // color: "#e5e5e5",
     color: "#ffffff",
     fontSize: 11,
     fontWeight: "500",
@@ -18,13 +17,12 @@ export const FreelancerListStyle = StyleSheet.create({
   },
   listContainer: {
     flexDirection: "row",
-    // marginTop: 15,
     padding: 3,
     gap: 20
   },
   imgListContainer: {
     minWidth: 170,
-    minHeight: 230,
+    minHeight: 220,
     borderRadius: 20
   },
   listPrimaryText2: {

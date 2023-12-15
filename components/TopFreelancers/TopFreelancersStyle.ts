@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 export const TopFreelancersStyle = StyleSheet.create({
   container: {
-    marginTop: 30,
+    marginTop: 20,
     marginLeft: 10
   },
   header: {
