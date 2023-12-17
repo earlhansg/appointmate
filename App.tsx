@@ -1,13 +1,11 @@
 import { Button, StyleSheet, Text, View } from "react-native";
 import Home from "./pages/Home/Home";
 import { NavigationContainer } from '@react-navigation/native';
-import { DrawerContentScrollView, DrawerItemList, createDrawerNavigator, DrawerContentComponentProps } from '@react-navigation/drawer';
+import { DrawerContentScrollView, DrawerItemList, createDrawerNavigator, DrawerContentComponentProps, DrawerItem } from '@react-navigation/drawer';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Feather, FontAwesome5, Entypo, Ionicons, MaterialIcons  } from "@expo/vector-icons";
-{/* <Feather name="map-pin" size={13} color={appTheme.white.color} /> */}
 
 const Drawer = createDrawerNavigator();
-
 
 
 function CustomDrawerContent(props: DrawerContentComponentProps) {
@@ -55,14 +53,27 @@ function CustomDrawerContent(props: DrawerContentComponentProps) {
             </View>
           </View>
         </View>
-        <View style={{marginTop: 5, borderBottomWidth: StyleSheet.hairlineWidth}}>
+        <View style={{marginTop: 5, borderBottomWidth: StyleSheet.hairlineWidth, borderColor: "#e0e0e0"}}>
           <DrawerItemList {...props}/>
         </View>
-        {/* <View
-          style={{
-            borderBottomColor: 'black',
-            borderBottomWidth: StyleSheet.hairlineWidth,
-          }}/> */}
+        <DrawerItem
+          label="Settings"
+          onPress={() => () => alert('Link to help')}
+          style={{marginLeft: 0, marginRight: 0, marginTop: 0}}
+          labelStyle={{marginLeft: 2, color:"black", fontSize: 13, fontWeight: "400"}}
+      />
+      <DrawerItem
+          label="Terms & Conditions / Privacy"
+          onPress={() => () => alert('Link to help')}
+          style={{marginLeft: 0, marginRight: 0, marginTop: 0}}
+          labelStyle={{marginLeft: 2, color:"black", fontSize: 13, fontWeight: "400"}}
+      />
+      <DrawerItem
+          label="Log out"
+          onPress={() => () => alert('Link to help')}
+          style={{marginLeft: 0, marginRight: 0, marginTop: 0}}
+          labelStyle={{marginLeft: 2, color:"black", fontSize: 13, fontWeight: "400"}}
+      />
       </View>
     </DrawerContentScrollView>
   );
@@ -93,7 +104,7 @@ export default function App() {
             drawerLabel: ({color, focused}) => (
               <View style={{flexDirection:"row"}}>
                 <FontAwesome5 name="calendar-check" size={18} color="#5F6F52" style={{marginLeft: 4}}/>
-                <Text style={{fontSize: 13,  fontWeight: "500", marginLeft: 20}}>Appointments</Text>
+                <Text style={{fontSize: 13, marginLeft: 20}}>Appointments</Text>
               </View>
             )
 }}/>
@@ -102,7 +113,7 @@ export default function App() {
             drawerLabel: ({color, focused}) => (
               <View style={{flexDirection:"row"}}>
                 <Entypo name="heart-outlined" size={18} color="#5F6F52" />
-                <Text style={{fontSize: 13,  fontWeight: "500", marginLeft: 20}}>Favorites</Text>
+                <Text style={{fontSize: 13, marginLeft: 20}}>Favorites</Text>
               </View>
             )
             
@@ -112,7 +123,7 @@ export default function App() {
             drawerLabel: ({color, focused}) => (
               <View style={{flexDirection:"row"}}>
                 <FontAwesome5 name="user" size={18} color="#5F6F52" />
-                <Text style={{fontSize: 13,  fontWeight: "500", marginLeft: 20}}>View profile</Text>
+                <Text style={{fontSize: 13, marginLeft: 20}}>View profile</Text>
               </View>
             )
             
@@ -122,7 +133,7 @@ export default function App() {
             drawerLabel: ({color, focused}) => (
               <View style={{flexDirection:"row"}}>
                 <Feather name="map-pin" size={18} color="#5F6F52" />
-                <Text style={{fontSize: 13,  fontWeight: "500", marginLeft: 20}}>Addresses</Text>
+                <Text style={{fontSize: 13, marginLeft: 20}}>Addresses</Text>
               </View>
             )
             
@@ -132,7 +143,7 @@ export default function App() {
             drawerLabel: ({color, focused}) => (
               <View style={{flexDirection:"row"}}>
                 <Ionicons name="trophy-outline" size={18} color="#5F6F52" />
-                <Text style={{fontSize: 13,  fontWeight: "500", marginLeft: 20}}>Rewards</Text>
+                <Text style={{fontSize: 13, marginLeft: 20}}>Rewards</Text>
               </View>
             )
             
@@ -142,7 +153,7 @@ export default function App() {
             drawerLabel: ({color, focused}) => (
               <View style={{flexDirection:"row"}}>
                 <MaterialIcons name="wallet-membership" size={18} color="#5F6F52" />
-                <Text style={{fontSize: 13,  fontWeight: "500", marginLeft: 20}}>Become pro</Text>
+                <Text style={{fontSize: 13, marginLeft: 20}}>Become pro</Text>
               </View>
             )
             
@@ -152,7 +163,7 @@ export default function App() {
             drawerLabel: ({color, focused}) => (
               <View style={{flexDirection:"row"}}>
                 <Feather name="help-circle" size={18} color="#5F6F52" />
-                <Text style={{fontSize: 13,  fontWeight: "500", marginLeft: 20}}>Help center</Text>
+                <Text style={{fontSize: 13, marginLeft: 20}}>Help center</Text>
               </View>
             )
 }} />
