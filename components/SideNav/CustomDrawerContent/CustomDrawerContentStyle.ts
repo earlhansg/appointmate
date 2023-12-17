@@ -42,10 +42,11 @@ export const CustomDrawerContentStyle = StyleSheet.create({
         marginLeft: 10, 
         fontSize: 14,
         fontWeight: "500", 
-        color: "white"
+        color: "white",
+        marginBottom: 3
     },
     secondSectionContainer: {
-        marginTop: 5, 
+        // marginTop: 5, 
         borderBottomWidth: StyleSheet.hairlineWidth, 
         borderColor: "#e0e0e0"
     },

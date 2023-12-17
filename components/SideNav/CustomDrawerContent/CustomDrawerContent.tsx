@@ -7,9 +7,9 @@ import {
 } from "@react-navigation/drawer";
 import { CustomDrawerContentStyle } from "./CustomDrawerContentStyle";
 import { useContext } from "react";
-import { ThemeContext } from "../ThemeContext/ThemeContext";
-import { DrawerItems } from "./data/DrawerItems";
-import WrappedDrawerItem from "./WrappedDrawerItem/WrappedDrawerItem";
+import { ThemeContext } from "../../ThemeContext/ThemeContext";
+import { DrawerItems } from "../data/DrawerItems";
+import WrappedDrawerItem from "../WrappedDrawerItem/WrappedDrawerItem";
 
 const Drawer = createDrawerNavigator();
 
@@ -39,7 +39,8 @@ const CustomDrawerContent = (props: DrawerContentComponentProps) => {
                   <Text
                     style={
                       CustomDrawerContentStyle.firstSectionContainer1Content
-                    }>
+                    }
+                  >
                     E
                   </Text>
                 </View>
