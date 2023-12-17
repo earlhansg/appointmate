@@ -48,5 +48,16 @@ export const CustomDrawerContentStyle = StyleSheet.create({
         marginTop: 5, 
         borderBottomWidth: StyleSheet.hairlineWidth, 
         borderColor: "#e0e0e0"
+    },
+    wrappedDrawerItem: {
+        marginLeft: 0, 
+        marginRight: 0, 
+        marginTop: 0
+    },
+    wrappedDrawerItemLabelStyle: {
+        marginLeft: 2, 
+        color:"#000000", 
+        fontSize: 13, 
+        fontWeight: "400"
     }
 });
