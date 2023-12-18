@@ -4,13 +4,20 @@ import { LocationStyle } from "./LocationStyle";
 import { Feather, FontAwesome5 } from "@expo/vector-icons";
 import { ThemeContext } from "../../ThemeContext/ThemeContext";
 import { Navigation } from "../../../pages/model/Navigation";
+import ButtonIcon from "../../Buttons/ButtonIcon";
 
 const Location = ({navigation}: Navigation) => {
   const appTheme = useContext(ThemeContext);
+  const handleClickMenuBar = () => {
+    console.log("open drawer")
+    navigation.openDrawer()
+  }
   return (
     <View style={LocationStyle.mainContainer}>
       <View style={LocationStyle.iconContainer}>
-        <Feather name="menu" size={20} onPress={() => navigation.openDrawer()}/>
+        <ButtonIcon renderIcon={(settings) => (
+          <Feather name="menu" size={settings.isClicked ? 17 : 20}/>
+        )} onClick={handleClickMenuBar}/>
       </View>
       <View style={LocationStyle.contentContainer}>
         <View style={[LocationStyle.firstContent]}>
@@ -28,7 +35,9 @@ const Location = ({navigation}: Navigation) => {
           </View>
         </View>
         <View style={LocationStyle.secondContent}>
-          <FontAwesome5 name="calendar-check" size={20} />
+          <ButtonIcon renderIcon={(settings) => (
+            <FontAwesome5 name="calendar-check" size={settings.isClicked ? 17 : 20} />
+          )}/>
         </View>
       </View>
     </View>

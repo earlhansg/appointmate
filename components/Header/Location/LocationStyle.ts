@@ -8,18 +8,19 @@ export const LocationStyle = StyleSheet.create({
     marginRight: 15,
   },
   iconContainer: {
+    width: "10%",
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "center"
   },
   contentContainer: {
-    flexGrow: 2,
+    width: "90%",
     flexDirection: "row",
     justifyContent: "center",
   },
   firstContent: {
     flexDirection: "row",
     flexGrow: 1,
-    justifyContent: "flex-end",
+    justifyContent: "center"
   },
   firstContentText: {
     paddingTop: 3,
@@ -29,8 +30,9 @@ export const LocationStyle = StyleSheet.create({
     borderRadius: 25,
   },
   secondContent: {
-    flexGrow: 1,
+    width: "10%",
     flexDirection: "row",
     justifyContent: "flex-end",
+    alignItems:'center',
   },
 });
