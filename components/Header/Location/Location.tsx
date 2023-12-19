@@ -10,7 +10,7 @@ const Location = ({navigation}: Navigation) => {
   const appTheme = useContext(ThemeContext);
   const handleClickMenuBar = () => {
     console.log("open drawer")
-    navigation.openDrawer()
+    navigation?.openDrawer()
   }
   return (
     <View style={LocationStyle.mainContainer}>

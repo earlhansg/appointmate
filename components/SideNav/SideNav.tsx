@@ -20,6 +20,7 @@ import CustomDrawerContent from "./CustomDrawerContent/CustomDrawerContent";
 import Home from "../../pages/Home/Home";
 import { ThemeContext } from "../ThemeContext/ThemeContext";
 import { SideNavStyle } from "./SideNavStyle";
+import Profile from "../../pages/Profile/Profile";
 
 const Drawer = createDrawerNavigator();
 
@@ -94,7 +95,7 @@ const SideNav = () => {
           />
           <Drawer.Screen
             name="View profile"
-            component={NotificationsScreen}
+            component={Profile}
             options={{
               headerShown: false,
               drawerItemStyle: SideNavStyle.drawerItemStyle,
