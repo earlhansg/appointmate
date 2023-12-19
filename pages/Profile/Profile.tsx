@@ -1,11 +1,9 @@
 import React, { useContext } from "react";
-import { SafeAreaView, Animated, View, Text, StyleSheet } from "react-native";
+import { SafeAreaView, View, Text } from "react-native";
 import { ProfileStyle } from "./ProfileStyle";
 import ButtonIcon from "../../components/Buttons/ButtonIcon";
 import { Feather } from "@expo/vector-icons";
 import { Navigation } from "../model/Navigation";
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { Octicons } from '@expo/vector-icons';
 import { ThemeContext } from "../../components/ThemeContext/ThemeContext";
 import User from "../../components/User/User";
 
