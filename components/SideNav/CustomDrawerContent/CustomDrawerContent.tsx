@@ -61,7 +61,7 @@ const CustomDrawerContent = (props: DrawerContentComponentProps) => {
         <View
           style={[
             CustomDrawerContentStyle.secondSectionContainer,
-            { borderColor: theme.gray.light },
+            { borderColor: theme.gray.light2 },
           ]}
         >
           <DrawerItemList {...props} />

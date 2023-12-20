@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import InfoList from "./InfoList/InfoList";
 import { UserStyle } from "./UserStyle";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import { ThemeContext } from "../ThemeContext/ThemeContext";
+import { AntDesign } from "@expo/vector-icons";
 
 const User = () => {
   const theme = useContext(ThemeContext);
@@ -12,8 +13,8 @@ const User = () => {
     firstName: "Earl Hans",
     lastName: "Genoso",
     email: "earl@test.com",
-    mobileNumber:"091234567890"
-  }
+    mobileNumber: "091234567890",
+  };
 
   const navigate = () => {
     console.log("im click in Try");
@@ -22,25 +23,77 @@ const User = () => {
     <>
       <TouchableHighlight
         style={UserStyle.container}
-        underlayColor={theme.gray.light}
+        underlayColor={theme.gray.light2}
         onPress={navigate}
       >
-        <InfoList label="Name" value={`${user.firstName} ${user.lastName}`}/>
+        <InfoList
+          label="Name"
+          value={`${user.firstName} ${user.lastName}`}
+          editable={true}
+        />
       </TouchableHighlight>
       <TouchableHighlight
         style={UserStyle.container}
-        underlayColor={theme.gray.light}
+        underlayColor={theme.gray.light2}
         onPress={navigate}
       >
-        <InfoList label="Email" value={user.email}/>
+        <InfoList label="Email" value={user.email} editable={true}>
+          <View
+            style={[
+              {
+                backgroundColor: theme.gray.light1,
+              },
+              UserStyle.verifiedContainer,
+            ]}
+          >
+            <Text
+              style={[{ color: theme.black.light1 }, UserStyle.verifiedText]}
+            >
+              Verified
+            </Text>
+          </View>
+        </InfoList>
       </TouchableHighlight>
       <TouchableHighlight
         style={UserStyle.container}
-        underlayColor={theme.gray.light}
+        underlayColor={theme.gray.light2}
         onPress={navigate}
       >
-        <InfoList label="Mobile number" value={user.mobileNumber}/>
+        <InfoList
+          label="Mobile number"
+          value={user.mobileNumber}
+          editable={true}
+        >
+          <View
+            style={[
+              {
+                backgroundColor: theme.gray.light1,
+              },
+              UserStyle.verifiedContainer,
+            ]}
+          >
+            <Text
+              style={[{ color: theme.black.light1 }, UserStyle.verifiedText]}
+            >
+              Verified
+            </Text>
+          </View>
+        </InfoList>
       </TouchableHighlight>
+      <>
+        <Text style={UserStyle.connectedAccountText}>Connected Account</Text>
+        <View style={UserStyle.container}>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <AntDesign
+              name="google"
+              size={24}
+              color={theme.gmailIconColor.primary}
+              style={UserStyle.connectedIcon}
+            />
+            <InfoList label="Google" value={"Connected"}></InfoList>
+          </View>
+        </View>
+      </>
     </>
   );
 };

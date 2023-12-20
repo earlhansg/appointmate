@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, {ReactNode, useContext } from "react";
 
 import { View, Text } from "react-native";
 import { Octicons } from "@expo/vector-icons";
@@ -9,28 +9,37 @@ import ButtonIcon from "../../Buttons/ButtonIcon";
 type InfoListProps = {
   label: string;
   value: any;
+  editable?: boolean;
+  children?: ReactNode;
 }
 
 const InfoList = (prop: InfoListProps) => {
   const theme = useContext(ThemeContext);
 
   return (
+    <>
     <View style={InfoListStyle.container}>
       <View style={InfoListStyle.header}>
         <Text style={InfoListStyle.headerContent1}>{prop.label}</Text>
         <Text
-          style={InfoListStyle.headerContent2}
+          style={[InfoListStyle.headerContent2, {
+            color: prop.value === "Connected" ? "#2c83f3" : ""
+          }]}
         >
           {prop.value}
         </Text>
       </View>
       <View>
-        <ButtonIcon
-            renderIcon={(settings) => (
-                <Octicons name="pencil" color={theme.primary.color} size={20} />
-            )}/>
+        {prop.editable && (
+          <ButtonIcon
+          renderIcon={(settings) => (
+              <Octicons name="pencil" color={theme.primary.color} size={20} />
+          )}/>
+        )}
       </View>
     </View>
+    {prop.children}
+    </>
   );
 };
 

@@ -15,7 +15,17 @@ export const theme = {
     color: "#ffffff"
   },
   gray: {
-    light: "#e0e0e0"
+    light1: "#eef0f1",
+    light2: "#e0e0e0"
+  },
+  black:  {
+    light1: "#6c767e"
+  },
+  gmailIconColor: {
+    primary: "#d44a3d"
+  },
+  fbIconColor: {
+    primary: "#416eb3"
   }
 };
 
