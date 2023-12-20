@@ -5,8 +5,9 @@ import { UserStyle } from "./UserStyle";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import { ThemeContext } from "../ThemeContext/ThemeContext";
 import { AntDesign } from "@expo/vector-icons";
+import { Navigation } from "../../pages/model/Navigation";
 
-const User = () => {
+const User = ({ navigation }: Navigation) => {
   const theme = useContext(ThemeContext);
 
   const user = {
@@ -16,15 +17,12 @@ const User = () => {
     mobileNumber: "091234567890",
   };
 
-  const navigate = () => {
-    console.log("im click in Try");
-  };
   return (
     <>
       <TouchableHighlight
         style={UserStyle.container}
         underlayColor={theme.gray.light2}
-        onPress={navigate}
+        onPress={() => navigation?.navigate("Name")}
       >
         <InfoList
           label="Name"
@@ -35,7 +33,7 @@ const User = () => {
       <TouchableHighlight
         style={UserStyle.container}
         underlayColor={theme.gray.light2}
-        onPress={navigate}
+        onPress={() => navigation?.navigate("Name")}
       >
         <InfoList label="Email" value={user.email} editable={true}>
           <View
@@ -57,7 +55,7 @@ const User = () => {
       <TouchableHighlight
         style={UserStyle.container}
         underlayColor={theme.gray.light2}
-        onPress={navigate}
+        onPress={() => navigation?.navigate("Name")}
       >
         <InfoList
           label="Mobile number"

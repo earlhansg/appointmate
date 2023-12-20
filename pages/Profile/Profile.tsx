@@ -30,7 +30,7 @@ const Profile = ({ navigation }: Navigation) => {
         </View>
         <Text style={ProfileStyle.headerText}>Profile</Text>
       </View>
-      <User />
+      <User navigation={navigation}/>
     </SafeAreaView>
   );
 };

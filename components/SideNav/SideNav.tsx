@@ -21,6 +21,7 @@ import Home from "../../pages/Home/Home";
 import { ThemeContext } from "../ThemeContext/ThemeContext";
 import { SideNavStyle } from "./SideNavStyle";
 import Profile from "../../pages/Profile/Profile";
+import Name from "../User/Name/Name";
 
 const Drawer = createDrawerNavigator();
 
@@ -191,6 +192,16 @@ const SideNav = () => {
                   <Text style={SideNavStyle.drawerLabelText}>Help center</Text>
                 </View>
               ),
+            }}
+          />
+          <Drawer.Screen
+            name="Name"
+            component={Name}
+            options={{
+              headerShown: false,
+              drawerItemStyle: {
+                display: "none",
+              },
             }}
           />
         </Drawer.Navigator>
