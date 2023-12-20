@@ -6,17 +6,22 @@ import { ThemeContext } from "../../ThemeContext/ThemeContext";
 import { InfoListStyle } from "./InfoListStyle";
 import ButtonIcon from "../../Buttons/ButtonIcon";
 
-const InfoList = () => {
+type InfoListProps = {
+  label: string;
+  value: any;
+}
+
+const InfoList = (prop: InfoListProps) => {
   const theme = useContext(ThemeContext);
 
   return (
     <View style={InfoListStyle.container}>
       <View style={InfoListStyle.header}>
-        <Text style={InfoListStyle.headerContent1}>Name</Text>
+        <Text style={InfoListStyle.headerContent1}>{prop.label}</Text>
         <Text
           style={InfoListStyle.headerContent2}
         >
-          Earl Hans Genoso
+          {prop.value}
         </Text>
       </View>
       <View>
