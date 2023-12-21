@@ -28,10 +28,15 @@ const Name = () => {
 
   const handleChange = (value: any, label: string) => {
     setData((prev) => ({...prev, [label]: value}))
-    const upDateKeys = Object.fromEntries(Object.keys(data).map(key => [key, key === label]));
-    setActiveInputs(upDateKeys);
     console.log("activeInputs", activeInputs);
   }
+
+  const handleFocus = (label: string) => {
+    const upDateKeys = Object.fromEntries(Object.keys(data).map(key => [key, key === label]));
+    setActiveInputs(upDateKeys);
+  }
+
+
   return (
     <SafeAreaView style={{flex: 1, paddingTop: 20, backgroundColor: "#ffffff"}}>
       <View style={NameStyle.headerContainer}>
@@ -66,21 +71,15 @@ const Name = () => {
             paddingLeft: 3,
             paddingRight: 3,
             fontSize: 13,
-            color: theme.gray.light3
+            color: activeInputs['firstName'] ? "#000000" : theme.gray.light3
           }}>First name</Text>
           <TextInput
-            style={[{borderColor: activeInputs['firstName'] ? "red" : theme.gray.light3}, NameStyle.input]}
+            style={[{borderColor: activeInputs['firstName'] ? "#000000" : theme.gray.light3}, NameStyle.input]}
             onChangeText={(value) => handleChange(value, "firstName")}
+            onFocus={() => handleFocus("firstName")}
             value={data.firstName}
             
           />
-
-          {/* <TextInput
-            style={[{borderColor: theme.gray.light3}, NameStyle.input]}
-            onChangeText={(value) => handleChange(value, "firstName")}
-            value={data.firstName}
-            
-          /> */}
         </View>
 
         <View>
@@ -93,13 +92,13 @@ const Name = () => {
             paddingLeft: 3,
             paddingRight: 3,
             fontSize: 13,
-            color: theme.gray.light3
+            color: activeInputs['lastName'] ? "#000000" : theme.gray.light3
           }}>Last name</Text>
           <TextInput
-            style={[{borderColor: activeInputs['lastName'] ? "red" : theme.gray.light3}, NameStyle.input]}
+            style={[{borderColor: activeInputs['lastName'] ? "#000000" : theme.gray.light3}, NameStyle.input]}
             onChangeText={(value) => handleChange(value, "lastName")}
+            onFocus={() => handleFocus("lastName")}
             value={data.lastName}
-
           />
         </View>
 
