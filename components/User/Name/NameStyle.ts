@@ -22,8 +22,8 @@ export const NameStyle = StyleSheet.create({
   },
   input: {
     // height: 40,
-    margin: 12,
-    borderWidth: 1,
+    marginTop: 20,
+    borderWidth: 0.8,
     padding: 10,
     borderRadius: 10
   },

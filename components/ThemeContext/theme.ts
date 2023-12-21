@@ -16,7 +16,9 @@ export const theme = {
   },
   gray: {
     light1: "#eef0f1",
-    light2: "#e0e0e0"
+    light2: "#e0e0e0",
+    light3: "#989898"
+
   },
   black:  {
     light1: "#6c767e"
