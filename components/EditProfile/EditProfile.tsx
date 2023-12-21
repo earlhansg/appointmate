@@ -6,14 +6,22 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { ThemeContext } from '../ThemeContext/ThemeContext';
 import ButtonIcon from '../Buttons/ButtonIcon';
 
+type EditProfileProps = {
+  data: {
+    firstName?: string;
+    lastName?: string;
+  }
+}
 
-const EditProfile = () => {
-  const [data, setData] = React.useState({
-    firstName: "Earl Hans",
-    lastName: "Genoso"
-  });
+const EditProfile = (props: EditProfileProps) => {
+  // const [currentData, setcurrentData] = React.useState({
+  //   firstName: "Earl Hans",
+  //   lastName: "Genoso"
+  // });
 
-  const dataKeys = Object.fromEntries(Object.keys(data).map(key => [key, false]));
+  const [currentData, setcurrentData] = React.useState(props.data);
+
+  const dataKeys = Object.fromEntries(Object.keys(props.data).map(key => [key, false]));
   
   const [activeInputs, setActiveInputs] = React.useState(dataKeys);
 
@@ -27,7 +35,7 @@ const EditProfile = () => {
   };
 
   const handleChange = (value: any, label: string) => {
-    setData((prev) => ({...prev, [label]: value}))
+    setcurrentData((prev) => ({...prev, [label]: value}))
     console.log("activeInputs", activeInputs);
   }
 
