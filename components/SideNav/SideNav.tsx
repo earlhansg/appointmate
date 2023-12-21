@@ -95,7 +95,7 @@ const SideNav = () => {
             }}
           />
           <Drawer.Screen
-            name="View profile"
+            name="Profile"
             component={Profile}
             options={{
               headerShown: false,

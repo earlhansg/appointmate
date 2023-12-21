@@ -1,6 +1,6 @@
-import { StyleSheet } from "react-native";
+ import { StyleSheet } from "react-native";
 
-export const NameStyle = StyleSheet.create({
+export const EditProfileStyle = StyleSheet.create({
   container: { flex: 1, paddingTop: 20, backgroundColor: "#ffffff" },
   headerContainer: {
     margin: 10,

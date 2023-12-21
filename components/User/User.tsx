@@ -22,7 +22,7 @@ const User = ({ navigation }: Navigation) => {
       <TouchableHighlight
         style={UserStyle.container}
         underlayColor={theme.gray.light2}
-        onPress={() => navigation?.navigate("Update")}
+        onPress={() => navigation?.navigate("Update", { data: {firstName: user['firstName'], lastName: user['lastName']} })}
       >
         <InfoList
           label="Name"
@@ -33,7 +33,7 @@ const User = ({ navigation }: Navigation) => {
       <TouchableHighlight
         style={UserStyle.container}
         underlayColor={theme.gray.light2}
-        onPress={() => navigation?.navigate("Update")}
+        // onPress={() => navigation?.navigate("Update")}
       >
         <InfoList label="Email" value={user.email} editable={true}>
           <View
@@ -55,7 +55,7 @@ const User = ({ navigation }: Navigation) => {
       <TouchableHighlight
         style={UserStyle.container}
         underlayColor={theme.gray.light2}
-        onPress={() => navigation?.navigate("Update")}
+        // onPress={() => navigation?.navigate("Update")}
       >
         <InfoList
           label="Mobile number"
