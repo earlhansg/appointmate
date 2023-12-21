@@ -23,7 +23,7 @@ const InfoList = (prop: InfoListProps) => {
         <Text style={InfoListStyle.headerContent1}>{prop.label}</Text>
         <Text
           style={[InfoListStyle.headerContent2, {
-            color: prop.value === "Connected" ? "#2c83f3" : ""
+            color: prop.value === "Connected" ? "#2c83f3" : "#000000"
           }]}
         >
           {prop.value}
