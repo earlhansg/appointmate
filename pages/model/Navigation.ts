@@ -4,9 +4,9 @@ type RootStackParamList = {
   Home: undefined;
   Notifications: undefined;
   Profile: undefined;
-  Name: undefined;
+  Update: undefined;
 };
 
 export type Navigation = {
-  navigation?: DrawerNavigationProp<RootStackParamList, "Home" | "Notifications" | "Profile" | "Name">;
+  navigation?: DrawerNavigationProp<RootStackParamList, "Home" | "Notifications" | "Profile" | "Update">;
 };

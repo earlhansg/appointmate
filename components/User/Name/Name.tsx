@@ -38,7 +38,7 @@ const Name = () => {
 
 
   return (
-    <SafeAreaView style={{flex: 1, paddingTop: 20, backgroundColor: "#ffffff"}}>
+    <SafeAreaView style={NameStyle.container}>
       <View style={NameStyle.headerContainer}>
         <View style={NameStyle.headerIconContainer}>
           <ButtonIcon
@@ -54,48 +54,33 @@ const Name = () => {
         </View>
         <Text style={NameStyle.headerText}>Name</Text>
       </View>
-      <View style={{
-          marginTop: 15,
-          marginLeft: 10,
-          marginRight: 10,
-          marginBottom: 5,
-        }}>
-        <Text>This is how we'll address you</Text>
+      <Text style={{
+        marginTop: 10,
+        marginLeft: 10,
+        marginRight: 10,
+        fontSize: 13,
+
+      }}>This is how we'll address you</Text>
+      <View style={NameStyle.contentContainer}>
+        {/* <Text>This is how we'll address you</Text> */}
         <View>
-          <Text style={{
-            position: "absolute",
-            top: 9,
-            left: 15,
-            backgroundColor: "#ffffff",
-            zIndex: 200,
-            paddingLeft: 3,
-            paddingRight: 3,
-            fontSize: 13,
-            color: activeInputs['firstName'] ? "#000000" : theme.gray.light3
-          }}>First name</Text>
+          <Text style={[{
+            color: activeInputs['firstName'] ? theme.black.dark : theme.gray.light3
+          }, NameStyle.labelInput]}>First name</Text>
           <TextInput
-            style={[{borderColor: activeInputs['firstName'] ? "#000000" : theme.gray.light3}, NameStyle.input]}
+            style={[{borderColor: activeInputs['firstName'] ? theme.black.dark : theme.gray.light3}, NameStyle.input]}
             onChangeText={(value) => handleChange(value, "firstName")}
             onFocus={() => handleFocus("firstName")}
-            value={data.firstName}
-            
+            value={data.firstName}  
           />
         </View>
 
         <View>
-          <Text style={{
-            position: "absolute",
-            top: 9,
-            left: 15,
-            backgroundColor: "#ffffff",
-            zIndex: 200,
-            paddingLeft: 3,
-            paddingRight: 3,
-            fontSize: 13,
-            color: activeInputs['lastName'] ? "#000000" : theme.gray.light3
-          }}>Last name</Text>
+          <Text style={[{
+            color: activeInputs['lastName'] ? theme.black.dark : theme.gray.light3
+          }, NameStyle.labelInput ]}>Last name</Text>
           <TextInput
-            style={[{borderColor: activeInputs['lastName'] ? "#000000" : theme.gray.light3}, NameStyle.input]}
+            style={[{borderColor: activeInputs['lastName'] ? theme.black.dark : theme.gray.light3}, NameStyle.input]}
             onChangeText={(value) => handleChange(value, "lastName")}
             onFocus={() => handleFocus("lastName")}
             value={data.lastName}

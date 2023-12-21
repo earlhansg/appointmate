@@ -21,7 +21,8 @@ export const theme = {
 
   },
   black:  {
-    light1: "#6c767e"
+    light1: "#6c767e",
+    dark: "#000000"
   },
   gmailIconColor: {
     primary: "#d44a3d"

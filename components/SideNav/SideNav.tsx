@@ -21,7 +21,7 @@ import Home from "../../pages/Home/Home";
 import { ThemeContext } from "../ThemeContext/ThemeContext";
 import { SideNavStyle } from "./SideNavStyle";
 import Profile from "../../pages/Profile/Profile";
-import Name from "../User/Name/Name";
+import Update from "../../pages/Update/Update";
 
 const Drawer = createDrawerNavigator();
 
@@ -195,8 +195,8 @@ const SideNav = () => {
             }}
           />
           <Drawer.Screen
-            name="Name"
-            component={Name}
+            name="Update"
+            component={Update}
             options={{
               headerShown: false,
               drawerItemStyle: {

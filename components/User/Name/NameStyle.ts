@@ -13,18 +13,36 @@ export const NameStyle = StyleSheet.create({
     paddingRight: 20,
   },
   headerIconContainer: {
-    width: "10%", 
-    height: 20
+    width: "10%",
+    height: 20,
   },
   headerText: {
-    fontWeight:"500", 
-    fontSize: 14
+    fontWeight: "500",
+    fontSize: 14,
   },
   input: {
-    // height: 40,
     marginTop: 20,
     borderWidth: 0.8,
-    padding: 10,
-    borderRadius: 10
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 17,
+    paddingRight: 17,
+    borderRadius: 10,
+  },
+  contentContainer: {
+    marginTop: 5,
+    marginLeft: 10,
+    marginRight: 10,
+    marginBottom: 5,
+  },
+  labelInput: {
+    position: "absolute",
+    top: 9,
+    left: 15,
+    backgroundColor: "#ffffff",
+    zIndex: 200,
+    paddingLeft: 3,
+    paddingRight: 3,
+    fontSize: 13,
   },
 });
