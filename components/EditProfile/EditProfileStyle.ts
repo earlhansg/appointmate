@@ -1,7 +1,7 @@
  import { StyleSheet } from "react-native";
 
 export const EditProfileStyle = StyleSheet.create({
-  container: { flex: 1, paddingTop: 20, backgroundColor: "#ffffff" },
+  // container: { flex: 1, paddingTop: 20, backgroundColor: "#ffffff" },
   headerContainer: {
     margin: 10,
     borderBottomWidth: StyleSheet.hairlineWidth,

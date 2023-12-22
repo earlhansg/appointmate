@@ -1,103 +1,79 @@
-import React, { useContext } from 'react'
-import { SafeAreaView, Text, View } from "react-native";
-import { TextInput } from 'react-native-gesture-handler';
+import React, { ReactElement, useContext, useState } from 'react';
+import { Text, View, TextInput } from 'react-native';
 import { EditProfileStyle } from './EditProfileStyle';
-import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { ThemeContext } from '../ThemeContext/ThemeContext';
-import ButtonIcon from '../Buttons/ButtonIcon';
 
 type EditProfileProps = {
   data: {
     firstName?: string;
     lastName?: string;
-  }
+  };
+  children: ReactElement
+};
+
+enum Label {
+  firstName = 'First name',
+  lastName = 'Last name',
 }
 
-const EditProfile = (props: EditProfileProps) => {
-  // const [currentData, setcurrentData] = React.useState({
-  //   firstName: "Earl Hans",
-  //   lastName: "Genoso"
-  // });
+function isLabel(key: string): key is keyof typeof Label {
+  console.log("isLabel", key);
+  return key in Label;
+}
 
-  const [currentData, setcurrentData] = React.useState(props.data);
+interface YourComponentProps {
+  label: string;
+  passData: { [key: string]: string };
+}
 
-  const dataKeys = Object.fromEntries(Object.keys(props.data).map(key => [key, false]));
-  
-  const [activeInputs, setActiveInputs] = React.useState(dataKeys);
-
-
-
+const YourComponent: React.FC<YourComponentProps> = ({ label, passData }) => {
+  console.log("Your Component", label)
   const theme = useContext(ThemeContext);
+  // const [currentData, setCurrentData] = useState(passData);
+  // const dataKeys = Object.fromEntries(Object.keys(passData).map(key => [key, false]));
+  // const [activeInputs, setActiveInputs] = useState(dataKeys);
 
-  const handleClickMenuBar = () => {
-    console.log("open drawer");
-    // navigation?.navigate("Home")
+  const [currentData, setCurrentData] = useState({[label]: passData[label]});
+  const myKey: Record<string, any> = {};
+  const [activeInputs, setActiveInputs] = useState({[label]: false});
+  
+
+  const handleChange = (value: string, label: string) => {
+    console.log('activeInputs', activeInputs);
   };
 
-  const handleChange = (value: any, label: string) => {
-    setcurrentData((prev) => ({...prev, [label]: value}))
-    console.log("activeInputs", activeInputs);
-  }
+  return isLabel(label) ? (
+    <>
+      <View>
+        <Text style={[{ color: activeInputs[label] ? theme.black.dark : theme.gray.light3 }, EditProfileStyle.labelInput]}>
+          {Label[label]}
+        </Text>
+        <TextInput
+        style={[{ borderColor: activeInputs[label] ? theme.black.dark : theme.gray.light3 }, EditProfileStyle.input]}
+        onChangeText={(value) => handleChange(value, label)}
+        onFocus={() => setActiveInputs({[label]: !activeInputs[label]})}
+        onBlur={() => setActiveInputs({[label]: false})}
+        value={currentData[label]}
+      />
+      </View>
+    </>
+  ) : null;
+};
 
-  const handleFocus = (label: string) => {
-    const upDateKeys = Object.fromEntries(Object.keys(data).map(key => [key, key === label]));
-    setActiveInputs(upDateKeys);
-  }
-
-
+const EditProfile: React.FC<EditProfileProps> = ({ data, children }) => {
+  console.log("EditProfile", data);
   return (
-    // <SafeAreaView style={EditProfileStyle.container}>
-    //   <View style={EditProfileStyle.headerContainer}>
-    //     <View style={EditProfileStyle.headerIconContainer}>
-    //       <ButtonIcon
-    //         renderIcon={(settings) => (
-    //           <MaterialCommunityIcons 
-    //             name="arrow-left"
-    //             color={theme.primary.color}
-    //             size={settings.isClicked ? 17 : 20}
-    //           />
-    //         )}
-    //         onClick={handleClickMenuBar}
-    //       />
-    //     </View>
-    //     <Text style={EditProfileStyle.headerText}>Name</Text>
-    //   </View>
-    //   <Text style={{
-    //     marginTop: 10,
-    //     marginLeft: 10,
-    //     marginRight: 10,
-    //     fontSize: 13,
+    <>
+      {children}
+      <View style={EditProfileStyle.contentContainer}>
+        <>
+          {Object.keys(data).map((key) => (
+            <YourComponent key={key} label={key} passData={data} />
+          ))}
+        </>
+      </View>
+    </>
+  );
+};
 
-    //   }}>This is how we'll address you</Text>
-    //   <View style={EditProfileStyle.contentContainer}>
-    //     <View>
-    //       <Text style={[{
-    //         color: activeInputs['firstName'] ? theme.black.dark : theme.gray.light3
-    //       }, EditProfileStyle.labelInput]}>First name</Text>
-    //       <TextInput
-    //         style={[{borderColor: activeInputs['firstName'] ? theme.black.dark : theme.gray.light3}, EditProfileStyle.input]}
-    //         onChangeText={(value) => handleChange(value, "firstName")}
-    //         onFocus={() => handleFocus("firstName")}
-    //         value={data.firstName}  
-    //       />
-    //     </View>
-
-    //     <View>
-    //       <Text style={[{
-    //         color: activeInputs['lastName'] ? theme.black.dark : theme.gray.light3
-    //       }, EditProfileStyle.labelInput ]}>Last name</Text>
-    //       <TextInput
-    //         style={[{borderColor: activeInputs['lastName'] ? theme.black.dark : theme.gray.light3}, EditProfileStyle.input]}
-    //         onChangeText={(value) => handleChange(value, "lastName")}
-    //         onFocus={() => handleFocus("lastName")}
-    //         value={data.lastName}
-    //       />
-    //     </View>
-
-    //   </View>
-    // </SafeAreaView>
-    <></>
-  )
-}
-
-export default EditProfile
+export default EditProfile;

@@ -39,7 +39,16 @@ const Update = ({navigation} : Navigation) => {
         <Text style={UpdateStyle.headerText}>Name</Text>
       </View>
       <>     
-        <EditProfile data={data}/>
+        {/* <EditProfile data={data}/> */}
+        <EditProfile data={data}>
+          <Text style={{
+          marginTop: 10,
+          marginLeft: 10,
+          marginRight: 10,
+          fontSize: 13,
+
+        }}>This is how we'll address you</Text>
+        </EditProfile>
       </>
     </SafeAreaView>
   )
