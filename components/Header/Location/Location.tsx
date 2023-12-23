@@ -16,7 +16,7 @@ const Location = ({navigation}: Navigation) => {
     <View style={LocationStyle.mainContainer}>
       <View style={LocationStyle.iconContainer}>
         <ButtonIcon renderIcon={(settings) => (
-          <Feather name="menu" size={settings.isClicked ? 17 : 20}/>
+          <Feather name="menu" size={settings.isClicked ? 18 : 20}/>
         )} onClick={handleClickMenuBar}/>
       </View>
       <View style={LocationStyle.contentContainer}>
