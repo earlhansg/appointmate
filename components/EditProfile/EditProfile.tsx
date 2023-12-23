@@ -1,7 +1,8 @@
 import React, { ReactElement, useContext, useState } from 'react';
-import { Text, View, TextInput } from 'react-native';
+import { Text, View, TextInput, Pressable } from 'react-native';
 import { EditProfileStyle } from './EditProfileStyle';
 import { ThemeContext } from '../ThemeContext/ThemeContext';
+import { theme } from '../ThemeContext/theme';
 
 type EditProfileProps = {
   data: {
@@ -43,7 +44,7 @@ const YourComponent: React.FC<YourComponentProps> = ({ label, passData }) => {
 
   return isLabel(label) ? (
     <>
-      <View>
+      {/* <View> */}
         <Text
           style={[
             {
@@ -68,7 +69,7 @@ const YourComponent: React.FC<YourComponentProps> = ({ label, passData }) => {
           onBlur={() => setActiveInputs({ [label]: false })}
           value={currentData[label]}
         />
-      </View>
+      {/* </View> */}
     </>
   ) : null;
 };
@@ -91,9 +92,22 @@ const EditProfile: React.FC<EditProfileProps> = ({ data, header }) => {
       )}
       <View style={EditProfileStyle.contentContainer}>
         <>
-          {Object.keys(data).map((key) => (
-            <YourComponent key={key} label={key} passData={data} />
+          {Object.keys(data).map((key, i) => (
+            // <YourComponent key={key} label={key} passData={data}/>
+            <View style={{ marginBottom: i === Object.keys(data).length - 1 ? "auto" : 0 }}>
+              <YourComponent key={key} label={key} passData={data}/>
+            </View>
           ))}
+          <Pressable style={{
+            backgroundColor: theme.primary.color,
+            alignItems: "center",
+            paddingTop: 12,
+            paddingBottom: 12,
+            borderRadius: 8,
+            marginBottom: 5
+          }}>
+            <Text style={{color: theme.white.color, fontWeight:"500", fontSize: 13}}>Save</Text>
+          </Pressable>
         </>
       </View>
     </>

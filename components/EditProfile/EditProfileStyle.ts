@@ -34,6 +34,9 @@ export const EditProfileStyle = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
     marginBottom: 5,
+    // custom
+    // backgroundColor: "skyblue",
+    flex: 1
   },
   labelInput: {
     position: "absolute",

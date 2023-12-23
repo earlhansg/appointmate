@@ -22,7 +22,7 @@ const Profile = ({ navigation }: Navigation) => {
               <Feather
                 name="x"
                 color={theme.primary.color}
-                size={settings.isClicked ? 17 : 20}
+                size={20}
               />
             )}
             onClick={handleClickMenuBar}

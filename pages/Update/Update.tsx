@@ -62,7 +62,7 @@ const Update = ({ navigation }: Navigation) => {
               <MaterialCommunityIcons
                 name="arrow-left"
                 color={theme.primary.color}
-                size={settings.isClicked ? 17 : 20}
+                size={20}
               />
             )}
             onClick={handleClickMenuBar}
