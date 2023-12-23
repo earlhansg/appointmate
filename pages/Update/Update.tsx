@@ -10,13 +10,13 @@ import EditProfile from '../../components/EditProfile/EditProfile';
 import { useRoute, RouteProp  } from '@react-navigation/native';
 
 type UpdateScreenRouteProps = {
-  route: RouteProp<{ Update: { data: { firstName?: string; lastName?: string; email?: string; mobileNumber?: string } } }, 'Update'>;
+  route: RouteProp<{ Update: { label: string, data: { firstName?: string; lastName?: string; email?: string; mobileNumber?: string } } }, 'Update'>;
 };
 
 const Update = ({navigation} : Navigation) => {
   const theme = useContext(ThemeContext);
   const route = useRoute<UpdateScreenRouteProps['route']>();
-  const { data } = route.params || { data: {} };
+  const { label, data } = route.params || { data: {} };
   const handleClickMenuBar = () => {
     console.log("open drawer");
     navigation?.navigate("Profile");
@@ -36,10 +36,9 @@ const Update = ({navigation} : Navigation) => {
             onClick={handleClickMenuBar}
           />
         </View>
-        <Text style={UpdateStyle.headerText}>Name</Text>
+        <Text style={UpdateStyle.headerText}>{label}</Text>
       </View>
-      <>     
-        {/* <EditProfile data={data}/> */}
+      <>
         <EditProfile data={data}>
           <Text style={{
           marginTop: 10,

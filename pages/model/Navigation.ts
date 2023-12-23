@@ -5,6 +5,7 @@ type RootStackParamList = {
   Notifications: undefined;
   Profile: undefined;
   Update: {
+    label: string,
     data: {
       firstName?: string;
       lastName?: string;

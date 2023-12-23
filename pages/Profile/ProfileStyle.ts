@@ -9,8 +9,8 @@ export const ProfileStyle = StyleSheet.create({
     borderColor: "#e0e0e0",
     paddingTop: 10,
     paddingBottom: 10,
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingLeft: 10,
+    paddingRight: 10,
   },
   headerIconContainer: {
     width: "10%", 
