@@ -22,7 +22,7 @@ export const EditProfileStyle = StyleSheet.create({
   },
   input: {
     marginTop: 20,
-    borderWidth: 0.8,
+    borderWidth: 1,
     paddingTop: 10,
     paddingBottom: 10,
     paddingLeft: 17,

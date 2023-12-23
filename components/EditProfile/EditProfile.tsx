@@ -8,12 +8,14 @@ type EditProfileProps = {
     firstName?: string;
     lastName?: string;
   };
-  children: ReactElement
+  header?: string
 };
 
 enum Label {
   firstName = 'First name',
   lastName = 'Last name',
+  email = 'Email',
+  mobileNumber = 'Mobile number'
 }
 
 function isLabel(key: string): key is keyof typeof Label {
@@ -29,9 +31,6 @@ interface YourComponentProps {
 const YourComponent: React.FC<YourComponentProps> = ({ label, passData }) => {
   console.log("Your Component", label)
   const theme = useContext(ThemeContext);
-  // const [currentData, setCurrentData] = useState(passData);
-  // const dataKeys = Object.fromEntries(Object.keys(passData).map(key => [key, false]));
-  // const [activeInputs, setActiveInputs] = useState(dataKeys);
 
   const [currentData, setCurrentData] = useState({[label]: passData[label]});
   const myKey: Record<string, any> = {};
@@ -45,26 +44,51 @@ const YourComponent: React.FC<YourComponentProps> = ({ label, passData }) => {
   return isLabel(label) ? (
     <>
       <View>
-        <Text style={[{ color: activeInputs[label] ? theme.black.dark : theme.gray.light3 }, EditProfileStyle.labelInput]}>
+        <Text
+          style={[
+            {
+              color: activeInputs[label] ? theme.black.dark : theme.gray.light3,
+            },
+            EditProfileStyle.labelInput,
+          ]}
+        >
           {Label[label]}
         </Text>
         <TextInput
-        style={[{ borderColor: activeInputs[label] ? theme.black.dark : theme.gray.light3 }, EditProfileStyle.input]}
-        onChangeText={(value) => handleChange(value, label)}
-        onFocus={() => setActiveInputs({[label]: !activeInputs[label]})}
-        onBlur={() => setActiveInputs({[label]: false})}
-        value={currentData[label]}
-      />
+          style={[
+            {
+              borderColor: activeInputs[label]
+                ? theme.black.dark
+                : theme.gray.light3,
+            },
+            EditProfileStyle.input,
+          ]}
+          onChangeText={(value) => handleChange(value, label)}
+          onFocus={() => setActiveInputs({ [label]: !activeInputs[label] })}
+          onBlur={() => setActiveInputs({ [label]: false })}
+          value={currentData[label]}
+        />
       </View>
     </>
   ) : null;
 };
 
-const EditProfile: React.FC<EditProfileProps> = ({ data, children }) => {
-  console.log("EditProfile", data);
+const EditProfile: React.FC<EditProfileProps> = ({ data, header }) => {
+  console.log("header", header);
   return (
     <>
-      {children}
+      {header != null && (
+          <Text
+              style={{
+                  marginTop: 10,
+                  marginLeft: 10,
+                  marginRight: 10,
+                  fontSize: 13,
+              }}
+          >
+              {header}
+          </Text>
+      )}
       <View style={EditProfileStyle.contentContainer}>
         <>
           {Object.keys(data).map((key) => (

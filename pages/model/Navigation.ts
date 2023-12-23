@@ -11,7 +11,8 @@ type RootStackParamList = {
       lastName?: string;
       email?: string;
       mobileNumber?: string;
-    };
+    },
+    header?: string
   };
   // Add other screens as needed;
 };

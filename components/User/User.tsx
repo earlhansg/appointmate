@@ -22,7 +22,13 @@ const User = ({ navigation }: Navigation) => {
       <TouchableHighlight
         style={UserStyle.container}
         underlayColor={theme.gray.light2}
-        onPress={() => navigation?.navigate("Update", { label: "Name", data: {firstName: user['firstName'], lastName: user['lastName']} })}
+        onPress={() =>
+          navigation?.navigate("Update", {
+            label: "Name",
+            data: { firstName: user["firstName"], lastName: user["lastName"] },
+            header: "This is how we'll address you",
+          })
+        }
       >
         <InfoList
           label="Name"
@@ -33,7 +39,13 @@ const User = ({ navigation }: Navigation) => {
       <TouchableHighlight
         style={UserStyle.container}
         underlayColor={theme.gray.light2}
-        onPress={() => navigation?.navigate("Update", { label: "Email", data: {email: user['email'] } })}
+        onPress={() =>
+          navigation?.navigate("Update", {
+            label: "Email",
+            data: { email: user["email"] },
+            header: "Make sure we can reach you at your new email"
+          })
+        }
       >
         <InfoList label="Email" value={user.email} editable={true}>
           <View
@@ -56,7 +68,13 @@ const User = ({ navigation }: Navigation) => {
         style={UserStyle.container}
         underlayColor={theme.gray.light2}
         // onPress={() => navigation?.navigate("Update")}
-        onPress={() => navigation?.navigate("Update", { label: "Mobile number", data: {email: user['mobileNumber'] } })}
+        onPress={() =>
+          navigation?.navigate("Update", {
+            label: "Mobile number",
+            data: { mobileNumber: user["mobileNumber"] },
+            header: "If you decide to switch to a different number, we will guide you through a verification process during your next checkout."
+          })
+        }
       >
         <InfoList
           label="Mobile number"
