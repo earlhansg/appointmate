@@ -22,6 +22,7 @@ import { ThemeContext } from "../ThemeContext/ThemeContext";
 import { SideNavStyle } from "./SideNavStyle";
 import Profile from "../../pages/Profile/Profile";
 import Update from "../../pages/Update/Update";
+import Favourites from "../../pages/Favourites/Favourites";
 
 const Drawer = createDrawerNavigator();
 
@@ -77,7 +78,7 @@ const SideNav = () => {
           />
           <Drawer.Screen
             name="Favorites"
-            component={NotificationsScreen}
+            component={Favourites}
             options={{
               headerShown: false,
               drawerItemStyle: SideNavStyle.drawerItemStyle,
@@ -89,7 +90,7 @@ const SideNav = () => {
                     color={theme.primary.color}
                     style={SideNavStyle.drawerLabelIcon}
                   />
-                  <Text style={SideNavStyle.drawerLabelText}>Favorites</Text>
+                  <Text style={SideNavStyle.drawerLabelText}>Favourites</Text>
                 </View>
               ),
             }}

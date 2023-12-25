@@ -1,27 +1,17 @@
 import React, { useContext } from "react";
 import { SafeAreaView, Text, View } from "react-native";
-import { TextInput } from "react-native-gesture-handler";
 import { UpdateStyle } from "./UpdateStyle";
 import { ThemeContext } from "../../components/ThemeContext/ThemeContext";
 import ButtonIcon from "../../components/Buttons/ButtonIcon";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { Navigation } from "../model/Navigation";
+import { Navigation, ScreenData } from "../model/Navigation";
 import EditProfile from "../../components/EditProfile/EditProfile";
 import { useRoute, RouteProp } from "@react-navigation/native";
 
 type UpdateScreenRouteProps = {
   route: RouteProp<
     {
-      Update: {
-        label: string;
-        data: {
-          firstName?: string;
-          lastName?: string;
-          email?: string;
-          mobileNumber?: string;
-        };
-        header: string;
-      };
+      Update: ScreenData
     },
     "Update"
   >;

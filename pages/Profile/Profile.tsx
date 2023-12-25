@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { SafeAreaView, View, Text, TouchableHighlight } from "react-native";
+import { SafeAreaView, View, Text } from "react-native";
 import { ProfileStyle } from "./ProfileStyle";
 import ButtonIcon from "../../components/Buttons/ButtonIcon";
 import { Feather } from "@expo/vector-icons";
