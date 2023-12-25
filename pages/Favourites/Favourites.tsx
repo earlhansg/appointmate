@@ -42,8 +42,18 @@ const Favourites = ({ navigation }: Navigation) => {
         <Text style={FavouritesStyle.headerText}>Favourites</Text>
       </View>
 
-      <Tab.Navigator style={{backgroundColor: 'red', flex: 1}}>
-        <Tab.Screen name="Shops" component={SlideScreen} />
+      <Tab.Navigator>
+        <Tab.Screen name="Shops" component={SlideScreen} options={{
+          tabBarLabelStyle: {
+            textTransform: "none",
+            fontWeight: "500"
+          },
+          tabBarActiveTintColor: theme.primary.color,
+          tabBarIndicatorStyle: {
+            borderBottomWidth: 2,
+            borderColor: theme.primary.color
+          }
+        }}/>
         <Tab.Screen name="Freelancers" component={SlideScreen} />
       </Tab.Navigator>
     </SafeAreaView>
