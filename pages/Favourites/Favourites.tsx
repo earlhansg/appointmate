@@ -6,6 +6,18 @@ import ButtonIcon from "../../components/Buttons/ButtonIcon";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Navigation } from "../model/Navigation";
 
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+
+const Tab = createMaterialTopTabNavigator();
+
+function SlideScreen({ navigation }: any) {
+  return (
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Text>Test</Text>
+    </View>
+  );
+}
+
 const Favourites = ({ navigation }: Navigation) => {
   const theme = useContext(ThemeContext);
   const handleClickMenuBar = () => {
@@ -14,7 +26,7 @@ const Favourites = ({ navigation }: Navigation) => {
   };
   return (
     <SafeAreaView style={FavouritesStyle.container}>
-        <View style={FavouritesStyle.headerContainer}>
+      <View style={FavouritesStyle.headerContainer}>
         <View style={FavouritesStyle.headerIconContainer}>
           <ButtonIcon
             renderIcon={(settings) => (
@@ -29,8 +41,13 @@ const Favourites = ({ navigation }: Navigation) => {
         </View>
         <Text style={FavouritesStyle.headerText}>Favourites</Text>
       </View>
-    </SafeAreaView>
-  )
-}
 
-export default Favourites
+      <Tab.Navigator style={{backgroundColor: 'red', flex: 1}}>
+        <Tab.Screen name="Shops" component={SlideScreen} />
+        <Tab.Screen name="Freelancers" component={SlideScreen} />
+      </Tab.Navigator>
+    </SafeAreaView>
+  );
+};
+
+export default Favourites;
