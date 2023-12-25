@@ -31,7 +31,6 @@ const EditProfile: React.FC<EditProfileProps> = ({ data, header }) => {
           ))}
           <Pressable style={[{
             backgroundColor: theme.primary.color,
-            
           }, EditProfileStyle.buttonContainer]}>
             <Text style={[{color: theme.white.color}, EditProfileStyle.buttonText]}>Save</Text>
           </Pressable>
