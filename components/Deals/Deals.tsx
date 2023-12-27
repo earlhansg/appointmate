@@ -73,7 +73,6 @@ const Deals = () => {
         <Text style={DealsStyle.header}>DAILY DEALS</Text>
       </View>
       <View style={DealsStyle.shopDealsContainer}>
-        {/* <ShopDeals shopDeals={shopDeals}/> */}
         <ShopDeals shopDeals={shopDeals} showInHorizontal={true}/>
       </View>
       <View style={DealsStyle.freelancerDealsContainer}>

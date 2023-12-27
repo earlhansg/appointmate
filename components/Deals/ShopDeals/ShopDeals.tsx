@@ -9,6 +9,7 @@ import {
   StyleProp,
   ViewStyle,
   ImageStyle,
+  TextStyle,
 } from "react-native";
 
 import TouchableImageButton from "../../Buttons/TouchableImageButton";
@@ -24,6 +25,8 @@ type ShopDealProps = {
     imageButton?: StyleProp<ViewStyle>;
     imageButtonContainer?: StyleProp<ViewStyle>;
     contentImage?: StyleProp<ImageStyle>;
+    shopNameText?: StyleProp<TextStyle>;
+    reviewText?: StyleProp<TextStyle>;
   };
 };
 
@@ -84,7 +87,13 @@ const ShopDeals = ({
 
                   <View style={ShopDealsStyle.textContainer}>
                     <View style={ShopDealsStyle.primaryTextContainer}>
-                      <Text style={ShopDealsStyle.shopNameText}>
+                      <Text
+                        style={
+                          showInHorizontal
+                            ? ShopDealsStyle.shopNameText
+                            : verticalStyles?.shopNameText
+                        }
+                      >
                         {item.name}
                       </Text>
                       <Text style={ShopDealsStyle.shopAddressTest}>
@@ -97,10 +106,18 @@ const ShopDeals = ({
                         size={12}
                         color="#ffb413"
                         style={{
-                          margin: 2,
+                          margin: showInHorizontal ? 2 : 3,
                         }}
                       />
-                      <Text style={ShopDealsStyle.reviewText}>4.6</Text>
+                      <Text
+                        style={
+                          showInHorizontal
+                            ? ShopDealsStyle.reviewText
+                            : verticalStyles?.reviewText
+                        }
+                      >
+                        4.6
+                      </Text>
                     </View>
                   </View>
                 </View>

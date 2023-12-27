@@ -4,6 +4,7 @@ import { ThemeContext } from '../ThemeContext/ThemeContext';
 import { Navigation } from '../../pages/model/Navigation';
 import { ShopDeal } from '../Deals/model/ShopDeal';
 import ShopDeals from '../Deals/ShopDeals/ShopDeals';
+import { SlideShopsScreenStyle } from './SlideShopsScreenStyle';
 
 type SlideShopsScreenProps = {
     navigation?: Navigation;
@@ -15,40 +16,20 @@ const theme = useContext(ThemeContext);
   return (
     <View style={{ flex: 1 }}>
       <View
-        style={{
-          flexDirection: "row",
-          width: "100%",
-          // backgroundColor: "red",
-          alignItems: "center",
-          paddingLeft: 15,
-          paddingRight: 15,
-          paddingTop: 15,
-          paddingBottom: 10,
-          gap: 10
-        }}
+        style={SlideShopsScreenStyle.sliderContainer}
       >
         <Pressable
           style={[
             {
               backgroundColor: theme.primary.color,
             },
-            {
-              alignItems: "center",
-              paddingTop: 10,
-              paddingBottom: 10,
-              paddingLeft: 10,
-              paddingRight: 10,
-              borderRadius: 25
-            },
+            SlideShopsScreenStyle.pressableContainer
           ]}
         >
           <Text
             style={[
               { color: theme.white.color },
-              {
-                fontWeight: "500",
-                fontSize: 13,
-              },
+              SlideShopsScreenStyle.pressableText
             ]}
           >
             Home Service
@@ -61,23 +42,13 @@ const theme = useContext(ThemeContext);
               borderColor: theme.gray.light2,
               borderWidth: 1
             },
-            {
-              alignItems: "center",
-              paddingTop: 10,
-              paddingBottom: 10,
-              paddingLeft: 10,
-              paddingRight: 10,
-              borderRadius: 25
-            },
+            SlideShopsScreenStyle.pressableContainer
           ]}
         >
           <Text
             style={[
               { color: theme.black.dark },
-              {
-                fontWeight: "500",
-                fontSize: 13,
-              },
+              SlideShopsScreenStyle.pressableText
             ]}
           >
             Walk In
@@ -86,26 +57,11 @@ const theme = useContext(ThemeContext);
       </View>
       <View>
           <ShopDeals shopDeals={shopDeals} showInHorizontal={false}
-            verticalStyles={{imageButton: {
-              margin: 0,
-              padding: 0,
-              maxHeight: 210,
-              width: "100%",
-              borderRadius: 0
-            },
-            imageButtonContainer: {
-              height: "90%",
-              marginTop: 5,
-              marginBottom: 10,
-              marginLeft: 10,
-              marginRight: 10,
-              padding: 0
-            },
-            contentImage: {
-              borderRadius: 0,
-              width: "100%",
-              height: "90%",
-            }
+            verticalStyles={{imageButton: SlideShopsScreenStyle.imageButton,
+            imageButtonContainer: SlideShopsScreenStyle.imageButtonContainer,
+            contentImage: SlideShopsScreenStyle.contentImage,
+            shopNameText: SlideShopsScreenStyle.shopNameText,
+            reviewText: SlideShopsScreenStyle.reviewText
           }} 
           />
       </View>
