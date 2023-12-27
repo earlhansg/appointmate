@@ -93,7 +93,7 @@ function SlideScreen({ navigation, shopDeals }: SlideScreenProps) {
       </View>
       <View>
           <ShopDeals shopDeals={shopDeals} showInHorizontal={false}/>
-        </View>
+      </View>
     </View>
   );
 }

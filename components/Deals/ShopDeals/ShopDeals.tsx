@@ -50,7 +50,7 @@ const ShopDeals = ({ shopDeals, showInHorizontal }: ShopDealProps) => {
                   margin: 0,
                   padding: 0,
                   maxHeight: 210,
-                  width: 280,
+                  width: "100%",
                   borderRadius: 0
                 }}
                 underlayColor={settings.underlayColor}
@@ -64,7 +64,14 @@ const ShopDeals = ({ shopDeals, showInHorizontal }: ShopDealProps) => {
                   margin: 0,
                   padding: 0
                 }]}> */}
-                <View style={ShopDealsStyle.ImageButtonContainer}>
+                <View style={showInHorizontal ? ShopDealsStyle.ImageButtonContainer : {
+                  height: "90%",
+                  marginTop: 5,
+                  marginBottom: 10,
+                  marginLeft: 10,
+                  marginRight: 10,
+                  padding: 0
+                }}>
                   
                   <View style={[{
                     backgroundColor: appTheme.primary.color,
@@ -88,7 +95,9 @@ const ShopDeals = ({ shopDeals, showInHorizontal }: ShopDealProps) => {
                     resizeMode="cover"
                     // style={ShopDealsStyle.contentImage}
                     style={showInHorizontal ? ShopDealsStyle.contentImage : {
-                      borderRadius: 0
+                      borderRadius: 0,
+                      width: "100%",
+                      height: "90%",
                     }}
                   />
 
