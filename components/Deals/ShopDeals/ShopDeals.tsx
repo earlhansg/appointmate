@@ -7,8 +7,15 @@ import { AntDesign } from "@expo/vector-icons";
 import { ShopDealsStyle } from "./ShopDealsStyle";
 import { ThemeContext } from "../../ThemeContext/ThemeContext";
 import { ShopDeal } from "../model/ShopDeal";
+import { theme } from "../../ThemeContext/theme";
 
-const ShopDeals = ({ shopDeals }: { shopDeals: ShopDeal[] }) => {
+type ShopDealProps = {
+  shopDeals: ShopDeal[];
+  showInHorizontal: boolean
+}
+
+// const ShopDeals = ({ shopDeals }: { shopDeals: ShopDeal[] }) => {
+const ShopDeals = ({ shopDeals, showInHorizontal }: ShopDealProps) => {
   const appTheme =  useContext(ThemeContext)
   const navigate = () => {
     console.log("im click in Try");
@@ -22,11 +29,41 @@ const ShopDeals = ({ shopDeals }: { shopDeals: ShopDeal[] }) => {
           <TouchableImageButton
             key={item.id}
             renderImage={(settings) => (
+
+              // orginal
+              // <TouchableHighlight
+              //   // style={[ShopDealsStyle.imageButton]}
+              //   style={[ShopDealsStyle.imageButton,
+              //   {
+              //     margin: 0,
+              //     padding: 0,
+              //     width: "100%",
+              //     borderRadius: 0
+              //   }]}
+              //   underlayColor={settings.underlayColor}
+              //   onPress={navigate}
+              // >
+
               <TouchableHighlight
-                style={[ShopDealsStyle.imageButton]}
+                // style={[ShopDealsStyle.imageButton]}
+                style={showInHorizontal ? ShopDealsStyle.imageButton : {
+                  margin: 0,
+                  padding: 0,
+                  maxHeight: 210,
+                  width: 280,
+                  borderRadius: 0
+                }}
                 underlayColor={settings.underlayColor}
                 onPress={navigate}
               >
+                {/* <View style={ShopDealsStyle.ImageButtonContainer}> */}
+                {/* <View style={[ShopDealsStyle.ImageButtonContainer, 
+                {
+                  width: "100%",
+                  height: "90%",
+                  margin: 0,
+                  padding: 0
+                }]}> */}
                 <View style={ShopDealsStyle.ImageButtonContainer}>
                   
                   <View style={[{
@@ -37,11 +74,24 @@ const ShopDeals = ({ shopDeals }: { shopDeals: ShopDeal[] }) => {
                     <Text style={ShopDealsStyle.promoText}>20% off</Text>
                   </View>
 
+                  {/* <Image
+                    source={item.imageUrl}
+                    resizeMode="cover"
+                    // style={ShopDealsStyle.contentImage}
+                    style={[ShopDealsStyle.contentImage, {
+                      borderRadius: 0
+                    }]}
+                  /> */}
+
                   <Image
                     source={item.imageUrl}
                     resizeMode="cover"
-                    style={ShopDealsStyle.contentImage}
+                    // style={ShopDealsStyle.contentImage}
+                    style={showInHorizontal ? ShopDealsStyle.contentImage : {
+                      borderRadius: 0
+                    }}
                   />
+
                   <View style={ShopDealsStyle.textContainer}>
                     <View style={ShopDealsStyle.primaryTextContainer}>
                       <Text style={ShopDealsStyle.shopNameText}>
@@ -69,8 +119,11 @@ const ShopDeals = ({ shopDeals }: { shopDeals: ShopDeal[] }) => {
           ></TouchableImageButton>
         )}
         keyExtractor={keyExtractor}
-        horizontal
-        showsHorizontalScrollIndicator={false}
+        // horizontal
+        // showsHorizontalScrollIndicator={false}
+        horizontal={showInHorizontal}
+        showsHorizontalScrollIndicator={showInHorizontal}
+        showsVerticalScrollIndicator={showInHorizontal}
       />
     </>
   );

@@ -7,10 +7,17 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Navigation } from "../model/Navigation";
 
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import { ShopDeal } from "../../components/Deals/model/ShopDeal";
+import ShopDeals from "../../components/Deals/ShopDeals/ShopDeals";
 
 const Tab = createMaterialTopTabNavigator();
 
-function SlideScreen({ navigation }: any) {
+type SlideScreenProps = {
+  navigation?: Navigation;
+  shopDeals: ShopDeal[];
+}
+
+function SlideScreen({ navigation, shopDeals }: SlideScreenProps) {
   const theme = useContext(ThemeContext);
   return (
     <View style={{ flex: 1 }}>
@@ -84,6 +91,9 @@ function SlideScreen({ navigation }: any) {
           </Text>
         </Pressable>
       </View>
+      <View>
+          <ShopDeals shopDeals={shopDeals} showInHorizontal={false}/>
+        </View>
     </View>
   );
 }
@@ -94,6 +104,26 @@ const Favourites = ({ navigation }: Navigation) => {
     console.log("open drawer");
     navigation?.navigate("Home");
   };
+
+  const dealsImage1 = require("../../assets/deals-images/cleaning.jpg");
+  const dealsImage2 = require("../../assets/deals-images/beauty.jpg");
+
+  const shopDeals = [
+    {
+      id: 1,
+      imageUrl: dealsImage1,
+      name: "Demetrio Cleaning Services",
+      position: "shop",
+      address: "Tomasaco Macasandig",
+    },
+    {
+      id: 2,
+      imageUrl: dealsImage2,
+      name: "Beauty Standards",
+      position: "shop",
+      address: "CM Recto",
+    },
+  ];
   return (
     <SafeAreaView style={FavouritesStyle.container}>
       <View style={FavouritesStyle.headerContainer}>
@@ -113,7 +143,7 @@ const Favourites = ({ navigation }: Navigation) => {
       </View>
 
       <Tab.Navigator>
-        <Tab.Screen
+        {/* <Tab.Screen
           name="Shops"
           component={SlideScreen}
           options={{
@@ -127,10 +157,11 @@ const Favourites = ({ navigation }: Navigation) => {
               borderColor: theme.primary.color,
             },
           }}
-        />
+        /> */}
         <Tab.Screen
-          name="Freelancers"
-          component={SlideScreen}
+          name="Shops"
+          children={() => <SlideScreen shopDeals={shopDeals}/> }
+          // component={SlideScreen}
           options={{
             tabBarLabelStyle: {
               textTransform: "none",
@@ -143,6 +174,21 @@ const Favourites = ({ navigation }: Navigation) => {
             },
           }}
         />
+        {/* <Tab.Screen
+          name="Freelancers"
+          children={() => <SlideScreen shopDeals={shopDeals}/> }
+          options={{
+            tabBarLabelStyle: {
+              textTransform: "none",
+              fontWeight: "500",
+            },
+            tabBarActiveTintColor: theme.primary.color,
+            tabBarIndicatorStyle: {
+              borderBottomWidth: 2,
+              borderColor: theme.primary.color,
+            },
+          }}
+        /> */}
       </Tab.Navigator>
     </SafeAreaView>
   );
