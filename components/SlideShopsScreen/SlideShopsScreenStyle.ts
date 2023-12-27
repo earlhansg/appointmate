@@ -7,7 +7,7 @@ export const SlideShopsScreenStyle = StyleSheet.create({
     alignItems: "center",
     paddingLeft: 15,
     paddingRight: 15,
-    paddingTop: 15,
+    paddingTop: 10,
     paddingBottom: 10,
     gap: 10,
   },
@@ -24,7 +24,8 @@ export const SlideShopsScreenStyle = StyleSheet.create({
     fontSize: 13,
   },
   imageButton: {
-    padding: 5,
+    paddingLeft: 5,
+    paddingRight: 5,
     maxHeight: 220,
     borderRadius: 0,
     overflow: 'hidden'
@@ -35,7 +36,7 @@ export const SlideShopsScreenStyle = StyleSheet.create({
     marginBottom: 10,
     marginLeft: 10,
     marginRight: 10,
-    padding: 0
+    paddingBottom: 5
   },
   contentImage: {
     borderRadius: 10,

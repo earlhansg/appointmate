@@ -21,7 +21,7 @@ const Deals = () => {
       imageUrl: dealsImage1,
       name: "Demetrio Cleaning Services",
       position: "shop",
-      address: "Tomasaco Macasandig",
+      address: "Tomasaco Macasandig Tomasaco Tomasaco Tomasaco Tomasaco Tomasaco",
     },
     {
       id: 2,

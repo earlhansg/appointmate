@@ -18,6 +18,7 @@ export const ShopDealsStyle = StyleSheet.create({
     shadowOpacity: 0.8,
     shadowRadius: 2,
     elevation: 5,
+    overflow: 'hidden'
   },
   ImageButtonContainer: {
     width: "100%",
@@ -50,7 +51,7 @@ export const ShopDealsStyle = StyleSheet.create({
   textContainer: {
     flexDirection: "row",
     width: "95%",
-    marginTop: 5
+    marginTop: 7
   },
   primaryTextContainer: {
     marginRight: "auto",
