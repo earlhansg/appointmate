@@ -24,19 +24,18 @@ export const SlideShopsScreenStyle = StyleSheet.create({
     fontSize: 13,
   },
   imageButton: {
-    margin: 0,
-    padding: 0,
-    maxHeight: 210,
-    width: "100%",
+    padding: 5,
+    maxHeight: 220,
     borderRadius: 0,
+    overflow: 'hidden'
   },
   imageButtonContainer: {
-    height: "90%",
+    height: "87%",
     marginTop: 5,
     marginBottom: 10,
     marginLeft: 10,
     marginRight: 10,
-    padding: 0,
+    padding: 0
   },
   contentImage: {
     borderRadius: 10,
@@ -49,6 +48,6 @@ export const SlideShopsScreenStyle = StyleSheet.create({
   },
   reviewText: {
     fontSize: 13,
-    fontWeight: "600",
+    fontWeight: "600"
   }
 });

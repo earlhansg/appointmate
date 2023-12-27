@@ -54,7 +54,7 @@ const ShopDeals = ({
                     ? ShopDealsStyle.imageButton
                     : verticalStyles?.imageButton
                 }
-                underlayColor={settings.underlayColor}
+                underlayColor={showInHorizontal ? settings.underlayColor : ''}
                 onPress={navigate}
               >
                 <View

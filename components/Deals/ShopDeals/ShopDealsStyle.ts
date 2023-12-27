@@ -50,7 +50,7 @@ export const ShopDealsStyle = StyleSheet.create({
   textContainer: {
     flexDirection: "row",
     width: "95%",
-    marginTop: 5,
+    marginTop: 5
   },
   primaryTextContainer: {
     marginRight: "auto",

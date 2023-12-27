@@ -8,6 +8,7 @@ import { Navigation } from "../model/Navigation";
 
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import SlideShopsScreen from "../../components/SlideShopsScreen/SlideShopsScreen";
+import SlideFreelancersScreen from '../../components/SlideFreelancersScreen/SlideFreelancersScreen'
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -27,7 +28,7 @@ const Favourites = ({ navigation }: Navigation) => {
       imageUrl: dealsImage1,
       name: "Demetrio Cleaning Services",
       position: "shop",
-      address: "Tomasaco Macasandig",
+      address: "Tomasaco Macasandig Tomasaco Macasandig Tomasaco Macasandig Tomasaco Macasandig Tomasaco Macasandig Tomasaco Macasandig Tomasaco Macasandig Tomasaco Macasandig Tomasaco Macasandig",
     },
     {
       id: 2,
@@ -35,6 +36,13 @@ const Favourites = ({ navigation }: Navigation) => {
       name: "Beauty Standards",
       position: "shop",
       address: "CM Recto",
+    },
+    {
+      id: 3,
+      imageUrl: dealsImage2,
+      name: "Beauty Standards",
+      position: "shop",
+      address: "CM Recto Lapasan",
     },
   ];
   return (
@@ -56,25 +64,9 @@ const Favourites = ({ navigation }: Navigation) => {
       </View>
 
       <Tab.Navigator>
-        {/* <Tab.Screen
-          name="Shops"
-          component={SlideScreen}
-          options={{
-            tabBarLabelStyle: {
-              textTransform: "none",
-              fontWeight: "500",
-            },
-            tabBarActiveTintColor: theme.primary.color,
-            tabBarIndicatorStyle: {
-              borderBottomWidth: 2,
-              borderColor: theme.primary.color,
-            },
-          }}
-        /> */}
         <Tab.Screen
           name="Shops"
           children={() => <SlideShopsScreen shopDeals={shopDeals}/> }
-          // component={SlideScreen}
           options={{
             tabBarLabelStyle: {
               textTransform: "none",
@@ -87,9 +79,9 @@ const Favourites = ({ navigation }: Navigation) => {
             },
           }}
         />
-        {/* <Tab.Screen
+        <Tab.Screen
           name="Freelancers"
-          children={() => <SlideScreen shopDeals={shopDeals}/> }
+          children={() => <SlideFreelancersScreen/> }
           options={{
             tabBarLabelStyle: {
               textTransform: "none",
@@ -101,7 +93,7 @@ const Favourites = ({ navigation }: Navigation) => {
               borderColor: theme.primary.color,
             },
           }}
-        /> */}
+        />
       </Tab.Navigator>
     </SafeAreaView>
   );
