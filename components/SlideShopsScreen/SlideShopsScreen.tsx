@@ -5,12 +5,12 @@ import { Navigation } from '../../pages/model/Navigation';
 import { ShopDeal } from '../Deals/model/ShopDeal';
 import ShopDeals from '../Deals/ShopDeals/ShopDeals';
 
-type SlideScreenProps = {
+type SlideShopsScreenProps = {
     navigation?: Navigation;
     shopDeals: ShopDeal[];
 }
 
-const SlideScreen = ({ navigation, shopDeals }: SlideScreenProps) => {
+const SlideShopsScreen = ({ navigation, shopDeals }: SlideShopsScreenProps) => {
 const theme = useContext(ThemeContext);
   return (
     <View style={{ flex: 1 }}>
@@ -91,4 +91,4 @@ const theme = useContext(ThemeContext);
   )
 }
 
-export default SlideScreen
+export default SlideShopsScreen

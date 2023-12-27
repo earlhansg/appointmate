@@ -7,7 +7,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Navigation } from "../model/Navigation";
 
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import SlideScreen from "../../components/SlideScreen/SlideScreen";
+import SlideShopsScreen from "../../components/SlideShopsScreen/SlideShopsScreen";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -73,7 +73,7 @@ const Favourites = ({ navigation }: Navigation) => {
         /> */}
         <Tab.Screen
           name="Shops"
-          children={() => <SlideScreen shopDeals={shopDeals}/> }
+          children={() => <SlideShopsScreen shopDeals={shopDeals}/> }
           // component={SlideScreen}
           options={{
             tabBarLabelStyle: {
