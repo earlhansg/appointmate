@@ -85,7 +85,29 @@ const theme = useContext(ThemeContext);
         </Pressable>
       </View>
       <View>
-          <ShopDeals shopDeals={shopDeals} showInHorizontal={false}/>
+          <ShopDeals shopDeals={shopDeals} showInHorizontal={false}
+            verticalStyles={{imageButton: {
+              margin: 0,
+              padding: 0,
+              maxHeight: 210,
+              width: "100%",
+              borderRadius: 0
+            },
+            imageButtonContainer: {
+              height: "90%",
+              marginTop: 5,
+              marginBottom: 10,
+              marginLeft: 10,
+              marginRight: 10,
+              padding: 0
+            },
+            contentImage: {
+              borderRadius: 0,
+              width: "100%",
+              height: "90%",
+            }
+          }} 
+          />
       </View>
     </View>
   )

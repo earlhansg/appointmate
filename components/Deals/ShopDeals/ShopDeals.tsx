@@ -1,22 +1,38 @@
 import React, { useContext } from "react";
 
-import { View, Text, TouchableHighlight, Image, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  TouchableHighlight,
+  Image,
+  FlatList,
+  StyleProp,
+  ViewStyle,
+  ImageStyle,
+} from "react-native";
 
 import TouchableImageButton from "../../Buttons/TouchableImageButton";
 import { AntDesign } from "@expo/vector-icons";
 import { ShopDealsStyle } from "./ShopDealsStyle";
 import { ThemeContext } from "../../ThemeContext/ThemeContext";
 import { ShopDeal } from "../model/ShopDeal";
-import { theme } from "../../ThemeContext/theme";
 
 type ShopDealProps = {
   shopDeals: ShopDeal[];
-  showInHorizontal: boolean
-}
+  showInHorizontal: boolean;
+  verticalStyles?: {
+    imageButton?: StyleProp<ViewStyle>;
+    imageButtonContainer?: StyleProp<ViewStyle>;
+    contentImage?: StyleProp<ImageStyle>;
+  };
+};
 
-// const ShopDeals = ({ shopDeals }: { shopDeals: ShopDeal[] }) => {
-const ShopDeals = ({ shopDeals, showInHorizontal }: ShopDealProps) => {
-  const appTheme =  useContext(ThemeContext)
+const ShopDeals = ({
+  shopDeals,
+  showInHorizontal,
+  verticalStyles,
+}: ShopDealProps) => {
+  const appTheme = useContext(ThemeContext);
   const navigate = () => {
     console.log("im click in Try");
   };
@@ -29,76 +45,41 @@ const ShopDeals = ({ shopDeals, showInHorizontal }: ShopDealProps) => {
           <TouchableImageButton
             key={item.id}
             renderImage={(settings) => (
-
-              // orginal
-              // <TouchableHighlight
-              //   // style={[ShopDealsStyle.imageButton]}
-              //   style={[ShopDealsStyle.imageButton,
-              //   {
-              //     margin: 0,
-              //     padding: 0,
-              //     width: "100%",
-              //     borderRadius: 0
-              //   }]}
-              //   underlayColor={settings.underlayColor}
-              //   onPress={navigate}
-              // >
-
               <TouchableHighlight
-                // style={[ShopDealsStyle.imageButton]}
-                style={showInHorizontal ? ShopDealsStyle.imageButton : {
-                  margin: 0,
-                  padding: 0,
-                  maxHeight: 210,
-                  width: "100%",
-                  borderRadius: 0
-                }}
+                style={
+                  showInHorizontal
+                    ? ShopDealsStyle.imageButton
+                    : verticalStyles?.imageButton
+                }
                 underlayColor={settings.underlayColor}
                 onPress={navigate}
               >
-                {/* <View style={ShopDealsStyle.ImageButtonContainer}> */}
-                {/* <View style={[ShopDealsStyle.ImageButtonContainer, 
-                {
-                  width: "100%",
-                  height: "90%",
-                  margin: 0,
-                  padding: 0
-                }]}> */}
-                <View style={showInHorizontal ? ShopDealsStyle.ImageButtonContainer : {
-                  height: "90%",
-                  marginTop: 5,
-                  marginBottom: 10,
-                  marginLeft: 10,
-                  marginRight: 10,
-                  padding: 0
-                }}>
-                  
-                  <View style={[{
-                    backgroundColor: appTheme.primary.color,
-                    },
-                    ShopDealsStyle.promoContainer
-                    ]}>
+                <View
+                  style={
+                    showInHorizontal
+                      ? ShopDealsStyle.ImageButtonContainer
+                      : verticalStyles?.imageButtonContainer
+                  }
+                >
+                  <View
+                    style={[
+                      {
+                        backgroundColor: appTheme.primary.color,
+                      },
+                      ShopDealsStyle.promoContainer,
+                    ]}
+                  >
                     <Text style={ShopDealsStyle.promoText}>20% off</Text>
                   </View>
-
-                  {/* <Image
-                    source={item.imageUrl}
-                    resizeMode="cover"
-                    // style={ShopDealsStyle.contentImage}
-                    style={[ShopDealsStyle.contentImage, {
-                      borderRadius: 0
-                    }]}
-                  /> */}
 
                   <Image
                     source={item.imageUrl}
                     resizeMode="cover"
-                    // style={ShopDealsStyle.contentImage}
-                    style={showInHorizontal ? ShopDealsStyle.contentImage : {
-                      borderRadius: 0,
-                      width: "100%",
-                      height: "90%",
-                    }}
+                    style={
+                      showInHorizontal
+                        ? ShopDealsStyle.contentImage
+                        : verticalStyles?.contentImage
+                    }
                   />
 
                   <View style={ShopDealsStyle.textContainer}>
@@ -128,10 +109,8 @@ const ShopDeals = ({ shopDeals, showInHorizontal }: ShopDealProps) => {
           ></TouchableImageButton>
         )}
         keyExtractor={keyExtractor}
-        // horizontal
-        // showsHorizontalScrollIndicator={false}
         horizontal={showInHorizontal}
-        showsHorizontalScrollIndicator={showInHorizontal}
+        showsHorizontalScrollIndicator={!showInHorizontal}
         showsVerticalScrollIndicator={showInHorizontal}
       />
     </>
