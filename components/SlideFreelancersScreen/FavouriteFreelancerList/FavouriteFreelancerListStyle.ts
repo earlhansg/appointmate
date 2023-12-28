@@ -3,9 +3,11 @@ import { StyleSheet } from "react-native";
 export const FavouriteFreelancerListStyle = StyleSheet.create({
   container: {
     backgroundColor: "white",
-    paddingTop: 10,
-    paddingBottom: 10,
-    width: "95%",
+    paddingTop: 5,
+    paddingBottom: 5,
+    marginTop: 5,
+    marginBottom: 5,
+    width: "100%",
     borderRadius: 20,
   },
   primaryHeaderContainer: {
