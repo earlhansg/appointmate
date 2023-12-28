@@ -50,5 +50,17 @@ export const SlideShopsScreenStyle = StyleSheet.create({
   reviewText: {
     fontSize: 13,
     fontWeight: "600"
-  }
+  },
+  promoContainer: {
+    position: "absolute",
+    paddingTop: 3,
+    paddingBottom: 3,
+    paddingLeft: 10,
+    paddingRight: 10,
+    marginLeft: 0,
+    marginTop: 12,
+    borderTopRightRadius: 25,
+    borderBottomRightRadius: 25,
+    zIndex: 100,
+  },
 });

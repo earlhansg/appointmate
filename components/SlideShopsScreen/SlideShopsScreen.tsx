@@ -61,7 +61,8 @@ const theme = useContext(ThemeContext);
             imageButtonContainer: SlideShopsScreenStyle.imageButtonContainer,
             contentImage: SlideShopsScreenStyle.contentImage,
             shopNameText: SlideShopsScreenStyle.shopNameText,
-            reviewText: SlideShopsScreenStyle.reviewText
+            reviewText: SlideShopsScreenStyle.reviewText,
+            promoContainer: SlideShopsScreenStyle.promoContainer
           }} 
           />
       </View>

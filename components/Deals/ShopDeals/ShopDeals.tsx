@@ -27,6 +27,7 @@ type ShopDealProps = {
     contentImage?: StyleProp<ImageStyle>;
     shopNameText?: StyleProp<TextStyle>;
     reviewText?: StyleProp<TextStyle>;
+    promoContainer?: StyleProp<TextStyle>;
   };
 };
 
@@ -69,7 +70,9 @@ const ShopDeals = ({
                       {
                         backgroundColor: appTheme.primary.color,
                       },
-                      ShopDealsStyle.promoContainer,
+                      showInHorizontal
+                      ? ShopDealsStyle.promoContainer
+                      : verticalStyles?.promoContainer
                     ]}
                   >
                     <Text style={ShopDealsStyle.promoText}>20% off</Text>
