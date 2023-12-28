@@ -17,26 +17,25 @@ const SlideFreelancersScreen = () => {
             borderRadius: 20
           }}>
             <View style={{
-              flexDirection: "row",              
-              justifyContent: "center",
-              paddingTop: 10,
-              paddingBottom: 10,
+              flexDirection: "row",
+              padding: 10,
+              marginLeft: 10,
+              marginRight: 10,
             }}>
               <Image
                     source={user1}
                     resizeMode="contain"
                     style={{
                         width: "35%",
-                        backgroundColor: "red",
                         maxHeight: 120,
                         borderRadius: 35,
-                        marginRight: 20
                     }}
               />
               <View style={{
                 justifyContent: "center",
                 maxWidth: 130,
-                overflow: "hidden"
+                overflow: "hidden",
+                marginLeft: 20
               }}>
                 <Text style={{
                   fontSize: 16,
@@ -48,18 +47,19 @@ const SlideFreelancersScreen = () => {
                 }}>@charlieP</Text>
                 <Text style={{
                   fontSize: 15,
-                  fontWeight: "500",
                   color: theme.black.light1,
-                  marginTop: 7
-                }}>Makeup Artist</Text>
+                  marginTop: 10
+                }}>Digital Artist</Text>
               </View>
             </View>
             <View style={{
               flexDirection: "row",
               paddingBottom: 10,
               justifyContent: "center",
-              gap: 15,
-              marginTop: 10
+              gap: 25,
+              marginTop: 10,
+              alignContent: "center",
+              alignItems: "center"
             }}>
                   <View>
                     <Text style={{
@@ -81,35 +81,34 @@ const SlideFreelancersScreen = () => {
                   fontWeight: "500",
                 }}>5.0</Text>
                   </View>
-                  <View>
-                  <Pressable
-                    style={[
-                      {
-                        backgroundColor: theme.primary.color,
-                      },
-                      {
-                        alignItems: "center",
-                        paddingTop: 12,
-                        paddingBottom: 12,
-                        paddingLeft: 10,
-                        paddingRight: 10,
-                        borderRadius: 25,
-                        marginLeft: 5
-                      }
-                    ]}
-                  >
-                    <Text
+                  <View style={{marginTop: 5}}>
+                    <Pressable
                       style={[
-                        { color: theme.white.color },
+                        {
+                          backgroundColor: theme.primary.color,
+                        },
+                        {
+                          alignItems: "center",
+                          paddingTop: 12,
+                          paddingBottom: 12,
+                          paddingLeft: 10,
+                          paddingRight: 10,
+                          borderRadius: 25,
+                          // marginLeft: 5
+                        }
                       ]}
                     >
-                    Appoint Now
-                  </Text>
-                </Pressable>
-              </View>
+                      <Text
+                        style={[
+                          { color: theme.white.color },
+                        ]}
+                      >
+                      Appoint Now
+                    </Text>
+                    </Pressable>
+                  </View>
             </View>
           </View>
-
         </View>
     </View>
   )
