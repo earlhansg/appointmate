@@ -22,7 +22,7 @@ const Favourites = ({ navigation }: Navigation) => {
   const dealsImage1 = require("../../assets/deals-images/cleaning.jpg");
   const dealsImage2 = require("../../assets/deals-images/beauty.jpg");
 
-  const shopDeals = [
+  const favouriteShops = [
     {
       id: 1,
       imageUrl: dealsImage1,
@@ -45,6 +45,44 @@ const Favourites = ({ navigation }: Navigation) => {
       address: "CM Recto Lapasan",
     },
   ];
+
+  const user1 = require("../../assets/profile-images/user1.png");
+
+  const favouriteFreelancers = [
+    {
+      id: 1,
+      imageUrl: user1,
+      firstName: "Charles",
+      lastName: "Peprahs",
+      position: "Digital Artist",
+      address: "Camaman-an",
+      username: "@charlieP",
+      completed: 100,
+      rating: 5.9
+    },
+    {
+      id: 2,
+      imageUrl: user1,
+      firstName: "Earl",
+      lastName: "Genoso",
+      position: "Host",
+      address: "Bulua",
+      username: "@ealhansgenoso",
+      completed: 20,
+      rating: 7
+    },
+    {
+      id: 3,
+      imageUrl: user1,
+      firstName: "Earl",
+      lastName: "Genoso",
+      position: "Host",
+      address: "Bulua",
+      username: "@ealhansgenoso",
+      completed: 20,
+      rating: 7
+    }
+  ]
   return (
     <SafeAreaView style={FavouritesStyle.container}>
       <View style={FavouritesStyle.headerContainer}>
@@ -66,7 +104,7 @@ const Favourites = ({ navigation }: Navigation) => {
       <Tab.Navigator>
         <Tab.Screen
           name="Shops"
-          children={() => <SlideShopsScreen shopDeals={shopDeals}/> }
+          children={() => <SlideShopsScreen shopDeals={favouriteShops}/> }
           options={{
             tabBarLabelStyle: {
               textTransform: "none",
@@ -81,7 +119,7 @@ const Favourites = ({ navigation }: Navigation) => {
         />
         <Tab.Screen
           name="Freelancers"
-          children={() => <SlideFreelancersScreen/> }
+          children={() => <SlideFreelancersScreen freelancers={favouriteFreelancers}/> }
           options={{
             tabBarLabelStyle: {
               textTransform: "none",

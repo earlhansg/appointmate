@@ -6,6 +6,6 @@ export type Freelancers = {
     position: string;
     address?: string;
     username?: string;
-    completed?: string;
-    rating?: string; 
+    completed?: number;
+    rating?: number; 
 }

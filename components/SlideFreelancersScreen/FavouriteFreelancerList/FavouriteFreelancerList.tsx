@@ -73,7 +73,7 @@ const FavouriteFreelancerList = ({freelancer} : FavouriteFreelancerListProps) =>
             Ratings
           </Text>
           <Text style={FavouriteFreelancerListStyle.secondaryHeaderContent2}>
-            {freelancer.ratings}
+            {freelancer.rating}
           </Text>
         </View>
         <View style={{ marginTop: 5 }}>
