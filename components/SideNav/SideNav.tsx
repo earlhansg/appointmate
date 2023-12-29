@@ -1,14 +1,7 @@
 import React, { useContext } from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { Button, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import {
-  DrawerContentScrollView,
-  DrawerItemList,
-  createDrawerNavigator,
-  DrawerContentComponentProps,
-  DrawerItem,
-} from "@react-navigation/drawer";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import {
   Feather,
   FontAwesome5,
@@ -23,6 +16,7 @@ import { SideNavStyle } from "./SideNavStyle";
 import Profile from "../../pages/Profile/Profile";
 import Update from "../../pages/Update/Update";
 import Favourites from "../../pages/Favourites/Favourites";
+import Category from "../../pages/Category/Category";
 
 const Drawer = createDrawerNavigator();
 
@@ -198,6 +192,16 @@ const SideNav = () => {
           <Drawer.Screen
             name="Update"
             component={Update}
+            options={{
+              headerShown: false,
+              drawerItemStyle: {
+                display: "none",
+              },
+            }}
+          />
+          <Drawer.Screen
+            name="Category"
+            component={Category}
             options={{
               headerShown: false,
               drawerItemStyle: {

@@ -3,17 +3,16 @@ import { View, Text, Image, TouchableHighlight } from "react-native";
 import { GroupedData } from "../Categories";
 import { CategoryListStyle } from "./CategoryListStyle";
 import TouchableImageButton from "../../Buttons/TouchableImageButton";
+import { Navigation } from "../../../pages/model/Navigation";
 
 type CatergoryListProps = {
   category: GroupedData;
+  onButtonClick: (item: any) => void;
 };
 
-const CategoryList = ({ category }: CatergoryListProps) => {
+const CategoryList = ({ category, onButtonClick }: CatergoryListProps) => {
   const imageUrl = require("../../../assets/sampleimage2.png");
 
-  const navigate = () => {
-    console.log("im click in Try");
-  };
   return (
     <View style={CategoryListStyle.categoryContainer}>
       {category.list.map((list) => (
@@ -23,7 +22,7 @@ const CategoryList = ({ category }: CatergoryListProps) => {
             <TouchableHighlight
               style={[{ ...settings.containerStyle }]}
               underlayColor={settings.underlayColor}
-              onPress={navigate}
+              onPress={() => onButtonClick(list)}
             >
               <Image
                 source={imageUrl}

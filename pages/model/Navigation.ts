@@ -14,6 +14,11 @@ export type ScreenData = {
   header?: string;
 };
 
+export type CategoryData = {
+  id: string;
+  name: string;
+};
+
 
 type RootStackParamList = {
   Home: undefined;
@@ -21,11 +26,12 @@ type RootStackParamList = {
   Profile: undefined;
   Update: ScreenData;
   Favourites: undefined;
+  Category: CategoryData;
 };
 
 export type Navigation = {
   navigation?: DrawerNavigationProp<
     RootStackParamList,
-    "Home" | "Notifications" | "Profile" | "Update" | "Favourites"
+    "Home" | "Notifications" | "Profile" | "Update" | "Favourites" | "Category"
   >;
 };

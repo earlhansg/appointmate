@@ -16,7 +16,6 @@ const Home = ({ navigation }: Navigation) => {
 
   return (
     <SafeAreaView style={HomeStyle.container}>
-      {/* <Header animHeaderValue={scrollOffsetY} /> */}
       <ThemeContextProvider>
         <Header animHeaderValue={scrollOffsetY}>
           <Location navigation={navigation} />
@@ -30,7 +29,7 @@ const Home = ({ navigation }: Navigation) => {
             { useNativeDriver: false }
           )}
         >
-          <Categories />
+          <Categories navigation={navigation}/>
           <TopFreelancers />
           <TopShops />
           <Deals />

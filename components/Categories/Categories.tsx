@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import { FlatList, SafeAreaView, Text } from "react-native";
 import { CategoriesStyle } from "./CatergoriesStyle";
 import CategoryList from "./CategoryList/CategoryList";
+import { Navigation } from "../../pages/model/Navigation";
 
 export type GroupedData = {
   group: number;
@@ -29,7 +30,11 @@ const data = [
 
 const CatergoryListMemo = React.memo(CategoryList);
 
-const Categories = () => {
+const Categories = ({navigation} : Navigation) => {
+
+  const handleButtonClick = (item: any) => {
+    navigation?.navigate("Category", item);
+  };
 
   const groupDataByTwo = useMemo(() => {
     return data.reduce((acc, currValue, index) => {
@@ -53,7 +58,7 @@ const Categories = () => {
         <FlatList
           data={groupDataByTwo}
           renderItem={({ item }) => (
-            <CatergoryListMemo key={item.group} category={item}/>
+            <CatergoryListMemo key={item.group} category={item} onButtonClick={handleButtonClick}/>
           )}
           keyExtractor={keyExtractor}
           horizontal
