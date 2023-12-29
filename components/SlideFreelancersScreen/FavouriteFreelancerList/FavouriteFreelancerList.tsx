@@ -2,21 +2,26 @@ import React, { useContext } from "react";
 import { Image, Pressable, Text, View } from "react-native";
 import { ThemeContext } from "../../ThemeContext/ThemeContext";
 import { FavouriteFreelancerListStyle } from "./FavouriteFreelancerListStyle";
+import { Freelancers } from "../../TopFreelancers/model/Freelancer";
 
-const FavouriteFreelancerList = () => {
+type FavouriteFreelancerListProps = {
+  freelancer: Freelancers
+}
+
+const FavouriteFreelancerList = ({freelancer} : FavouriteFreelancerListProps) => {
   const theme = useContext(ThemeContext);
   const user1 = require("../../../assets/profile-images/user1.png");
   return (
     <View style={FavouriteFreelancerListStyle.container}>
       <View style={FavouriteFreelancerListStyle.primaryHeaderContainer}>
         <Image
-          source={user1}
+          source={freelancer.imageUrl}
           resizeMode="contain"
           style={FavouriteFreelancerListStyle.primaryHeaderImage}
         />
         <View style={FavouriteFreelancerListStyle.primaryHeaderContent}>
           <Text style={FavouriteFreelancerListStyle.primaryHeaderContent1}>
-            Charles Peprahs
+            {`${freelancer.firstName} ${freelancer.lastName}`}
           </Text>
           <Text
             style={[
@@ -26,7 +31,7 @@ const FavouriteFreelancerList = () => {
               FavouriteFreelancerListStyle.primaryHeaderContent2,
             ]}
           >
-            @charlieP
+            {freelancer.username}
           </Text>
           <Text
             style={[
@@ -36,7 +41,7 @@ const FavouriteFreelancerList = () => {
               FavouriteFreelancerListStyle.primaryHeaderContent3,
             ]}
           >
-            Digital Artist
+            {freelancer.position}
           </Text>
         </View>
       </View>
@@ -53,7 +58,7 @@ const FavouriteFreelancerList = () => {
             Completed
           </Text>
           <Text style={FavouriteFreelancerListStyle.secondaryHeaderContent2}>
-            20
+            {freelancer.completed}
           </Text>
         </View>
         <View>
@@ -68,7 +73,7 @@ const FavouriteFreelancerList = () => {
             Ratings
           </Text>
           <Text style={FavouriteFreelancerListStyle.secondaryHeaderContent2}>
-            5.0
+            {freelancer.ratings}
           </Text>
         </View>
         <View style={{ marginTop: 5 }}>

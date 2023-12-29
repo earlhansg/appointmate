@@ -69,7 +69,7 @@ const SlideFreelancersScreen = () => {
         <FlatList
           style={{width: "95%"}}
           data={favouritesFreelancers}
-          renderItem={({ item }) => <FavouriteFreelancerList />}
+          renderItem={({ item }) => <FavouriteFreelancerList freelancer={item} />}
           keyExtractor={keyExtractor}
           showsVerticalScrollIndicator={false}
         />
