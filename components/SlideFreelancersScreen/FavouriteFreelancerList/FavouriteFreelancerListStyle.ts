@@ -18,7 +18,7 @@ export const FavouriteFreelancerListStyle = StyleSheet.create({
   },
   primaryHeaderImage: {
     width: "35%",
-    maxHeight: 120,
+    maxHeight: 110,
     borderRadius: 35,
   },
   primaryHeaderContent: {
