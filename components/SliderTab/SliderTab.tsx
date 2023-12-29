@@ -15,7 +15,8 @@ type SliderTabProps = {
 }
 
 const SliderTab = ({shops, freelancers} : SliderTabProps) => {
-    const theme = useContext(ThemeContext);
+  const theme = useContext(ThemeContext);
+
   return (
     <>
     <Tab.Navigator>

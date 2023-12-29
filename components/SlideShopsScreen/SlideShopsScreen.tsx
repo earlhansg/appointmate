@@ -7,11 +7,10 @@ import ShopDeals from '../Deals/ShopDeals/ShopDeals';
 import { SlideShopsScreenStyle } from './SlideShopsScreenStyle';
 
 type SlideShopsScreenProps = {
-    navigation?: Navigation;
     shopDeals: ShopDeal[];
 }
 
-const SlideShopsScreen = ({ navigation, shopDeals }: SlideShopsScreenProps) => {
+const SlideShopsScreen = ({ shopDeals }: SlideShopsScreenProps) => {
 const theme = useContext(ThemeContext);
   return (
     <View style={{ flex: 1 }}>

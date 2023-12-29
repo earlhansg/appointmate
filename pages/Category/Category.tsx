@@ -1,29 +1,27 @@
-import React, { useContext } from 'react'
+import React, { useContext } from "react";
 import { SafeAreaView, Text, View } from "react-native";
-import { CategoryData, Navigation } from '../model/Navigation';
-import { ThemeContext } from '../../components/ThemeContext/ThemeContext';
+import { CategoryData, Navigation } from "../model/Navigation";
+import { ThemeContext } from "../../components/ThemeContext/ThemeContext";
 import { useRoute, RouteProp } from "@react-navigation/native";
-import { CategoryStyle } from './CategoryStyle';
-import ButtonIcon from '../../components/Buttons/ButtonIcon';
+import { CategoryStyle } from "./CategoryStyle";
+import ButtonIcon from "../../components/Buttons/ButtonIcon";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import SlideShopsScreen from "../../components/SlideShopsScreen/SlideShopsScreen";
-import SlideFreelancersScreen from '../../components/SlideFreelancersScreen/SlideFreelancersScreen'
-import SliderTab from '../../components/SliderTab/SliderTab';
+import SliderTab from "../../components/SliderTab/SliderTab";
 
 const Tab = createMaterialTopTabNavigator();
 
 type CategoryRouteProps = {
   route: RouteProp<
     {
-      Category: CategoryData
+      Category: CategoryData;
     },
     "Category"
   >;
 };
 
-const Category = ({navigation}: Navigation) => {
+const Category = ({ navigation }: Navigation) => {
   const theme = useContext(ThemeContext);
   const route = useRoute<CategoryRouteProps["route"]>();
   const { id, name } = route.params || { data: {} };
@@ -37,7 +35,8 @@ const Category = ({navigation}: Navigation) => {
       imageUrl: dealsImage1,
       name: "Demetrio Cleaning Services",
       position: "shop",
-      address: "Tomasaco Macasandig Tomasaco Macasandig Tomasaco Macasandig Tomasaco Macasandig Tomasaco Macasandig Tomasaco Macasandig Tomasaco Macasandig Tomasaco Macasandig Tomasaco Macasandig",
+      address:
+        "Tomasaco Macasandig Tomasaco Macasandig Tomasaco Macasandig Tomasaco Macasandig Tomasaco Macasandig Tomasaco Macasandig Tomasaco Macasandig Tomasaco Macasandig Tomasaco Macasandig",
     },
     {
       id: 2,
@@ -67,7 +66,7 @@ const Category = ({navigation}: Navigation) => {
       address: "Camaman-an",
       username: "@charlieP",
       completed: 100,
-      rating: 5.9
+      rating: 5.9,
     },
     {
       id: 2,
@@ -78,7 +77,7 @@ const Category = ({navigation}: Navigation) => {
       address: "Bulua",
       username: "@ealhansgenoso",
       completed: 20,
-      rating: 7
+      rating: 7,
     },
     {
       id: 3,
@@ -89,9 +88,9 @@ const Category = ({navigation}: Navigation) => {
       address: "Bulua",
       username: "@ealhansgenoso",
       completed: 20,
-      rating: 7
-    }
-  ]
+      rating: 7,
+    },
+  ];
 
   const handleClickMenuBar = () => {
     console.log("open drawer");
@@ -115,9 +114,12 @@ const Category = ({navigation}: Navigation) => {
         <Text style={CategoryStyle.headerText}>{name}</Text>
       </View>
 
-      <SliderTab shops={filteredByCategoryShops} freelancers={filteredByCategoryFreelancers}/>
+      <SliderTab
+        shops={filteredByCategoryShops}
+        freelancers={filteredByCategoryFreelancers}
+      />
     </SafeAreaView>
-  )
-}
+  );
+};
 
-export default Category
+export default Category;

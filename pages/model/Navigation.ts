@@ -27,11 +27,12 @@ type RootStackParamList = {
   Update: ScreenData;
   Favourites: undefined;
   Category: CategoryData;
+  Checkout: undefined;
 };
 
 export type Navigation = {
   navigation?: DrawerNavigationProp<
     RootStackParamList,
-    "Home" | "Notifications" | "Profile" | "Update" | "Favourites" | "Category"
+    "Home" | "Notifications" | "Profile" | "Update" | "Favourites" | "Category" | "Checkout"
   >;
 };
