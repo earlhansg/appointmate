@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { SafeAreaView, Text, View } from "react-native";
 import { CategoryData, Navigation } from "../model/Navigation";
 import { ThemeContext } from "../../components/ThemeContext/ThemeContext";
@@ -9,8 +9,17 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import SliderTab from "../../components/SliderTab/SliderTab";
+import NavigationContextProvider from "../../components/NavigationContext/NavigationContext";
 
 const Tab = createMaterialTopTabNavigator();
+
+interface CustomHookProps {
+  router: Navigation;
+}
+
+const useCustomHook = ({ nav }: { nav: any }) => ({
+  nav,
+});
 
 type CategoryRouteProps = {
   route: RouteProp<
@@ -25,6 +34,12 @@ const Category = ({ navigation }: Navigation) => {
   const theme = useContext(ThemeContext);
   const route = useRoute<CategoryRouteProps["route"]>();
   const { id, name } = route.params || { data: {} };
+
+  const navigate = () => {
+    navigation?.navigate("Home");
+  }
+
+  // const { nav } = useCustomHook({ nav: navigation });
 
   const dealsImage1 = require("../../assets/deals-images/cleaning.jpg");
   const dealsImage2 = require("../../assets/deals-images/beauty.jpg");
@@ -97,28 +112,52 @@ const Category = ({ navigation }: Navigation) => {
     navigation?.navigate("Home");
   };
   return (
-    <SafeAreaView style={CategoryStyle.container}>
-      <View style={CategoryStyle.headerContainer}>
-        <View style={CategoryStyle.headerIconContainer}>
-          <ButtonIcon
-            renderIcon={(settings) => (
-              <MaterialCommunityIcons
-                name="arrow-left"
-                color={theme.primary.color}
-                size={20}
-              />
-            )}
-            onClick={handleClickMenuBar}
-          />
-        </View>
-        <Text style={CategoryStyle.headerText}>{name}</Text>
-      </View>
+    // <SafeAreaView style={CategoryStyle.container}>
+    //   <View style={CategoryStyle.headerContainer}>
+    //     <View style={CategoryStyle.headerIconContainer}>
+    //       <ButtonIcon
+    //         renderIcon={(settings) => (
+    //           <MaterialCommunityIcons
+    //             name="arrow-left"
+    //             color={theme.primary.color}
+    //             size={20}
+    //           />
+    //         )}
+    //         onClick={handleClickMenuBar}
+    //       />
+    //     </View>
+    //     <Text style={CategoryStyle.headerText}>{name}</Text>
+    //   </View>
 
-      <SliderTab
-        shops={filteredByCategoryShops}
-        freelancers={filteredByCategoryFreelancers}
-      />
-    </SafeAreaView>
+    //   <SliderTab
+    //     shops={filteredByCategoryShops}
+    //     freelancers={filteredByCategoryFreelancers}
+    //   />
+    // </SafeAreaView>
+    <NavigationContextProvider nav={navigate}>
+      <SafeAreaView style={CategoryStyle.container}>
+        <View style={CategoryStyle.headerContainer}>
+          <View style={CategoryStyle.headerIconContainer}>
+            <ButtonIcon
+              renderIcon={(settings) => (
+                <MaterialCommunityIcons
+                  name="arrow-left"
+                  color={theme.primary.color}
+                  size={20}
+                />
+              )}
+              onClick={handleClickMenuBar}
+            />
+          </View>
+          <Text style={CategoryStyle.headerText}>{name}</Text>
+        </View>
+
+        <SliderTab
+          shops={filteredByCategoryShops}
+          freelancers={filteredByCategoryFreelancers}
+        />
+      </SafeAreaView>
+    </NavigationContextProvider>
   );
 };
 
