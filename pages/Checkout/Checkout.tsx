@@ -1,5 +1,12 @@
-  import React, { useContext } from "react";
-import { Image, SafeAreaView, Text, View, StyleSheet, FlatList } from "react-native";
+import React, { useContext } from "react";
+import {
+  Image,
+  SafeAreaView,
+  Text,
+  View,
+  StyleSheet,
+  FlatList,
+} from "react-native";
 import { CheckoutStyle } from "./CheckoutStyle";
 import ButtonIcon from "../../components/Buttons/ButtonIcon";
 import { CheckoutData, Navigation } from "../model/Navigation";
@@ -7,7 +14,7 @@ import { ThemeContext } from "../../components/ThemeContext/ThemeContext";
 import { useRoute, RouteProp } from "@react-navigation/native";
 import { Shop } from "../../components/TopShops/model/Shop";
 
-import { Feather, FontAwesome5 } from '@expo/vector-icons';
+import { Feather, FontAwesome5 } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 type CategoryRouteProps = {
@@ -19,31 +26,115 @@ type CategoryRouteProps = {
   >;
 };
 
-const Checkout = ({navigation}: Navigation) => {
+const Checkout = ({ navigation }: Navigation) => {
   const theme = useContext(ThemeContext);
 
   const route = useRoute<CategoryRouteProps["route"]>();
-  const { checkoutData } = route.params || { data: {} as CheckoutData};
+  const { checkoutData } = route.params || { data: {} as CheckoutData };
 
   const deals = [
     {
       id: 1,
-      name: '20% Off',
-      caption: 'Min. order 199. Valid for all items. Min. order 199. Valid for all items. Min. order 199. Valid for all items.Min. order 199. Valid for all items. Min. order 199. Valid for all items. Min. order 199. Valid for all items. Min. order 199. Valid for all items.'
+      name: "20% Off",
+      caption:
+        "Min. order 199. Valid for all items. Min. order 199. Valid for all items. Min. order 199. Valid for all items.Min. order 199. Valid for all items. Min. order 199. Valid for all items. Min. order 199. Valid for all items. Min. order 199. Valid for all items.",
     },
     {
       id: 2,
-      name: '20% Off',
-      caption: 'Min. order 199. Valid for all items.'
+      name: "20% Off",
+      caption: "Min. order 199. Valid for all items.",
     },
     {
       id: 3,
-      name: '20% Off',
-      caption: 'Min. order 199. Valid for all items.'
-    }
-  ]
+      name: "20% Off",
+      caption: "Min. order 199. Valid for all items.",
+    },
+  ];
 
-  const logo = require("../../assets/logo-images/logo1.png")
+  const servicesByCategory = [
+    {
+      id: 1,
+      categoryName: "Cleaning",
+      services: [
+        {
+          id: 1,
+          serviceName: "Cleaning half",
+          price: 500,
+        },
+        {
+          id: 2,
+          serviceName: "Cleaning full",
+          price: 5800,
+        },
+      ],
+    },
+    {
+      id: 2,
+      categoryName: "Repair",
+      services: [
+        {
+          id: 1,
+          serviceName: "Repair half",
+          price: 500,
+        },
+        {
+          id: 2,
+          serviceName: "Repair full",
+          price: 5800,
+        },
+      ],
+    },
+    {
+      id: 3,
+      categoryName: "Disassemble",
+      services: [
+        {
+          id: 1,
+          serviceName: "Repair half",
+          price: 500,
+        },
+        {
+          id: 2,
+          serviceName: "Repair full",
+          price: 5800,
+        },
+      ],
+    },
+    {
+      id: 4,
+      categoryName: "Installation",
+      services: [
+        {
+          id: 1,
+          serviceName: "Repair half",
+          price: 500,
+        },
+        {
+          id: 2,
+          serviceName: "Repair full",
+          price: 5800,
+        },
+      ],
+    },
+    {
+      id: 5,
+      categoryName: "Troubleshoot",
+      services: [
+        {
+          id: 1,
+          serviceName: "Repair half",
+          price: 500,
+        },
+        {
+          id: 2,
+          serviceName: "Repair full",
+          price: 5800,
+        },
+      ],
+    }
+  ];
+
+  const logo = require("../../assets/logo-images/logo1.png");
   const handleClickMenuBar = () => {
     console.log("open drawer");
     navigation?.navigate("Home");
@@ -208,37 +299,6 @@ const Checkout = ({navigation}: Navigation) => {
             Available deals
           </Text>
         </View>
-
-        {/* <View style={{flexDirection: "row", paddingLeft: 15, paddingRight: 15, paddingTop: 15}}>
-          <View style={{width: "100%", flexDirection: "row"}}>
-            <View style={{backgroundColor: "skyblue", padding: 10,  width: 176, height: 80, 
-            marginRight: 11, borderRadius: 10}}>
-              <View style={{flexDirection: "row", gap: 3}}>
-                <MaterialCommunityIcons name="sale" size={15} color={theme.primary.color} />
-                <Text style={{fontSize: 12, color: theme.primary.color, fontWeight: "500"}}>20% Off</Text>
-              </View>
-              <Text style={{fontSize: 10, color: theme.black.light1, fontWeight: "500", maxHeight: 36, overflow: "hidden"}}>
-                Min. order 199. Valid for all items.
-                Min. order 199. Valid for all items.
-                Min. order 199. Valid for all items.
-                Min. order 199. Valid for all items.
-                Min. order 199. Valid for all items.
-                Min. order 199. Valid for all items.
-                Min. order 199. Valid for all items.
-              </Text>
-            </View>
-            <View style={{backgroundColor: "skyblue", padding: 10,  width: 176, height: 80, 
-            marginRight: 11, borderRadius: 10}}>
-              <View style={{flexDirection: "row", gap: 3}}>
-                <MaterialCommunityIcons name="sale" size={15} color={theme.primary.color} />
-                <Text style={{fontSize: 12, color: theme.primary.color, fontWeight: "500"}}>20% Off</Text>
-              </View>
-              <Text style={{fontSize: 10, color: theme.black.light1, fontWeight: "500", maxHeight: 36, overflow: "hidden"}}>
-                Min. order 199. Valid for all items.
-              </Text>
-            </View>
-          </View>
-        </View> */}
         <View style={{ paddingLeft: 15, paddingRight: 15, paddingTop: 15 }}>
           <FlatList
             style={{ width: "100%" }}
@@ -280,7 +340,7 @@ const Checkout = ({navigation}: Navigation) => {
                       // fontWeight: "500",
                       maxHeight: 36,
                       overflow: "hidden",
-                      marginTop: 3
+                      marginTop: 3,
                     }}
                   >
                     {item.caption}
@@ -290,6 +350,29 @@ const Checkout = ({navigation}: Navigation) => {
             }}
           />
         </View>
+      </View>
+
+      <View style={{marginTop: 10, paddingLeft: 15, paddingRight: 15, borderBottomWidth: StyleSheet.hairlineWidth}}>
+        <FlatList
+          style={{ width: "100%"}}
+          data={servicesByCategory}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          renderItem={({ item, index }) => {
+            return (
+              <View style={{paddingTop: 10, paddingBottom: 10, marginRight: 30 }}>
+                <Text
+                  style={{
+                    fontSize: 14,
+                    fontWeight: "500",
+                  }}
+                >
+                  {item.categoryName}
+                </Text>
+              </View>
+            );
+          }}
+        />
       </View>
     </SafeAreaView>
   );
