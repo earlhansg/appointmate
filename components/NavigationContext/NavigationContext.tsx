@@ -1,20 +1,22 @@
 import React, { createContext, ReactNode } from "react";
+import { Freelancers } from "../TopFreelancers/model/Freelancer";
+import { Shop } from "../TopShops/model/Shop";
 
-interface NavigationContextProps {
-  navigate: () => void;
+type NavigationContextProps = {
+  navigate: (data: Freelancers | Shop) => void;
 }
 
-interface NavigationContextProviderProps {
+type NavigationContextProviderProps = {
   children: ReactNode;
-  nav: () => void;
+  screen: (data: Freelancers | Shop) => void;
 }
 
-export const NavigationContext = createContext<{navigate: () => void } | null>(null);
+export const NavigationContext = createContext<{navigate: (data: Freelancers | Shop) => void } | null>(null);
 
-const NavigationContextProvider: React.FC<NavigationContextProviderProps> = ({ children, nav }: NavigationContextProviderProps) => {
+const NavigationContextProvider: React.FC<NavigationContextProviderProps> = ({ children, screen }: NavigationContextProviderProps) => {
 
 const contextValue: NavigationContextProps = {
-  navigate: nav
+  navigate: screen
 };
 
   return (

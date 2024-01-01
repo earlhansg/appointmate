@@ -42,11 +42,11 @@ const ShopDeals = ({
 }: ShopDealProps) => {
   const appTheme = useContext(ThemeContext);
   // const route = useNavigation<Navigation>();
-  const nav = useContext(NavigationContext);
-  const navigate = () => {
-    console.log("im click in Try");
-    nav?.navigate();
-  };
+  const screen = useContext(NavigationContext);
+  // const navigate = () => {
+  //   console.log("im click in Try");
+  //   // screen?.navigate();
+  // };
   const keyExtractor = (item: ShopDeal) => item.id.toString();
   return (
     <>
@@ -63,9 +63,10 @@ const ShopDeals = ({
                     : verticalStyles?.imageButton
                 }
                 underlayColor={showInHorizontal ? settings.underlayColor : ''}
-                onPress={navigate}
+                // onPress={navigate}
                 // onPress={() => route.navigation?.navigate('Profile')}
                 // onPress={() => route.navigation?.navigate('Home')}
+                onPress={() => screen?.navigate(item)}
               >
                 <View
                   style={

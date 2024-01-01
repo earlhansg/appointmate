@@ -17,6 +17,7 @@ import Profile from "../../pages/Profile/Profile";
 import Update from "../../pages/Update/Update";
 import Favourites from "../../pages/Favourites/Favourites";
 import Category from "../../pages/Category/Category";
+import Checkout from "../../pages/Checkout/Checkout";
 
 const Drawer = createDrawerNavigator();
 
@@ -202,6 +203,16 @@ const SideNav = () => {
           <Drawer.Screen
             name="Category"
             component={Category}
+            options={{
+              headerShown: false,
+              drawerItemStyle: {
+                display: "none",
+              },
+            }}
+          />
+          <Drawer.Screen
+            name="Checkout"
+            component={Checkout}
             options={{
               headerShown: false,
               drawerItemStyle: {

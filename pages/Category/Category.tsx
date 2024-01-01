@@ -10,6 +10,8 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import SliderTab from "../../components/SliderTab/SliderTab";
 import NavigationContextProvider from "../../components/NavigationContext/NavigationContext";
+import { Freelancers } from "../../components/TopFreelancers/model/Freelancer";
+import { Shop } from "../../components/TopShops/model/Shop";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -27,8 +29,8 @@ const Category = ({ navigation }: Navigation) => {
   const route = useRoute<CategoryRouteProps["route"]>();
   const { id, name } = route.params || { data: {} };
 
-  const navigate = () => {
-    navigation?.navigate("Home");
+  const navigate = (data: Freelancers | Shop) => {
+    navigation?.navigate("Checkout", {data});
   }
 
   const dealsImage1 = require("../../assets/deals-images/cleaning.jpg");
@@ -102,7 +104,7 @@ const Category = ({ navigation }: Navigation) => {
     navigation?.navigate("Home");
   };
   return (
-    <NavigationContextProvider nav={navigate}>
+    <NavigationContextProvider screen={(data) => navigate(data)}>
       <SafeAreaView style={CategoryStyle.container}>
         <View style={CategoryStyle.headerContainer}>
           <View style={CategoryStyle.headerIconContainer}>
