@@ -85,19 +85,33 @@ const Checkout = ({navigation}: Navigation) => {
           <Text style={{fontSize: 14, color: theme.black.dark, fontWeight: "500", marginLeft: 7, textAlignVertical: "center"}}>Available deals</Text>
         </View>
         <View style={{flexDirection: "row", paddingLeft: 15, paddingRight: 15, paddingTop: 15}}>
-          <View style={{width: "100%", flexDirection: "row", backgroundColor: "red"}}>
-            <View style={{flexDirection: "row", backgroundColor: "skyblue", padding: 10, width: 176, marginRight: 11}}>
-              <MaterialCommunityIcons name="octagram" size={15} color={theme.primary.color} />
-              <Text style={{fontSize: 11, color: theme.black.dark, fontWeight: "500"}}>20% Off</Text>
+          <View style={{width: "100%", flexDirection: "row"}}>
+            <View style={{backgroundColor: "skyblue", padding: 10,  width: 176, height: 80, 
+            marginRight: 11, borderRadius: 10}}>
+              <View style={{flexDirection: "row", gap: 3}}>
+                <MaterialCommunityIcons name="sale" size={15} color={theme.primary.color} />
+                <Text style={{fontSize: 12, color: theme.primary.color, fontWeight: "500"}}>20% Off</Text>
+              </View>
+              <Text style={{fontSize: 10, color: theme.black.light1, fontWeight: "500", maxHeight: 36, overflow: "hidden"}}>
+                Min. order 199. Valid for all items.
+                Min. order 199. Valid for all items.
+                Min. order 199. Valid for all items.
+                Min. order 199. Valid for all items.
+                Min. order 199. Valid for all items.
+                Min. order 199. Valid for all items.
+                Min. order 199. Valid for all items.
+              </Text>
             </View>
-            <View style={{flexDirection: "row", backgroundColor: "skyblue", padding: 10, width: 176}}>
-              <MaterialCommunityIcons name="octagram" size={15} color={theme.primary.color} />
-              <Text style={{fontSize: 11, color: theme.black.dark, fontWeight: "500"}}>20% Off</Text>
+            <View style={{backgroundColor: "skyblue", padding: 10,  width: 176, height: 80, 
+            marginRight: 11, borderRadius: 10}}>
+              <View style={{flexDirection: "row", gap: 3}}>
+                <MaterialCommunityIcons name="sale" size={15} color={theme.primary.color} />
+                <Text style={{fontSize: 12, color: theme.primary.color, fontWeight: "500"}}>20% Off</Text>
+              </View>
+              <Text style={{fontSize: 10, color: theme.black.light1, fontWeight: "500", maxHeight: 36, overflow: "hidden"}}>
+                Min. order 199. Valid for all items.
+              </Text>
             </View>
-            {/* <View style={{flexDirection: "row", backgroundColor: "skyblue", padding: 10, width: "48%"}}>
-              <MaterialCommunityIcons name="octagram" size={15} color={theme.primary.color} />
-              <Text style={{fontSize: 11, color: theme.black.dark, fontWeight: "500"}}>20% Off</Text>
-            </View> */}
           </View>
         </View>
       </View>
