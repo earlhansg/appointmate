@@ -2,6 +2,7 @@ export const theme = {
   primary: {
     // color: "#FB3640",
     color: "#5F6F52",
+    lightColor: "#d9dfd3"
   },
   secondary: {
     // color: "#542E71",
