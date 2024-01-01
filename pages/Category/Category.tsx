@@ -29,8 +29,8 @@ const Category = ({ navigation }: Navigation) => {
   const route = useRoute<CategoryRouteProps["route"]>();
   const { id, name } = route.params || { data: {} };
 
-  const navigate = (data: any) => {
-    navigation?.navigate("Checkout", {data});
+  const navigate = (checkoutData: Shop | Freelancers) => {
+    navigation?.navigate("Checkout", {checkoutData});
   }
 
   const dealsImage1 = require("../../assets/deals-images/cleaning.jpg");

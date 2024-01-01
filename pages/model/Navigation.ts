@@ -22,7 +22,7 @@ export type CategoryData = {
 };
 
 export type CheckoutData = {
-  data: Freelancers | Shop
+  checkoutData: Freelancers | Shop
 }
 
 

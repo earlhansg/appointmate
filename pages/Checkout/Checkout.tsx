@@ -6,6 +6,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { CheckoutData, Navigation } from "../model/Navigation";
 import { ThemeContext } from "../../components/ThemeContext/ThemeContext";
 import { useRoute, RouteProp } from "@react-navigation/native";
+import { Shop } from "../../components/TopShops/model/Shop";
 
 type CategoryRouteProps = {
   route: RouteProp<
@@ -20,14 +21,13 @@ const Checkout = ({navigation}: Navigation) => {
   const theme = useContext(ThemeContext);
 
   const route = useRoute<CategoryRouteProps["route"]>();
-  const { data } = route.params || { data: {} };
+  const { checkoutData } = route.params || { data: {} as CheckoutData};
 
   const logo = require("../../assets/logo-images/logo1.png")
   const handleClickMenuBar = () => {
     console.log("open drawer");
     navigation?.navigate("Home");
   };
-
   return (
     <SafeAreaView style={CheckoutStyle.container}>
       <View style={CheckoutStyle.headerContainer}>
@@ -55,9 +55,10 @@ const Checkout = ({navigation}: Navigation) => {
             height: 35,
           }}
         />
-        <Text style={{fontSize: 16, fontWeight: "500", textAlignVertical: "center"}}>
+        {/* <Text style={{fontSize: 16, fontWeight: "500", textAlignVertical: "center"}}>
           Burger King - Divisoria
-        </Text>
+        </Text> */}
+        {('name' in checkoutData) && <Text style={{fontSize: 16, fontWeight: "500", textAlignVertical: "center"}}>{(checkoutData as Shop).name}</Text>}
       </View>
       <View style={{flexDirection: "row", gap: 5, paddingLeft: 15, paddingRight: 15, paddingTop: 10}}>
         <Text style={{fontSize: 11, fontWeight: "500", color: theme.gray.light3, borderRightWidth: 1, borderColor: theme.gray.light3, paddingRight: 3, paddingLeft: 3}}>

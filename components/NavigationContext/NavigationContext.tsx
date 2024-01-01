@@ -8,10 +8,10 @@ type NavigationContextProps = {
 
 type NavigationContextProviderProps = {
   children: ReactNode;
-  screen: (data: Freelancers | Shop) => void;
+  screen: (checkoutData: Freelancers | Shop) => void;
 }
 
-export const NavigationContext = createContext<{navigate: (data: Freelancers | Shop) => void } | null>(null);
+export const NavigationContext = createContext<{navigate: (checkoutData: Freelancers | Shop) => void } | null>(null);
 
 const NavigationContextProvider: React.FC<NavigationContextProviderProps> = ({ children, screen }: NavigationContextProviderProps) => {
 
