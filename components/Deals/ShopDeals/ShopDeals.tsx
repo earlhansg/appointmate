@@ -17,13 +17,12 @@ import { AntDesign } from "@expo/vector-icons";
 import { ShopDealsStyle } from "./ShopDealsStyle";
 import { ThemeContext } from "../../ThemeContext/ThemeContext";
 import { ShopDeal } from "../model/ShopDeal";
-import { useNavigation } from '@react-navigation/native';
-import { Navigation } from "../../../pages/model/Navigation";
 import { NavigationContext } from "../../NavigationContext/NavigationContext";
+import { Shop } from "../../TopShops/model/Shop";
 
 
 type ShopDealProps = {
-  shopDeals: ShopDeal[];
+  shopDeals: Shop[];
   showInHorizontal: boolean;
   verticalStyles?: {
     imageButton?: StyleProp<ViewStyle>;
@@ -41,13 +40,8 @@ const ShopDeals = ({
   verticalStyles,
 }: ShopDealProps) => {
   const appTheme = useContext(ThemeContext);
-  // const route = useNavigation<Navigation>();
   const screen = useContext(NavigationContext);
-  // const navigate = () => {
-  //   console.log("im click in Try");
-  //   // screen?.navigate();
-  // };
-  const keyExtractor = (item: ShopDeal) => item.id.toString();
+  const keyExtractor = (item: Shop) => item.id.toString();
   return (
     <>
       <FlatList
@@ -63,9 +57,6 @@ const ShopDeals = ({
                     : verticalStyles?.imageButton
                 }
                 underlayColor={showInHorizontal ? settings.underlayColor : ''}
-                // onPress={navigate}
-                // onPress={() => route.navigation?.navigate('Profile')}
-                // onPress={() => route.navigation?.navigate('Home')}
                 onPress={() => screen?.navigate(item)}
               >
                 <View

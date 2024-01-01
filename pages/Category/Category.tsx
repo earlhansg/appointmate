@@ -29,7 +29,7 @@ const Category = ({ navigation }: Navigation) => {
   const route = useRoute<CategoryRouteProps["route"]>();
   const { id, name } = route.params || { data: {} };
 
-  const navigate = (data: Freelancers | Shop) => {
+  const navigate = (data: any) => {
     navigation?.navigate("Checkout", {data});
   }
 
