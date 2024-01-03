@@ -166,6 +166,13 @@ const Checkout = ({ navigation }: Navigation) => {
     outputRange: [maxHeaderHeight, minHeaderHeight],
     extrapolate: 'clamp',
   });
+
+  const section1Height = scrollPosition.interpolate({
+    inputRange: [0, 500],
+    outputRange: [50, 0],
+    extrapolate: 'clamp',
+  });
+
   const opacity = scrollPosition.interpolate({
     inputRange: [0, 200, 450],
     outputRange: [1, 0.5, 0],
@@ -241,10 +248,9 @@ const Checkout = ({ navigation }: Navigation) => {
       <Animated.View style={{ 
         // paddingTop: 5, paddingBottom: 10, 
         flexDirection: "row", opacity: opacity,
-        backgroundColor: "red",
-        padding: scroll >= 350 ? 0 : 5,
+        paddingTop: scroll >= 350 ? 0 : 5,
         paddingBottom: scroll >= 350 ? 0 : 10,
-        maxHeight: scroll >= 350 ? 0 : 50,
+        maxHeight: section1Height
         }}>
         <Image
           source={logo}
@@ -275,11 +281,10 @@ const Checkout = ({ navigation }: Navigation) => {
               gap: 5,
               paddingLeft: 15,
               paddingRight: 15,
-              // paddingTop: 10,
               opacity: opacity,
-              maxHeight: scroll >= 300 ? 0 : 50,
+              // paddingTop: scroll >= 300 ? 0 : 10,
               paddingTop: scroll >= 300 ? 0 : 10,
-              // display: scroll > 300 ? "none" : "flex"
+              maxHeight: section1Height
             }}
           >
             <Text
@@ -333,13 +338,15 @@ const Checkout = ({ navigation }: Navigation) => {
           </Animated.View>
 
           {/* Section 3  */}
-          {/* <View>
-            <View
+            <Animated.View
               style={{
                 flexDirection: "row",
                 paddingLeft: 15,
                 paddingRight: 15,
-                paddingTop: 15,
+                // paddingTop: 15,
+                opacity: opacity,
+                paddingTop: scroll >= 250 ? 0 : 15,
+                maxHeight: section1Height
               }}
             >
               <Feather name="star" size={18} color={theme.primary.color} />
@@ -376,8 +383,8 @@ const Checkout = ({ navigation }: Navigation) => {
               >
                 See reviews
               </Text>
-            </View>
-          </View> */}
+            </Animated.View>
+
 
           <View
             style={{
