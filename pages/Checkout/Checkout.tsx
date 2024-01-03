@@ -238,11 +238,13 @@ const Checkout = ({ navigation }: Navigation) => {
             Header
           </Animated.Text> */}
 
-      <Animated.View style={{ paddingTop: 5, paddingBottom: 10, 
+      <Animated.View style={{ 
+        // paddingTop: 5, paddingBottom: 10, 
         flexDirection: "row", opacity: opacity,
         backgroundColor: "red",
+        padding: scroll >= 350 ? 0 : 5,
+        paddingBottom: scroll >= 350 ? 0 : 10,
         maxHeight: scroll >= 350 ? 0 : 50,
-        display: scroll > 350 ? "none" : "flex"
         }}>
         <Image
           source={logo}
@@ -265,6 +267,117 @@ const Checkout = ({ navigation }: Navigation) => {
         )}
       </Animated.View>
 
+
+        {/* Section 2 */}
+          <Animated.View
+            style={{
+              flexDirection: "row",
+              gap: 5,
+              paddingLeft: 15,
+              paddingRight: 15,
+              // paddingTop: 10,
+              opacity: opacity,
+              maxHeight: scroll >= 300 ? 0 : 50,
+              paddingTop: scroll >= 300 ? 0 : 10,
+              // display: scroll > 300 ? "none" : "flex"
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 11,
+                fontWeight: "500",
+                color: theme.gray.light3,
+                borderRightWidth: 1,
+                borderColor: theme.gray.light3,
+                paddingRight: 3,
+                paddingLeft: 3,
+              }}
+            >
+              1.3km away
+            </Text>
+            <Text
+              style={{
+                fontSize: 11,
+                color: theme.black.dark,
+                fontWeight: "500",
+                borderRightWidth: 1,
+                borderColor: theme.gray.light3,
+                paddingRight: 3,
+                paddingLeft: 3,
+              }}
+            >
+              Free delivery
+            </Text>
+            <Text
+              style={{
+                fontSize: 11,
+                fontWeight: "500",
+                color: theme.gray.light3,
+                paddingRight: 3,
+                paddingLeft: 3,
+                marginRight: "auto",
+              }}
+            >
+              &#8369; 119.00 Minimum
+            </Text>
+            <Text
+              style={{
+                fontSize: 11,
+                fontWeight: "500",
+                color: theme.primary.color,
+                textAlignVertical: "center",
+              }}
+            >
+              More Info
+            </Text>
+          </Animated.View>
+
+          {/* Section 3  */}
+          {/* <View>
+            <View
+              style={{
+                flexDirection: "row",
+                paddingLeft: 15,
+                paddingRight: 15,
+                paddingTop: 15,
+              }}
+            >
+              <Feather name="star" size={18} color={theme.primary.color} />
+              <Text
+                style={{
+                  fontSize: 14,
+                  color: theme.black.dark,
+                  fontWeight: "500",
+                  marginLeft: 8,
+                  textAlignVertical: "center",
+                }}
+              >
+                4.5
+              </Text>
+              <Text
+                style={{
+                  fontSize: 11,
+                  color: theme.gray.light3,
+                  fontWeight: "500",
+                  marginLeft: 10,
+                  textAlignVertical: "center",
+                  marginRight: "auto",
+                }}
+              >
+                5000+ ratings
+              </Text>
+              <Text
+                style={{
+                  fontSize: 11,
+                  fontWeight: "500",
+                  color: theme.primary.color,
+                  textAlignVertical: "center",
+                }}
+              >
+                See reviews
+              </Text>
+            </View>
+          </View> */}
 
           <View
             style={{
