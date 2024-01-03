@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { ReactElement, useContext, useEffect, useRef, useState, useMemo } from "react";
 import {
   Image,
   SafeAreaView,
@@ -6,6 +6,9 @@ import {
   View,
   StyleSheet,
   FlatList,
+  Animated,
+  ScrollView,
+  Dimensions
 } from "react-native";
 import { CheckoutStyle } from "./CheckoutStyle";
 import ButtonIcon from "../../components/Buttons/ButtonIcon";
@@ -16,6 +19,7 @@ import { Shop } from "../../components/TopShops/model/Shop";
 
 import { Feather, FontAwesome5 } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import CheckoutDetails from "../../components/CheckoutDetails/CheckoutDetails";
 
 type CategoryRouteProps = {
   route: RouteProp<
@@ -32,26 +36,9 @@ const Checkout = ({ navigation }: Navigation) => {
   const route = useRoute<CategoryRouteProps["route"]>();
   const { checkoutData } = route.params || { data: {} as CheckoutData };
 
-  const deals = [
-    {
-      id: 1,
-      name: "20% Off",
-      caption:
-        "Min. order 199. Valid for all items. Min. order 199. Valid for all items. Min. order 199. Valid for all items.Min. order 199. Valid for all items. Min. order 199. Valid for all items. Min. order 199. Valid for all items. Min. order 199. Valid for all items.",
-    },
-    {
-      id: 2,
-      name: "20% Off",
-      caption: "Min. order 199. Valid for all items.",
-    },
-    {
-      id: 3,
-      name: "20% Off",
-      caption: "Min. order 199. Valid for all items.",
-    },
-  ];
+  let scrollOffsetY = useRef(new Animated.Value(0)).current;
 
-  const servicesByCategory = [
+  const servicesByCategory = useMemo(() => [
     {
       id: 1,
       categoryName: "Cleaning",
@@ -132,13 +119,89 @@ const Checkout = ({ navigation }: Navigation) => {
         },
       ],
     }
-  ];
+  ], []);
+
+  const deals = useMemo(() => [
+    {
+      id: 1,
+      name: "20% Off",
+      caption:
+        "Min. order 199. Valid for all items. Min. order 199. Valid for all items. Min. order 199. Valid for all items.Min. order 199. Valid for all items. Min. order 199. Valid for all items. Min. order 199. Valid for all items. Min. order 199. Valid for all items.",
+    },
+    {
+      id: 2,
+      name: "20% Off",
+      caption: "Min. order 199. Valid for all items.",
+    },
+    {
+      id: 3,
+      name: "20% Off",
+      caption: "Min. order 199. Valid for all items.",
+    },
+  ], []);
 
   const logo = require("../../assets/logo-images/logo1.png");
+  
   const handleClickMenuBar = () => {
     console.log("open drawer");
     navigation?.navigate("Home");
   };
+
+  const renderCategoryItem = ({ item }: { item: { id: number; categoryName: string } }) => (
+    <View style={{ paddingTop: 10, paddingBottom: 10, marginRight: 30 }}>
+      <Text style={{ fontSize: 14, fontWeight: "500" }}>{item.categoryName}</Text>
+    </View>
+  );
+
+
+  const scrollPosition = useRef(new Animated.Value(0)).current;
+  // const minHeaderHeight = 30
+  // const maxHeaderHeight = 295
+
+  const minHeaderHeight = 40;
+  const maxHeaderHeight = 295;
+
+  const headerHeight = scrollPosition.interpolate({
+    inputRange: [0, 500],
+    outputRange: [maxHeaderHeight, minHeaderHeight],
+    extrapolate: 'clamp',
+  });
+  const opacity = scrollPosition.interpolate({
+    inputRange: [0, 200, 450],
+    outputRange: [1, 0.5, 0],
+    extrapolate: 'clamp',
+  });
+
+  // const diplaySection1 = scrollPosition.interpolate({
+  //   inputRange: [0, 450],
+  //   outputRange: ['none', 'none'],
+  //   extrapolate: 'clamp',
+  // });
+
+  const size = scrollPosition.interpolate({
+    inputRange: [0, 100, 200, 300, 400],
+    outputRange: [20, 17, 15, 13, 11],
+    extrapolate: 'clamp',
+  });
+  // const imageHeight = scrollPosition.interpolate({
+  //   inputRange: [0, 400],
+  //   outputRange: [100, 50],
+  //   extrapolateLeft: 'identity',
+  //   extrapolateRight: 'clamp',
+  // });
+  // const imagePosition = scrollPosition.interpolate({
+  //   inputRange: [0, 400],
+  //   outputRange: [(37 * Dimensions.get('window').width) / 100, 0],
+  //   extrapolateLeft: 'identity',
+  //   extrapolateRight: 'clamp',
+  // });
+
+  const [scroll, setScroll] = useState<any | number>(0)
+
+  useEffect(() => {
+    console.log("scrollPosition", scroll)
+  }, [scroll]);
+
   return (
     <SafeAreaView style={CheckoutStyle.container}>
       <View style={CheckoutStyle.headerContainer}>
@@ -155,7 +218,32 @@ const Checkout = ({ navigation }: Navigation) => {
           />
         </View>
       </View>
-      <View style={{ paddingTop: 5, paddingBottom: 10, flexDirection: "row" }}>
+      <View>
+        <Animated.View
+          style={{
+            // position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            zIndex: 100,
+            height: headerHeight,
+            backgroundColor: "lightgreen",
+          }}
+        >
+          {/* <Animated.Text
+            style={{
+              opacity: opacity,
+              fontSize: size,
+            }}>
+            Header
+          </Animated.Text> */}
+
+      <Animated.View style={{ paddingTop: 5, paddingBottom: 10, 
+        flexDirection: "row", opacity: opacity,
+        backgroundColor: "red",
+        maxHeight: scroll >= 350 ? 0 : 50,
+        display: scroll > 350 ? "none" : "flex"
+        }}>
         <Image
           source={logo}
           resizeMode="cover"
@@ -175,207 +263,123 @@ const Checkout = ({ navigation }: Navigation) => {
             {(checkoutData as Shop).name}
           </Text>
         )}
-      </View>
-      <View
-        style={{
-          flexDirection: "row",
-          gap: 5,
-          paddingLeft: 15,
-          paddingRight: 15,
-          paddingTop: 10,
-        }}
-      >
-        <Text
-          style={{
-            fontSize: 11,
-            fontWeight: "500",
-            color: theme.gray.light3,
-            borderRightWidth: 1,
-            borderColor: theme.gray.light3,
-            paddingRight: 3,
-            paddingLeft: 3,
-          }}
-        >
-          1.3km away
-        </Text>
-        <Text
-          style={{
-            fontSize: 11,
-            color: theme.black.dark,
-            fontWeight: "500",
-            borderRightWidth: 1,
-            borderColor: theme.gray.light3,
-            paddingRight: 3,
-            paddingLeft: 3,
-          }}
-        >
-          Free delivery
-        </Text>
-        <Text
-          style={{
-            fontSize: 11,
-            fontWeight: "500",
-            color: theme.gray.light3,
-            paddingRight: 3,
-            paddingLeft: 3,
-            marginRight: "auto",
-          }}
-        >
-          &#8369; 119.00 Minimum
-        </Text>
-        <Text
-          style={{
-            fontSize: 11,
-            fontWeight: "500",
-            color: theme.primary.color,
-            textAlignVertical: "center",
-          }}
-        >
-          More Info
-        </Text>
-      </View>
-      <View>
-        <View
-          style={{
-            flexDirection: "row",
-            paddingLeft: 15,
-            paddingRight: 15,
-            paddingTop: 15,
-          }}
-        >
-          <Feather name="star" size={18} color={theme.primary.color} />
-          <Text
+      </Animated.View>
+
+
+          <View
             style={{
-              fontSize: 14,
-              color: theme.black.dark,
-              fontWeight: "500",
-              marginLeft: 8,
-              textAlignVertical: "center",
+              marginTop: 10,
+              paddingLeft: 15,
+              paddingRight: 15,
+              borderBottomWidth: StyleSheet.hairlineWidth,
             }}
           >
-            4.5
-          </Text>
-          <Text
-            style={{
-              fontSize: 11,
-              color: theme.gray.light3,
-              fontWeight: "500",
-              marginLeft: 10,
-              textAlignVertical: "center",
-              marginRight: "auto",
-            }}
-          >
-            5000+ ratings
-          </Text>
-          <Text
-            style={{
-              fontSize: 11,
-              fontWeight: "500",
-              color: theme.primary.color,
-              textAlignVertical: "center",
-            }}
-          >
-            See reviews
-          </Text>
-        </View>
-        <View
-          style={{
-            flexDirection: "row",
-            paddingLeft: 15,
-            paddingRight: 15,
-            paddingTop: 15,
-          }}
-        >
-          <FontAwesome5 name="tags" size={14} color={theme.primary.color} />
-          <Text
-            style={{
-              fontSize: 14,
-              color: theme.black.dark,
-              fontWeight: "500",
-              marginLeft: 7,
-              textAlignVertical: "center",
-            }}
-          >
-            Available deals
-          </Text>
-        </View>
-        <View style={{ paddingLeft: 15, paddingRight: 15, paddingTop: 15 }}>
-          <FlatList
-            style={{ width: "100%" }}
-            data={deals}
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            renderItem={({ item, index }) => {
-              return (
-                <View
-                  style={{
-                    backgroundColor: theme.primary.lightColor,
-                    padding: 10,
-                    width: 176,
-                    height: 85,
-                    marginRight: deals.length - 1 === index ? 0 : 11,
-                    borderRadius: 10,
-                  }}
-                >
-                  <View style={{ flexDirection: "row", gap: 3 }}>
-                    <MaterialCommunityIcons
-                      name="sale"
-                      size={15}
-                      color={theme.primary.color}
-                    />
+            <FlatList
+              style={{ width: "100%" }}
+              data={servicesByCategory}
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+              renderItem={({ item, index }) => {
+                return (
+                  <View
+                    style={{
+                      paddingTop: 10,
+                      paddingBottom: 10,
+                      marginRight:
+                        servicesByCategory.length - 1 === index ? 0 : 30,
+                    }}
+                  >
                     <Text
                       style={{
-                        fontSize: 12,
-                        color: theme.primary.color,
+                        fontSize: 14,
                         fontWeight: "500",
                       }}
                     >
-                      {item.name}
+                      {item.categoryName}
                     </Text>
                   </View>
-                  <Text
-                    style={{
-                      fontSize: 10,
-                      color: theme.black.dark,
-                      // fontWeight: "500",
-                      maxHeight: 36,
-                      overflow: "hidden",
-                      marginTop: 3,
-                    }}
-                  >
-                    {item.caption}
-                  </Text>
-                </View>
-              );
-            }}
-          />
-        </View>
-      </View>
-
-      <View style={{marginTop: 10, paddingLeft: 15, paddingRight: 15, borderBottomWidth: StyleSheet.hairlineWidth}}>
-        <FlatList
-          style={{ width: "100%"}}
-          data={servicesByCategory}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          renderItem={({ item, index }) => {
-            return (
-              <View style={{paddingTop: 10, paddingBottom: 10, marginRight: 30 }}>
-                <Text
-                  style={{
-                    fontSize: 14,
-                    fontWeight: "500",
-                  }}
-                >
-                  {item.categoryName}
-                </Text>
-              </View>
-            );
+                );
+              }}
+            />
+          </View>
+        </Animated.View>
+        {/* <CheckoutDetails animHeaderValue={scrollPosition} checkoutData={checkoutData} deals={deals} servicesByCategory={servicesByCategory}/> */}
+        <Animated.ScrollView
+          // onScroll={
+          //   Animated.event(
+          //   [{ nativeEvent: { contentOffset: { y: scrollPosition } } }],
+          //   { useNativeDriver: false }
+          // )}
+          onScroll={(event) => {
+            const scrollY = event.nativeEvent.contentOffset.y;
+            setScroll(scrollY);
+            // Your additional logic here
+            Animated.event(
+              [{ nativeEvent: { contentOffset: { y: scrollPosition } } }],
+              { useNativeDriver: false }
+            )(event);
           }}
-        />
+          contentInsetAdjustmentBehavior="automatic"
+          style={[styles.scrollView]}
+        >
+          <View
+            style={{
+              width: "100%",
+              height: 200,
+              marginTop: 10,
+              backgroundColor: "pink",
+            }}
+          ></View>
+          <View
+            style={{
+              width: "100%",
+              height: 200,
+              marginTop: 10,
+              backgroundColor: "pink",
+            }}
+          ></View>
+          <View
+            style={{
+              width: "100%",
+              height: 200,
+              marginTop: 10,
+              backgroundColor: "pink",
+            }}
+          ></View>
+          <View
+            style={{
+              width: "100%",
+              height: 200,
+              marginTop: 10,
+              backgroundColor: "pink",
+            }}
+          ></View>
+          <View
+            style={{
+              width: "100%",
+              height: 200,
+              marginTop: 10,
+              backgroundColor: "pink",
+            }}
+          ></View>
+          <View
+            style={{
+              width: "100%",
+              height: 200,
+              marginTop: 10,
+              backgroundColor: "pink",
+            }}
+          ></View>
+        </Animated.ScrollView>
       </View>
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  scrollView: {
+    backgroundColor: "skyblue",
+  },
+});
 
 export default Checkout;

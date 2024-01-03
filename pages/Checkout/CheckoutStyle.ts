@@ -3,7 +3,9 @@ import { StyleSheet } from "react-native";
 export const CheckoutStyle = StyleSheet.create({
   container: { flex: 1, paddingTop: 20, backgroundColor: "#ffffff" },
   headerContainer: {
-    margin: 10,
+    marginTop: 10,
+    marginLeft: 10,
+    marginRight: 10,
     borderBottomWidth: StyleSheet.hairlineWidth,
     flexDirection: "row",
     borderColor: "#e0e0e0",
