@@ -22,116 +22,108 @@ type Service = {
 }
 
 type CheckoutDetailsProps = {
-  animHeaderValue: Animated.Value;
   checkoutData: Freelancers | Shop;
   deals: { id: number; name: string; caption: string }[];
-  servicesByCategory: {id: number; categoryName: string; services:Service[]}[]
   children?: ReactElement;
 };
 
-const maxHeaderHeight = 295;
-const minHeaderHeight = 50;
 
-// const CheckoutDetails = ({
-//   animHeaderValue,
-//   checkoutData,
-//   deals,
-//   children,
-// }: CheckoutDetailsProps) => {
-const CheckoutDetails = ({animHeaderValue, checkoutData, deals, servicesByCategory}: CheckoutDetailsProps) => {
+const CheckoutDetails = ({checkoutData, deals}: CheckoutDetailsProps) => {
   const theme = useContext(ThemeContext);
   const logo = require("../../assets/logo-images/logo1.png");
 
-  // console.log("", animHeaderValue.)
-
-  const animateHeaderHeight = animHeaderValue.interpolate({
-    inputRange: [0, 130],
-    outputRange: [maxHeaderHeight, minHeaderHeight],
-    extrapolate: "clamp",
-  });
-
   return (
-    <Animated.View style={{height: animateHeaderHeight}}>
-      <View style={{ paddingTop: 5, paddingBottom: 10, flexDirection: "row" }}>
-        <Image
-          source={logo}
-          resizeMode="cover"
+    <>
+      {/* Section 1 */}
+      <View
           style={{
-            width: 70,
-            height: 35,
+            paddingTop: 5,
+            paddingBottom: 10,
+            flexDirection: "row"
           }}
-        />
-        {"name" in checkoutData && (
+        >
+          <Image
+            source={logo}
+            resizeMode="cover"
+            style={{
+              width: 70,
+              height: 35,
+            }}
+          />
+          {"name" in checkoutData && (
+            <Text
+              style={{
+                fontSize: 16,
+                fontWeight: "500",
+                textAlignVertical: "center",
+              }}
+            >
+              {(checkoutData as Shop).name}
+            </Text>
+          )}
+        </View>
+
+        {/* Section 2 */}
+        <View
+          style={{
+            flexDirection: "row",
+            gap: 5,
+            paddingLeft: 15,
+            paddingRight: 15,
+            paddingTop: 10,
+          }}
+        >
           <Text
             style={{
-              fontSize: 16,
+              fontSize: 11,
               fontWeight: "500",
+              color: theme.gray.light3,
+              borderRightWidth: 1,
+              borderColor: theme.gray.light3,
+              paddingRight: 3,
+              paddingLeft: 3,
+            }}
+          >
+            1.3km away
+          </Text>
+          <Text
+            style={{
+              fontSize: 11,
+              color: theme.black.dark,
+              fontWeight: "500",
+              borderRightWidth: 1,
+              borderColor: theme.gray.light3,
+              paddingRight: 3,
+              paddingLeft: 3,
+            }}
+          >
+            Free delivery
+          </Text>
+          <Text
+            style={{
+              fontSize: 11,
+              fontWeight: "500",
+              color: theme.gray.light3,
+              paddingRight: 3,
+              paddingLeft: 3,
+              marginRight: "auto",
+            }}
+          >
+            &#8369; 119.00 Minimum
+          </Text>
+          <Text
+            style={{
+              fontSize: 11,
+              fontWeight: "500",
+              color: theme.primary.color,
               textAlignVertical: "center",
             }}
           >
-            {(checkoutData as Shop).name}
+            More Info
           </Text>
-        )}
-      </View>
-      <View
-        style={{
-          flexDirection: "row",
-          gap: 5,
-          paddingLeft: 15,
-          paddingRight: 15,
-          paddingTop: 10,
-        }}
-      >
-        <Text
-          style={{
-            fontSize: 11,
-            fontWeight: "500",
-            color: theme.gray.light3,
-            borderRightWidth: 1,
-            borderColor: theme.gray.light3,
-            paddingRight: 3,
-            paddingLeft: 3,
-          }}
-        >
-          1.3km away
-        </Text>
-        <Text
-          style={{
-            fontSize: 11,
-            color: theme.black.dark,
-            fontWeight: "500",
-            borderRightWidth: 1,
-            borderColor: theme.gray.light3,
-            paddingRight: 3,
-            paddingLeft: 3,
-          }}
-        >
-          Free delivery
-        </Text>
-        <Text
-          style={{
-            fontSize: 11,
-            fontWeight: "500",
-            color: theme.gray.light3,
-            paddingRight: 3,
-            paddingLeft: 3,
-            marginRight: "auto",
-          }}
-        >
-          &#8369; 119.00 Minimum
-        </Text>
-        <Text
-          style={{
-            fontSize: 11,
-            fontWeight: "500",
-            color: theme.primary.color,
-            textAlignVertical: "center",
-          }}
-        >
-          More Info
-        </Text>
-      </View>
-      <View>
+        </View>
+
+        {/* Section 3  */}
         <View
           style={{
             flexDirection: "row",
@@ -175,6 +167,8 @@ const CheckoutDetails = ({animHeaderValue, checkoutData, deals, servicesByCatego
             See reviews
           </Text>
         </View>
+
+        {/* Section 4 */}
         <View
           style={{
             flexDirection: "row",
@@ -196,6 +190,8 @@ const CheckoutDetails = ({animHeaderValue, checkoutData, deals, servicesByCatego
             Available deals
           </Text>
         </View>
+
+        {/* Section 5 */}
         <View style={{ paddingLeft: 15, paddingRight: 15, paddingTop: 15 }}>
           <FlatList
             style={{ width: "100%" }}
@@ -246,33 +242,7 @@ const CheckoutDetails = ({animHeaderValue, checkoutData, deals, servicesByCatego
             }}
           />
         </View>
-      </View>
-      <View style={{marginTop: 10, paddingLeft: 15, paddingRight: 15, borderBottomWidth: StyleSheet.hairlineWidth}}>
-          <FlatList
-            style={{ width: "100%"}}
-            data={servicesByCategory}
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            renderItem={({ item, index }) => {
-              return (
-                <View style={{paddingTop: 10, paddingBottom: 10,
-                marginRight: servicesByCategory.length - 1 === index ? 0 : 30,
-                
-                }}>
-                  <Text
-                    style={{
-                      fontSize: 14,
-                      fontWeight: "500",
-                    }}
-                  >
-                    {item.categoryName}
-                  </Text>
-                </View>
-              );
-            }}
-          />
-        </View>
-    </Animated.View>
+    </>
   );
 };
 

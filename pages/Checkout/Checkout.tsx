@@ -1,4 +1,11 @@
-import React, { ReactElement, useContext, useEffect, useRef, useState, useMemo } from "react";
+import React, {
+  ReactElement,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+  useMemo,
+} from "react";
 import {
   Image,
   SafeAreaView,
@@ -8,7 +15,7 @@ import {
   FlatList,
   Animated,
   ScrollView,
-  Dimensions
+  Dimensions,
 } from "react-native";
 import { CheckoutStyle } from "./CheckoutStyle";
 import ButtonIcon from "../../components/Buttons/ButtonIcon";
@@ -38,175 +45,125 @@ const Checkout = ({ navigation }: Navigation) => {
 
   let scrollOffsetY = useRef(new Animated.Value(0)).current;
 
-  const servicesByCategory = useMemo(() => [
-    {
-      id: 1,
-      categoryName: "Cleaning",
-      services: [
-        {
-          id: 1,
-          serviceName: "Cleaning half",
-          price: 500,
-        },
-        {
-          id: 2,
-          serviceName: "Cleaning full",
-          price: 5800,
-        },
-      ],
-    },
-    {
-      id: 2,
-      categoryName: "Repair",
-      services: [
-        {
-          id: 1,
-          serviceName: "Repair half",
-          price: 500,
-        },
-        {
-          id: 2,
-          serviceName: "Repair full",
-          price: 5800,
-        },
-      ],
-    },
-    {
-      id: 3,
-      categoryName: "Disassemble",
-      services: [
-        {
-          id: 1,
-          serviceName: "Repair half",
-          price: 500,
-        },
-        {
-          id: 2,
-          serviceName: "Repair full",
-          price: 5800,
-        },
-      ],
-    },
-    {
-      id: 4,
-      categoryName: "Installation",
-      services: [
-        {
-          id: 1,
-          serviceName: "Repair half",
-          price: 500,
-        },
-        {
-          id: 2,
-          serviceName: "Repair full",
-          price: 5800,
-        },
-      ],
-    },
-    {
-      id: 5,
-      categoryName: "Troubleshoot",
-      services: [
-        {
-          id: 1,
-          serviceName: "Repair half",
-          price: 500,
-        },
-        {
-          id: 2,
-          serviceName: "Repair full",
-          price: 5800,
-        },
-      ],
-    }
-  ], []);
+  const servicesByCategory = useMemo(
+    () => [
+      {
+        id: 1,
+        categoryName: "Cleaning",
+        services: [
+          {
+            id: 1,
+            serviceName: "Cleaning half",
+            price: 500,
+          },
+          {
+            id: 2,
+            serviceName: "Cleaning full",
+            price: 5800,
+          },
+        ],
+      },
+      {
+        id: 2,
+        categoryName: "Repair",
+        services: [
+          {
+            id: 1,
+            serviceName: "Repair half",
+            price: 500,
+          },
+          {
+            id: 2,
+            serviceName: "Repair full",
+            price: 5800,
+          },
+        ],
+      },
+      {
+        id: 3,
+        categoryName: "Disassemble",
+        services: [
+          {
+            id: 1,
+            serviceName: "Repair half",
+            price: 500,
+          },
+          {
+            id: 2,
+            serviceName: "Repair full",
+            price: 5800,
+          },
+        ],
+      },
+      {
+        id: 4,
+        categoryName: "Installation",
+        services: [
+          {
+            id: 1,
+            serviceName: "Repair half",
+            price: 500,
+          },
+          {
+            id: 2,
+            serviceName: "Repair full",
+            price: 5800,
+          },
+        ],
+      },
+      {
+        id: 5,
+        categoryName: "Troubleshoot",
+        services: [
+          {
+            id: 1,
+            serviceName: "Repair half",
+            price: 500,
+          },
+          {
+            id: 2,
+            serviceName: "Repair full",
+            price: 5800,
+          },
+        ],
+      },
+    ],
+    []
+  );
 
-  const deals = useMemo(() => [
-    {
-      id: 1,
-      name: "20% Off",
-      caption:
-        "Min. order 199. Valid for all items. Min. order 199. Valid for all items. Min. order 199. Valid for all items.Min. order 199. Valid for all items. Min. order 199. Valid for all items. Min. order 199. Valid for all items. Min. order 199. Valid for all items.",
-    },
-    {
-      id: 2,
-      name: "20% Off",
-      caption: "Min. order 199. Valid for all items.",
-    },
-    {
-      id: 3,
-      name: "20% Off",
-      caption: "Min. order 199. Valid for all items.",
-    },
-  ], []);
+  const deals = useMemo(
+    () => [
+      {
+        id: 1,
+        name: "20% Off",
+        caption:
+          "Min. order 199. Valid for all items. Min. order 199. Valid for all items. Min. order 199. Valid for all items.Min. order 199. Valid for all items. Min. order 199. Valid for all items. Min. order 199. Valid for all items. Min. order 199. Valid for all items.",
+      },
+      {
+        id: 2,
+        name: "20% Off",
+        caption: "Min. order 199. Valid for all items.",
+      },
+      {
+        id: 3,
+        name: "20% Off",
+        caption: "Min. order 199. Valid for all items.",
+      },
+    ],
+    []
+  );
 
   const logo = require("../../assets/logo-images/logo1.png");
-  
+
   const handleClickMenuBar = () => {
     console.log("open drawer");
     navigation?.navigate("Home");
   };
 
-  const renderCategoryItem = ({ item }: { item: { id: number; categoryName: string } }) => (
-    <View style={{ paddingTop: 10, paddingBottom: 10, marginRight: 30 }}>
-      <Text style={{ fontSize: 14, fontWeight: "500" }}>{item.categoryName}</Text>
-    </View>
-  );
-
-
-  const scrollPosition = useRef(new Animated.Value(0)).current;
-  // const minHeaderHeight = 30
-  // const maxHeaderHeight = 295
-
-  const minHeaderHeight = 40;
-  const maxHeaderHeight = 295;
-
-  const headerHeight = scrollPosition.interpolate({
-    inputRange: [0, 500],
-    outputRange: [maxHeaderHeight, minHeaderHeight],
-    extrapolate: 'clamp',
-  });
-
-  const section1Height = scrollPosition.interpolate({
-    inputRange: [0, 500],
-    outputRange: [50, 0],
-    extrapolate: 'clamp',
-  });
-
-  const opacity = scrollPosition.interpolate({
-    inputRange: [0, 200, 450],
-    outputRange: [1, 0.5, 0],
-    extrapolate: 'clamp',
-  });
-
-  // const diplaySection1 = scrollPosition.interpolate({
-  //   inputRange: [0, 450],
-  //   outputRange: ['none', 'none'],
-  //   extrapolate: 'clamp',
-  // });
-
-  const size = scrollPosition.interpolate({
-    inputRange: [0, 100, 200, 300, 400],
-    outputRange: [20, 17, 15, 13, 11],
-    extrapolate: 'clamp',
-  });
-  // const imageHeight = scrollPosition.interpolate({
-  //   inputRange: [0, 400],
-  //   outputRange: [100, 50],
-  //   extrapolateLeft: 'identity',
-  //   extrapolateRight: 'clamp',
-  // });
-  // const imagePosition = scrollPosition.interpolate({
-  //   inputRange: [0, 400],
-  //   outputRange: [(37 * Dimensions.get('window').width) / 100, 0],
-  //   extrapolateLeft: 'identity',
-  //   extrapolateRight: 'clamp',
-  // });
-
-  const [scroll, setScroll] = useState<any | number>(0)
+  const [scroll, setScroll] = useState<any | number>(0);
 
   useEffect(() => {
-    console.log("scrollPosition", scroll)
+    console.log("scrollPosition", scroll);
   }, [scroll]);
 
   return (
@@ -225,224 +182,68 @@ const Checkout = ({ navigation }: Navigation) => {
           />
         </View>
       </View>
-      <View>
-        <Animated.View
+      <ScrollView
+        stickyHeaderIndices={[1]}
+        showsVerticalScrollIndicator={false}
+      >
+        <CheckoutDetails checkoutData={checkoutData} deals={deals}/>
+        
+        <View
           style={{
-            // position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            zIndex: 100,
-            height: headerHeight,
-            backgroundColor: "lightgreen",
+            marginTop: 10,
+            paddingLeft: 15,
+            paddingRight: 15,
+            borderBottomWidth: StyleSheet.hairlineWidth,
+            backgroundColor: "white"
           }}
         >
-          {/* <Animated.Text
-            style={{
-              opacity: opacity,
-              fontSize: size,
-            }}>
-            Header
-          </Animated.Text> */}
-
-      <Animated.View style={{ 
-        // paddingTop: 5, paddingBottom: 10, 
-        flexDirection: "row", opacity: opacity,
-        paddingTop: scroll >= 350 ? 0 : 5,
-        paddingBottom: scroll >= 350 ? 0 : 10,
-        maxHeight: section1Height
-        }}>
-        <Image
-          source={logo}
-          resizeMode="cover"
-          style={{
-            width: 70,
-            height: 35,
-          }}
-        />
-        {"name" in checkoutData && (
-          <Text
-            style={{
-              fontSize: 16,
-              fontWeight: "500",
-              textAlignVertical: "center",
-            }}
-          >
-            {(checkoutData as Shop).name}
-          </Text>
-        )}
-      </Animated.View>
-
-
-        {/* Section 2 */}
-          <Animated.View
-            style={{
-              flexDirection: "row",
-              gap: 5,
-              paddingLeft: 15,
-              paddingRight: 15,
-              opacity: opacity,
-              // paddingTop: scroll >= 300 ? 0 : 10,
-              paddingTop: scroll >= 300 ? 0 : 10,
-              maxHeight: section1Height
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 11,
-                fontWeight: "500",
-                color: theme.gray.light3,
-                borderRightWidth: 1,
-                borderColor: theme.gray.light3,
-                paddingRight: 3,
-                paddingLeft: 3,
-              }}
-            >
-              1.3km away
-            </Text>
-            <Text
-              style={{
-                fontSize: 11,
-                color: theme.black.dark,
-                fontWeight: "500",
-                borderRightWidth: 1,
-                borderColor: theme.gray.light3,
-                paddingRight: 3,
-                paddingLeft: 3,
-              }}
-            >
-              Free delivery
-            </Text>
-            <Text
-              style={{
-                fontSize: 11,
-                fontWeight: "500",
-                color: theme.gray.light3,
-                paddingRight: 3,
-                paddingLeft: 3,
-                marginRight: "auto",
-              }}
-            >
-              &#8369; 119.00 Minimum
-            </Text>
-            <Text
-              style={{
-                fontSize: 11,
-                fontWeight: "500",
-                color: theme.primary.color,
-                textAlignVertical: "center",
-              }}
-            >
-              More Info
-            </Text>
-          </Animated.View>
-
-          {/* Section 3  */}
-            <Animated.View
-              style={{
-                flexDirection: "row",
-                paddingLeft: 15,
-                paddingRight: 15,
-                // paddingTop: 15,
-                opacity: opacity,
-                paddingTop: scroll >= 250 ? 0 : 15,
-                maxHeight: section1Height
-              }}
-            >
-              <Feather name="star" size={18} color={theme.primary.color} />
-              <Text
-                style={{
-                  fontSize: 14,
-                  color: theme.black.dark,
-                  fontWeight: "500",
-                  marginLeft: 8,
-                  textAlignVertical: "center",
-                }}
-              >
-                4.5
-              </Text>
-              <Text
-                style={{
-                  fontSize: 11,
-                  color: theme.gray.light3,
-                  fontWeight: "500",
-                  marginLeft: 10,
-                  textAlignVertical: "center",
-                  marginRight: "auto",
-                }}
-              >
-                5000+ ratings
-              </Text>
-              <Text
-                style={{
-                  fontSize: 11,
-                  fontWeight: "500",
-                  color: theme.primary.color,
-                  textAlignVertical: "center",
-                }}
-              >
-                See reviews
-              </Text>
-            </Animated.View>
-
-
-          <View
-            style={{
-              marginTop: 10,
-              paddingLeft: 15,
-              paddingRight: 15,
-              borderBottomWidth: StyleSheet.hairlineWidth,
-            }}
-          >
-            <FlatList
-              style={{ width: "100%" }}
-              data={servicesByCategory}
-              horizontal={true}
-              showsHorizontalScrollIndicator={false}
-              renderItem={({ item, index }) => {
-                return (
-                  <View
+          <FlatList
+            style={{ width: "100%" }}
+            data={servicesByCategory}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            renderItem={({ item, index }) => {
+              return (
+                <View
+                  style={{
+                    paddingTop: 10,
+                    paddingBottom: 10,
+                    marginRight:
+                      servicesByCategory.length - 1 === index ? 0 : 30,
+                  }}
+                >
+                  <Text
                     style={{
-                      paddingTop: 10,
-                      paddingBottom: 10,
-                      marginRight:
-                        servicesByCategory.length - 1 === index ? 0 : 30,
+                      fontSize: 14,
+                      fontWeight: "500",
                     }}
                   >
-                    <Text
-                      style={{
-                        fontSize: 14,
-                        fontWeight: "500",
-                      }}
-                    >
-                      {item.categoryName}
-                    </Text>
-                  </View>
-                );
-              }}
-            />
-          </View>
-        </Animated.View>
-        {/* <CheckoutDetails animHeaderValue={scrollPosition} checkoutData={checkoutData} deals={deals} servicesByCategory={servicesByCategory}/> */}
-        <Animated.ScrollView
-          // onScroll={
-          //   Animated.event(
-          //   [{ nativeEvent: { contentOffset: { y: scrollPosition } } }],
-          //   { useNativeDriver: false }
-          // )}
-          onScroll={(event) => {
-            const scrollY = event.nativeEvent.contentOffset.y;
-            setScroll(scrollY);
-            // Your additional logic here
-            Animated.event(
-              [{ nativeEvent: { contentOffset: { y: scrollPosition } } }],
-              { useNativeDriver: false }
-            )(event);
-          }}
-          contentInsetAdjustmentBehavior="automatic"
-          style={[styles.scrollView]}
-        >
+                    {item.categoryName}
+                  </Text>
+                </View>
+              );
+            }}
+          />
+        </View>
+
+
+        <View
+            style={{
+              width: "100%",
+              height: 200,
+              // marginTop: 10,
+              backgroundColor: "pink",
+            }}
+          ></View>
           <View
+            style={{
+              width: "100%",
+              height: 200,
+              marginTop: 10,
+              backgroundColor: "pink",
+            }}
+          ></View>
+                <View
             style={{
               width: "100%",
               height: 200,
@@ -458,7 +259,7 @@ const Checkout = ({ navigation }: Navigation) => {
               backgroundColor: "pink",
             }}
           ></View>
-          <View
+                <View
             style={{
               width: "100%",
               height: 200,
@@ -474,7 +275,7 @@ const Checkout = ({ navigation }: Navigation) => {
               backgroundColor: "pink",
             }}
           ></View>
-          <View
+                <View
             style={{
               width: "100%",
               height: 200,
@@ -490,16 +291,25 @@ const Checkout = ({ navigation }: Navigation) => {
               backgroundColor: "pink",
             }}
           ></View>
-        </Animated.ScrollView>
-      </View>
+                <View
+            style={{
+              width: "100%",
+              height: 200,
+              marginTop: 10,
+              backgroundColor: "pink",
+            }}
+          ></View>
+          <View
+            style={{
+              width: "100%",
+              height: 200,
+              marginTop: 10,
+              backgroundColor: "pink",
+            }}
+          ></View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: "skyblue",
-  },
-});
 
 export default Checkout;
