@@ -14,6 +14,7 @@ import { Feather, FontAwesome5 } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { ThemeContext } from "../ThemeContext/ThemeContext";
 import { Freelancers } from "../TopFreelancers/model/Freelancer";
+import { CheckoutDetailsStyle } from "./CheckoutDetailsStyle";
 
 type Service = {
   id: number;
@@ -36,27 +37,16 @@ const CheckoutDetails = ({checkoutData, deals}: CheckoutDetailsProps) => {
     <>
       {/* Section 1 */}
       <View
-          style={{
-            paddingTop: 5,
-            paddingBottom: 10,
-            flexDirection: "row"
-          }}
+          style={CheckoutDetailsStyle.section1Container}
         >
           <Image
             source={logo}
             resizeMode="cover"
-            style={{
-              width: 70,
-              height: 35,
-            }}
+            style={CheckoutDetailsStyle.section1Img}
           />
           {"name" in checkoutData && (
             <Text
-              style={{
-                fontSize: 16,
-                fontWeight: "500",
-                textAlignVertical: "center",
-              }}
+              style={CheckoutDetailsStyle.section1Text}
             >
               {(checkoutData as Shop).name}
             </Text>
@@ -65,59 +55,35 @@ const CheckoutDetails = ({checkoutData, deals}: CheckoutDetailsProps) => {
 
         {/* Section 2 */}
         <View
-          style={{
-            flexDirection: "row",
-            gap: 5,
-            paddingLeft: 15,
-            paddingRight: 15,
-            paddingTop: 10,
-          }}
+          style={CheckoutDetailsStyle.section2Container}
         >
           <Text
-            style={{
-              fontSize: 11,
-              fontWeight: "500",
-              color: theme.gray.light3,
-              borderRightWidth: 1,
-              borderColor: theme.gray.light3,
-              paddingRight: 3,
-              paddingLeft: 3,
-            }}
+            style={[
+              {color: theme.gray.light3, borderColor: theme.gray.light3},
+              CheckoutDetailsStyle.section2Text1
+            ]}
           >
             1.3km away
           </Text>
           <Text
-            style={{
-              fontSize: 11,
-              color: theme.black.dark,
-              fontWeight: "500",
-              borderRightWidth: 1,
-              borderColor: theme.gray.light3,
-              paddingRight: 3,
-              paddingLeft: 3,
-            }}
+            style={[
+              { color: theme.black.dark, borderColor: theme.gray.light3}, 
+              CheckoutDetailsStyle.section2Text2
+            ]}
           >
             Free delivery
           </Text>
           <Text
-            style={{
-              fontSize: 11,
-              fontWeight: "500",
-              color: theme.gray.light3,
-              paddingRight: 3,
-              paddingLeft: 3,
-              marginRight: "auto",
-            }}
+            style={[{
+              color: theme.gray.light3
+            }, CheckoutDetailsStyle.section2Text3]}
           >
             &#8369; 119.00 Minimum
           </Text>
           <Text
-            style={{
-              fontSize: 11,
-              fontWeight: "500",
-              color: theme.primary.color,
-              textAlignVertical: "center",
-            }}
+            style={[{
+              color: theme.primary.color
+            }, CheckoutDetailsStyle.section2Text4]}
           >
             More Info
           </Text>
@@ -125,44 +91,27 @@ const CheckoutDetails = ({checkoutData, deals}: CheckoutDetailsProps) => {
 
         {/* Section 3  */}
         <View
-          style={{
-            flexDirection: "row",
-            paddingLeft: 15,
-            paddingRight: 15,
-            paddingTop: 15,
-          }}
+          style={CheckoutDetailsStyle.section3Container}
         >
           <Feather name="star" size={18} color={theme.primary.color} />
           <Text
-            style={{
-              fontSize: 14,
-              color: theme.black.dark,
-              fontWeight: "500",
-              marginLeft: 8,
-              textAlignVertical: "center",
-            }}
+            style={[{
+              color: theme.black.dark
+            }, CheckoutDetailsStyle.section3Text1]}
           >
             4.5
           </Text>
           <Text
-            style={{
-              fontSize: 11,
-              color: theme.gray.light3,
-              fontWeight: "500",
-              marginLeft: 10,
-              textAlignVertical: "center",
-              marginRight: "auto",
-            }}
+            style={[{
+              color: theme.gray.light3
+            }, CheckoutDetailsStyle.section3Text2]}
           >
             5000+ ratings
           </Text>
           <Text
-            style={{
-              fontSize: 11,
-              fontWeight: "500",
-              color: theme.primary.color,
-              textAlignVertical: "center",
-            }}
+            style={[{
+              color: theme.primary.color
+            }, CheckoutDetailsStyle.section3Text3]}
           >
             See reviews
           </Text>
@@ -170,29 +119,20 @@ const CheckoutDetails = ({checkoutData, deals}: CheckoutDetailsProps) => {
 
         {/* Section 4 */}
         <View
-          style={{
-            flexDirection: "row",
-            paddingLeft: 15,
-            paddingRight: 15,
-            paddingTop: 15,
-          }}
+          style={CheckoutDetailsStyle.section4Container}
         >
           <FontAwesome5 name="tags" size={14} color={theme.primary.color} />
           <Text
-            style={{
-              fontSize: 14,
-              color: theme.black.dark,
-              fontWeight: "500",
-              marginLeft: 7,
-              textAlignVertical: "center",
-            }}
+            style={[{
+              color: theme.black.dark
+            }, CheckoutDetailsStyle.section4Text1]}
           >
             Available deals
           </Text>
         </View>
 
         {/* Section 5 */}
-        <View style={{ paddingLeft: 15, paddingRight: 15, paddingTop: 15 }}>
+        <View style={CheckoutDetailsStyle.section5Container}>
           <FlatList
             style={{ width: "100%" }}
             data={deals}
@@ -201,14 +141,10 @@ const CheckoutDetails = ({checkoutData, deals}: CheckoutDetailsProps) => {
             renderItem={({ item, index }) => {
               return (
                 <View
-                  style={{
+                  style={[{
                     backgroundColor: theme.primary.lightColor,
-                    padding: 10,
-                    width: 176,
-                    height: 85,
-                    marginRight: deals.length - 1 === index ? 0 : 11,
-                    borderRadius: 10,
-                  }}
+                    marginRight: deals.length - 1 === index ? 0 : 11
+                  }, CheckoutDetailsStyle.flatListContainer]}
                 >
                   <View style={{ flexDirection: "row", gap: 3 }}>
                     <MaterialCommunityIcons
@@ -217,23 +153,17 @@ const CheckoutDetails = ({checkoutData, deals}: CheckoutDetailsProps) => {
                       color={theme.primary.color}
                     />
                     <Text
-                      style={{
-                        fontSize: 12,
+                      style={[{
                         color: theme.primary.color,
-                        fontWeight: "500",
-                      }}
+                      }, CheckoutDetailsStyle.flatListText1]}
                     >
                       {item.name}
                     </Text>
                   </View>
                   <Text
-                    style={{
-                      fontSize: 10,
-                      color: theme.black.dark,
-                      maxHeight: 36,
-                      overflow: "hidden",
-                      marginTop: 3,
-                    }}
+                    style={[{
+                      color: theme.black.dark
+                    }, CheckoutDetailsStyle.flatListText2]}
                   >
                     {item.caption}
                   </Text>
