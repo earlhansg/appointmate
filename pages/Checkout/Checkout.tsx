@@ -5,6 +5,9 @@ import React, {
   useRef,
   useState,
   useMemo,
+  ElementRef,
+  Children,
+  useLayoutEffect
 } from "react";
 import {
   Image,
@@ -16,6 +19,13 @@ import {
   Animated,
   ScrollView,
   Dimensions,
+  Button,
+  Pressable,
+  TouchableHighlight,
+  TouchableOpacity,
+  findNodeHandle,
+  UIManager,
+  MeasureInWindowOnSuccessCallback,
 } from "react-native";
 import { CheckoutStyle } from "./CheckoutStyle";
 import ButtonIcon from "../../components/Buttons/ButtonIcon";
@@ -42,8 +52,6 @@ const Checkout = ({ navigation }: Navigation) => {
 
   const route = useRoute<CategoryRouteProps["route"]>();
   const { checkoutData } = route.params || { data: {} as CheckoutData };
-
-  let scrollOffsetY = useRef(new Animated.Value(0)).current;
 
   const servicesByCategory = useMemo(
     () => [
@@ -160,11 +168,15 @@ const Checkout = ({ navigation }: Navigation) => {
     navigation?.navigate("Home");
   };
 
-  const [scroll, setScroll] = useState<any | number>(0);
+  const scrollViewRef = useRef<ScrollView>(null);
+  const firstViewRef = useRef<View>(null);
 
-  useEffect(() => {
-    console.log("scrollPosition", scroll);
-  }, [scroll]);
+  const handleScroll = () => {
+    // Assuming you want to scroll to a specific position, for example, 300 pixels from the top.
+    // console.log("handlescroll" scrollViewRef.current?.s)
+    scrollViewRef.current?.scrollTo({ y: 300, animated: true });
+  };
+ 
 
   return (
     <SafeAreaView style={CheckoutStyle.container}>
@@ -185,16 +197,18 @@ const Checkout = ({ navigation }: Navigation) => {
       <ScrollView
         stickyHeaderIndices={[1]}
         showsVerticalScrollIndicator={false}
+        ref={scrollViewRef}
       >
-        <CheckoutDetails checkoutData={checkoutData} deals={deals}/>
-        
+        <CheckoutDetails checkoutData={checkoutData} deals={deals} />
+
         <View
           style={{
             marginTop: 10,
             paddingLeft: 15,
             paddingRight: 15,
-            borderBottomWidth: StyleSheet.hairlineWidth,
-            backgroundColor: "white"
+            borderBottomWidth: 2,
+            borderColor: theme.gray.light2,
+            backgroundColor: "white",
           }}
         >
           <FlatList
@@ -204,13 +218,17 @@ const Checkout = ({ navigation }: Navigation) => {
             showsHorizontalScrollIndicator={false}
             renderItem={({ item, index }) => {
               return (
-                <View
+                <TouchableOpacity
+                  onPress={() => console.log("touch")}
                   style={{
                     paddingTop: 10,
                     paddingBottom: 10,
+                    paddingLeft: 5,
+                    paddingRight: 5,
                     marginRight:
-                      servicesByCategory.length - 1 === index ? 0 : 30,
+                      servicesByCategory.length - 1 === index ? 0 : 25,
                   }}
+                  // underlayColor={theme.primary.lightColor}
                 >
                   <Text
                     style={{
@@ -220,94 +238,350 @@ const Checkout = ({ navigation }: Navigation) => {
                   >
                     {item.categoryName}
                   </Text>
-                </View>
+                </TouchableOpacity>
               );
             }}
           />
         </View>
 
-
         <View
-            style={{
-              width: "100%",
-              height: 200,
-              // marginTop: 10,
-              backgroundColor: "pink",
-            }}
-          ></View>
+          style={{
+            width: "100%",
+            // marginTop: 10,
+            // backgroundColor: "pink",
+            paddingLeft: 15,
+            paddingRight: 15,
+          }}
+          // onLayout={measureView}
+        >
           <View
             style={{
-              width: "100%",
-              height: 200,
               marginTop: 10,
-              backgroundColor: "pink",
             }}
-          ></View>
-                <View
-            style={{
-              width: "100%",
-              height: 200,
-              marginTop: 10,
-              backgroundColor: "pink",
-            }}
-          ></View>
+            // ref={firstViewRef}
+            // ref={el => viewRefs.current[0]}
+          >
+            <Text
+              style={{
+                fontSize: 20,
+                fontWeight: "500",
+              }}
+              
+            // ref={categeroyRef}
+            >
+              Cleaning
+            </Text>
+            <Text
+              style={{
+                fontSize: 13,
+                marginTop: 5,
+              }}
+              
+          // ref={(element) => itemEls.current.push(element)}
+            >
+              Cleaning parts
+            </Text>
+
+            <View
+              style={{
+                paddingTop: 20,
+                paddingBottom: 20,
+                borderBottomWidth: 2,
+                borderColor: theme.gray.light2
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 15,
+                  fontWeight: "500",
+                }}
+              >
+                Cleaning small part of unit 1
+              </Text>
+              <Text
+                style={{
+                  fontSize: 13,
+                  color: theme.gray.light3,
+                }}
+              >
+                Another description for the item
+              </Text>
+              <Text
+                style={{
+                  fontSize: 13,
+                  marginTop: 10,
+                }}
+              >
+                from 150.00
+              </Text>
+            </View>
+            <View
+              style={{
+                paddingTop: 20,
+                paddingBottom: 20,
+                borderBottomWidth: 2,
+                borderColor: theme.gray.light2
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 15,
+                  fontWeight: "500",
+                }}
+              >
+                Cleaning small part of unit 1
+              </Text>
+              <Text
+                style={{
+                  fontSize: 13,
+                  color: theme.gray.light3,
+                }}
+              >
+                Another description for the item
+              </Text>
+              <Text
+                style={{
+                  fontSize: 13,
+                  marginTop: 10,
+                }}
+              >
+                from 150.00
+              </Text>
+            </View>
+          </View>
+
+
           <View
             style={{
-              width: "100%",
-              height: 200,
-              marginTop: 10,
-              backgroundColor: "pink",
+              marginTop: 10
             }}
-          ></View>
-                <View
-            style={{
-              width: "100%",
-              height: 200,
-              marginTop: 10,
-              backgroundColor: "pink",
-            }}
-          ></View>
-          <View
-            style={{
-              width: "100%",
-              height: 200,
-              marginTop: 10,
-              backgroundColor: "pink",
-            }}
-          ></View>
-                <View
-            style={{
-              width: "100%",
-              height: 200,
-              marginTop: 10,
-              backgroundColor: "pink",
-            }}
-          ></View>
-          <View
-            style={{
-              width: "100%",
-              height: 200,
-              marginTop: 10,
-              backgroundColor: "pink",
-            }}
-          ></View>
-                <View
-            style={{
-              width: "100%",
-              height: 200,
-              marginTop: 10,
-              backgroundColor: "pink",
-            }}
-          ></View>
-          <View
-            style={{
-              width: "100%",
-              height: 200,
-              marginTop: 10,
-              backgroundColor: "pink",
-            }}
-          ></View>
+            // ref={(el) => viewRefs.current[1]}
+          >
+            <Text
+              style={{
+                fontSize: 20,
+                fontWeight: "500",
+              }}
+            >
+              Repair
+            </Text>
+            <Text
+              style={{
+                fontSize: 13,
+                marginTop: 5,
+              }}
+            >
+              Repair
+            </Text>
+
+            <View
+              style={{
+                paddingTop: 20,
+                paddingBottom: 20,
+                borderBottomWidth: 2,
+                borderColor: theme.gray.light2
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 15,
+                  fontWeight: "500",
+                }}
+              >
+                Repair small part of unit 1
+              </Text>
+              <Text
+                style={{
+                  fontSize: 13,
+                  color: theme.gray.light3,
+                }}
+              >
+                Another description for the item
+              </Text>
+              <Text
+                style={{
+                  fontSize: 13,
+                  marginTop: 10,
+                }}
+              >
+                from 150.00
+              </Text>
+            </View>
+            <View
+              style={{
+                paddingTop: 20,
+                paddingBottom: 20,
+                borderBottomWidth: 2,
+                borderColor: theme.gray.light2
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 15,
+                  fontWeight: "500",
+                }}
+              >
+                Repair small part of unit 1
+              </Text>
+              <Text
+                style={{
+                  fontSize: 13,
+                  color: theme.gray.light3,
+                }}
+              >
+                Repair description for the item
+              </Text>
+              <Text
+                style={{
+                  fontSize: 13,
+                  marginTop: 10,
+                }}
+              >
+                from 150.00
+              </Text>
+            </View>
+            <View
+              style={{
+                paddingTop: 20,
+                paddingBottom: 20,
+                borderBottomWidth: 2,
+                borderColor: theme.gray.light2
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 15,
+                  fontWeight: "500",
+                }}
+              >
+                Repair small part of unit 1
+              </Text>
+              <Text
+                style={{
+                  fontSize: 13,
+                  color: theme.gray.light3,
+                }}
+              >
+                Repair description for the item
+              </Text>
+              <Text
+                style={{
+                  fontSize: 13,
+                  marginTop: 10,
+                }}
+              >
+                from 150.00
+              </Text>
+            </View>
+            <View
+              style={{
+                paddingTop: 20,
+                paddingBottom: 20,
+                borderBottomWidth: 2,
+                borderColor: theme.gray.light2
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 15,
+                  fontWeight: "500",
+                }}
+              >
+                Repair small part of unit 1
+              </Text>
+              <Text
+                style={{
+                  fontSize: 13,
+                  color: theme.gray.light3,
+                }}
+              >
+                Repair description for the item
+              </Text>
+              <Text
+                style={{
+                  fontSize: 13,
+                  marginTop: 10,
+                }}
+              >
+                from 150.00
+              </Text>
+            </View>
+          </View>
+        </View>
+        {/* <View
+          style={{
+            width: "100%",
+            height: 200,
+            marginTop: 10,
+            backgroundColor: "red",
+          }}
+        ></View>
+        <View
+          style={{
+            width: "100%",
+            height: 200,
+            marginTop: 10,
+            backgroundColor: "brown",
+          }}
+        ></View>
+        <View
+          style={{
+            width: "100%",
+            height: 200,
+            marginTop: 10,
+            backgroundColor: "skyblue",
+          }}
+        ></View>
+        <View
+          style={{
+            width: "100%",
+            height: 200,
+            marginTop: 10,
+            backgroundColor: "pink",
+          }}
+        ></View>
+        <View
+          style={{
+            width: "100%",
+            height: 200,
+            marginTop: 10,
+            backgroundColor: "red",
+          }}
+        ></View>
+        <View
+          style={{
+            width: "100%",
+            height: 200,
+            marginTop: 10,
+            backgroundColor: "skyblue",
+          }}
+        ></View>
+        <View
+          style={{
+            width: "100%",
+            height: 200,
+            marginTop: 10,
+            backgroundColor: "pink",
+          }}
+        ></View>
+        <View
+          style={{
+            width: "100%",
+            height: 200,
+            marginTop: 10,
+            backgroundColor: "pink",
+          }}
+        ></View>
+        <View
+          style={{
+            width: "100%",
+            height: 200,
+            marginTop: 10,
+            backgroundColor: "pink",
+          }}
+        ></View> */}
       </ScrollView>
+      <Button title="Scroll to 300 pixels" onPress={handleScroll} />
     </SafeAreaView>
   );
 };
