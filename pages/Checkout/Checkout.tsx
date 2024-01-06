@@ -201,7 +201,6 @@ const Checkout = ({ navigation }: Navigation) => {
   const handleScroll = (id: number) => {
     const distanceY = categoryHeights
       .filter((curr) => curr.categoryId < id)
-      // .reduce((acc, curr) => acc + curr.height, 0);
       .reduce((acc, curr) => acc + curr.height + 10, 0);
     console.log("distanceY", distanceY);
     scrollViewRef.current?.scrollTo({ y: 255 + distanceY, animated: true });
@@ -226,12 +225,8 @@ const Checkout = ({ navigation }: Navigation) => {
       <ScrollView
         stickyHeaderIndices={[1]}
         showsVerticalScrollIndicator={false}
-        ref={scrollViewRef}
-        // onScroll={console.log}
-      >
-        {/* <View ref={(el) => (categoryRefs.current[4] = el)} onLayout={getHeight}> */}
-          <CheckoutDetails checkoutData={checkoutData} deals={deals}/>
-        {/* </View> */}
+        ref={scrollViewRef}>
+        <CheckoutDetails checkoutData={checkoutData} deals={deals}/>
         <View
           style={{
             marginTop: 10,
@@ -250,7 +245,7 @@ const Checkout = ({ navigation }: Navigation) => {
             renderItem={({ item, index }) => {
               return (
                 <TouchableOpacity
-                  onPress={() => console.log("touch")}
+                  onPress={() => handleScroll(index)}
                   style={{
                     paddingTop: 10,
                     paddingBottom: 10,
@@ -258,9 +253,7 @@ const Checkout = ({ navigation }: Navigation) => {
                     paddingRight: 5,
                     marginRight:
                       servicesByCategory.length - 1 === index ? 0 : 25,
-                  }}
-                  // underlayColor={theme.primary.lightColor}
-                >
+                  }}>
                   <Text
                     style={{
                       fontSize: 14,
@@ -278,8 +271,6 @@ const Checkout = ({ navigation }: Navigation) => {
         <View
           style={{
             width: "100%",
-            // marginTop: 10,
-            // backgroundColor: "pink",
             paddingLeft: 15,
             paddingRight: 15,
           }}
@@ -547,7 +538,7 @@ const Checkout = ({ navigation }: Navigation) => {
                 fontWeight: "500",
               }}
             >
-              Installation
+              Dessemble
             </Text>
             <Text
               style={{
@@ -852,82 +843,8 @@ const Checkout = ({ navigation }: Navigation) => {
             </View>
           </View>
         </View>
-
-        {/* <View
-          style={{
-            width: "100%",
-            height: 200,
-            marginTop: 10,
-            backgroundColor: "red",
-          }}
-        ></View>
-        <View
-          style={{
-            width: "100%",
-            height: 200,
-            marginTop: 10,
-            backgroundColor: "brown",
-          }}
-        ></View>
-        <View
-          style={{
-            width: "100%",
-            height: 200,
-            marginTop: 10,
-            backgroundColor: "skyblue",
-          }}
-        ></View>
-        <View
-          style={{
-            width: "100%",
-            height: 200,
-            marginTop: 10,
-            backgroundColor: "pink",
-          }}
-        ></View>
-        <View
-          style={{
-            width: "100%",
-            height: 200,
-            marginTop: 10,
-            backgroundColor: "red",
-          }}
-        ></View>
-        <View
-          style={{
-            width: "100%",
-            height: 200,
-            marginTop: 10,
-            backgroundColor: "skyblue",
-          }}
-        ></View>
-        <View
-          style={{
-            width: "100%",
-            height: 200,
-            marginTop: 10,
-            backgroundColor: "pink",
-          }}
-        ></View>
-        <View
-          style={{
-            width: "100%",
-            height: 200,
-            marginTop: 10,
-            backgroundColor: "pink",
-          }}
-        ></View>
-        <View
-          style={{
-            width: "100%",
-            height: 200,
-            marginTop: 10,
-            backgroundColor: "pink",
-          }}
-        ></View> */}
       </ScrollView>
-      {/* <Button title="Scroll to 300 pixels" onPress={handleScroll} /> */}
-      <Button title="Scroll to 300 pixels" onPress={() => handleScroll(2)} />
+      {/* <Button title="Scroll to 300 pixels" onPress={() => handleScroll(2)} /> */}
     </SafeAreaView>
   );
 };
