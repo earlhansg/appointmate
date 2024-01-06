@@ -7,7 +7,7 @@ import React, {
   useMemo,
   ElementRef,
   Children,
-  useLayoutEffect
+  useLayoutEffect,
 } from "react";
 import {
   Image,
@@ -47,11 +47,10 @@ type CategoryRouteProps = {
   >;
 };
 
-
 type Category = {
-  categoryId: number; 
+  categoryId: number;
   height: number;
-}
+};
 
 const Checkout = ({ navigation }: Navigation) => {
   const theme = useContext(ThemeContext);
@@ -176,18 +175,11 @@ const Checkout = ({ navigation }: Navigation) => {
 
   const scrollViewRef = useRef<ScrollView>(null);
 
-  const handleScroll = () => {
-    // Assuming you want to scroll to a specific position, for example, 300 pixels from the top.
-    // console.log("handlescroll" scrollViewRef.current?.s)
-    scrollViewRef.current?.scrollTo({ y: 300, animated: true });
-  };
-
-
   const [categoryHeights, setCategoryHeights] = useState<Category[]>([]);
   const categoryRefs = useRef<Array<View | null>>([]);
- 
+
   useEffect(() => {
-    getHeight()
+    getHeight();
     // Cleanup function
     return () => {
       // Clear any resources or subscriptions here
@@ -195,18 +187,25 @@ const Checkout = ({ navigation }: Navigation) => {
     };
   }, [categoryRefs]);
 
-
   const getHeight = () => {
     const heights: Category[] = [];
     categoryRefs.current.forEach((ref, i) => {
       ref?.measureInWindow((x, y, width, height) => {
-        heights.push({categoryId: i, height})
+        heights.push({ categoryId: i, height });
       });
     });
     setCategoryHeights(heights);
-    console.log('categoryHeights', categoryHeights);
+    console.log("categoryHeights", categoryHeights);
   };
 
+  const handleScroll = (id: number) => {
+    const distanceY = categoryHeights
+      .filter((curr) => curr.categoryId < id)
+      // .reduce((acc, curr) => acc + curr.height, 0);
+      .reduce((acc, curr) => acc + curr.height + 10, 0);
+    console.log("distanceY", distanceY);
+    scrollViewRef.current?.scrollTo({ y: 255 + distanceY, animated: true });
+  };
 
   return (
     <SafeAreaView style={CheckoutStyle.container}>
@@ -228,9 +227,11 @@ const Checkout = ({ navigation }: Navigation) => {
         stickyHeaderIndices={[1]}
         showsVerticalScrollIndicator={false}
         ref={scrollViewRef}
+        // onScroll={console.log}
       >
-        <CheckoutDetails checkoutData={checkoutData} deals={deals} />
-
+        {/* <View ref={(el) => (categoryRefs.current[4] = el)} onLayout={getHeight}> */}
+          <CheckoutDetails checkoutData={checkoutData} deals={deals}/>
+        {/* </View> */}
         <View
           style={{
             marginTop: 10,
@@ -273,6 +274,7 @@ const Checkout = ({ navigation }: Navigation) => {
             }}
           />
         </View>
+
         <View
           style={{
             width: "100%",
@@ -286,7 +288,7 @@ const Checkout = ({ navigation }: Navigation) => {
             style={{
               marginTop: 10,
             }}
-            ref={el => categoryRefs.current[0] = el}
+            ref={(el) => (categoryRefs.current[0] = el)}
             onLayout={getHeight}
           >
             <Text
@@ -311,7 +313,7 @@ const Checkout = ({ navigation }: Navigation) => {
                 paddingTop: 20,
                 paddingBottom: 20,
                 borderBottomWidth: 2,
-                borderColor: theme.gray.light2
+                borderColor: theme.gray.light2,
               }}
             >
               <Text
@@ -344,7 +346,7 @@ const Checkout = ({ navigation }: Navigation) => {
                 paddingTop: 20,
                 paddingBottom: 20,
                 borderBottomWidth: 2,
-                borderColor: theme.gray.light2
+                borderColor: theme.gray.light2,
               }}
             >
               <Text
@@ -374,12 +376,11 @@ const Checkout = ({ navigation }: Navigation) => {
             </View>
           </View>
 
-
           <View
             style={{
-              marginTop: 10
+              marginTop: 10,
             }}
-            ref={el => categoryRefs.current[1] = el}
+            ref={(el) => (categoryRefs.current[1] = el)}
             onLayout={getHeight}
           >
             <Text
@@ -404,7 +405,7 @@ const Checkout = ({ navigation }: Navigation) => {
                 paddingTop: 20,
                 paddingBottom: 20,
                 borderBottomWidth: 2,
-                borderColor: theme.gray.light2
+                borderColor: theme.gray.light2,
               }}
             >
               <Text
@@ -437,7 +438,7 @@ const Checkout = ({ navigation }: Navigation) => {
                 paddingTop: 20,
                 paddingBottom: 20,
                 borderBottomWidth: 2,
-                borderColor: theme.gray.light2
+                borderColor: theme.gray.light2,
               }}
             >
               <Text
@@ -470,7 +471,7 @@ const Checkout = ({ navigation }: Navigation) => {
                 paddingTop: 20,
                 paddingBottom: 20,
                 borderBottomWidth: 2,
-                borderColor: theme.gray.light2
+                borderColor: theme.gray.light2,
               }}
             >
               <Text
@@ -503,7 +504,325 @@ const Checkout = ({ navigation }: Navigation) => {
                 paddingTop: 20,
                 paddingBottom: 20,
                 borderBottomWidth: 2,
-                borderColor: theme.gray.light2
+                borderColor: theme.gray.light2,
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 15,
+                  fontWeight: "500",
+                }}
+              >
+                Repair small part of unit 1
+              </Text>
+              <Text
+                style={{
+                  fontSize: 13,
+                  color: theme.gray.light3,
+                }}
+              >
+                Repair description for the item
+              </Text>
+              <Text
+                style={{
+                  fontSize: 13,
+                  marginTop: 10,
+                }}
+              >
+                from 150.00
+              </Text>
+            </View>
+          </View>
+
+          <View
+            style={{
+              marginTop: 10,
+            }}
+            ref={(el) => (categoryRefs.current[2] = el)}
+            onLayout={getHeight}
+          >
+            <Text
+              style={{
+                fontSize: 20,
+                fontWeight: "500",
+              }}
+            >
+              Installation
+            </Text>
+            <Text
+              style={{
+                fontSize: 13,
+                marginTop: 5,
+              }}
+            >
+              install
+            </Text>
+
+            <View
+              style={{
+                paddingTop: 20,
+                paddingBottom: 20,
+                borderBottomWidth: 2,
+                borderColor: theme.gray.light2,
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 15,
+                  fontWeight: "500",
+                }}
+              >
+                Repair small part of unit 1
+              </Text>
+              <Text
+                style={{
+                  fontSize: 13,
+                  color: theme.gray.light3,
+                }}
+              >
+                Another description for the item
+              </Text>
+              <Text
+                style={{
+                  fontSize: 13,
+                  marginTop: 10,
+                }}
+              >
+                from 150.00
+              </Text>
+            </View>
+            <View
+              style={{
+                paddingTop: 20,
+                paddingBottom: 20,
+                borderBottomWidth: 2,
+                borderColor: theme.gray.light2,
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 15,
+                  fontWeight: "500",
+                }}
+              >
+                Repair small part of unit 1
+              </Text>
+              <Text
+                style={{
+                  fontSize: 13,
+                  color: theme.gray.light3,
+                }}
+              >
+                Repair description for the item
+              </Text>
+              <Text
+                style={{
+                  fontSize: 13,
+                  marginTop: 10,
+                }}
+              >
+                from 150.00
+              </Text>
+            </View>
+            <View
+              style={{
+                paddingTop: 20,
+                paddingBottom: 20,
+                borderBottomWidth: 2,
+                borderColor: theme.gray.light2,
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 15,
+                  fontWeight: "500",
+                }}
+              >
+                Repair small part of unit 1
+              </Text>
+              <Text
+                style={{
+                  fontSize: 13,
+                  color: theme.gray.light3,
+                }}
+              >
+                Repair description for the item
+              </Text>
+              <Text
+                style={{
+                  fontSize: 13,
+                  marginTop: 10,
+                }}
+              >
+                from 150.00
+              </Text>
+            </View>
+            <View
+              style={{
+                paddingTop: 20,
+                paddingBottom: 20,
+                borderBottomWidth: 2,
+                borderColor: theme.gray.light2,
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 15,
+                  fontWeight: "500",
+                }}
+              >
+                Repair small part of unit 1
+              </Text>
+              <Text
+                style={{
+                  fontSize: 13,
+                  color: theme.gray.light3,
+                }}
+              >
+                Repair description for the item
+              </Text>
+              <Text
+                style={{
+                  fontSize: 13,
+                  marginTop: 10,
+                }}
+              >
+                from 150.00
+              </Text>
+            </View>
+          </View>
+
+
+
+          <View
+            style={{
+              marginTop: 10,
+            }}
+            ref={(el) => (categoryRefs.current[3] = el)}
+            onLayout={getHeight}
+          >
+            <Text
+              style={{
+                fontSize: 20,
+                fontWeight: "500",
+              }}
+            >
+              Installation
+            </Text>
+            <Text
+              style={{
+                fontSize: 13,
+                marginTop: 5,
+              }}
+            >
+              Special Offer
+            </Text>
+
+            <View
+              style={{
+                paddingTop: 20,
+                paddingBottom: 20,
+                borderBottomWidth: 2,
+                borderColor: theme.gray.light2,
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 15,
+                  fontWeight: "500",
+                }}
+              >
+                Repair small part of unit 1
+              </Text>
+              <Text
+                style={{
+                  fontSize: 13,
+                  color: theme.gray.light3,
+                }}
+              >
+                Another description for the item
+              </Text>
+              <Text
+                style={{
+                  fontSize: 13,
+                  marginTop: 10,
+                }}
+              >
+                from 150.00
+              </Text>
+            </View>
+            <View
+              style={{
+                paddingTop: 20,
+                paddingBottom: 20,
+                borderBottomWidth: 2,
+                borderColor: theme.gray.light2,
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 15,
+                  fontWeight: "500",
+                }}
+              >
+                Repair small part of unit 1
+              </Text>
+              <Text
+                style={{
+                  fontSize: 13,
+                  color: theme.gray.light3,
+                }}
+              >
+                Repair description for the item
+              </Text>
+              <Text
+                style={{
+                  fontSize: 13,
+                  marginTop: 10,
+                }}
+              >
+                from 150.00
+              </Text>
+            </View>
+            <View
+              style={{
+                paddingTop: 20,
+                paddingBottom: 20,
+                borderBottomWidth: 2,
+                borderColor: theme.gray.light2,
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 15,
+                  fontWeight: "500",
+                }}
+              >
+                Repair small part of unit 1
+              </Text>
+              <Text
+                style={{
+                  fontSize: 13,
+                  color: theme.gray.light3,
+                }}
+              >
+                Repair description for the item
+              </Text>
+              <Text
+                style={{
+                  fontSize: 13,
+                  marginTop: 10,
+                }}
+              >
+                from 150.00
+              </Text>
+            </View>
+            <View
+              style={{
+                paddingTop: 20,
+                paddingBottom: 20,
+                borderBottomWidth: 2,
+                borderColor: theme.gray.light2,
               }}
             >
               <Text
@@ -533,6 +852,7 @@ const Checkout = ({ navigation }: Navigation) => {
             </View>
           </View>
         </View>
+
         {/* <View
           style={{
             width: "100%",
@@ -606,7 +926,8 @@ const Checkout = ({ navigation }: Navigation) => {
           }}
         ></View> */}
       </ScrollView>
-      <Button title="Scroll to 300 pixels" onPress={handleScroll} />
+      {/* <Button title="Scroll to 300 pixels" onPress={handleScroll} /> */}
+      <Button title="Scroll to 300 pixels" onPress={() => handleScroll(2)} />
     </SafeAreaView>
   );
 };
