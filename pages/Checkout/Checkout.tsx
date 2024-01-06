@@ -47,9 +47,15 @@ type CategoryRouteProps = {
   >;
 };
 
+// type Category = {
+//   categoryId: number;
+//   height: number;
+// };
+
 type Category = {
   categoryId: number;
   height: number;
+  pageActive: boolean;
 };
 
 const Checkout = ({ navigation }: Navigation) => {
@@ -191,7 +197,8 @@ const Checkout = ({ navigation }: Navigation) => {
     const heights: Category[] = [];
     categoryRefs.current.forEach((ref, i) => {
       ref?.measureInWindow((x, y, width, height) => {
-        heights.push({ categoryId: i, height });
+        // heights.push({ categoryId: i, height });
+        heights.push({ categoryId: i, height, pageActive: false})
       });
     });
     setCategoryHeights(heights);
@@ -199,12 +206,34 @@ const Checkout = ({ navigation }: Navigation) => {
   };
 
   const handleScroll = (id: number) => {
+    // const distanceY = categoryHeights
+    //   .filter((curr) => curr.categoryId < id)
+    //   .reduce((acc, curr) => acc + curr.height + 10, 0);
+    // console.log("distanceY", distanceY);
+    // scrollViewRef.current?.scrollTo({ y: 255 + distanceY, animated: true });
+
+    const initializeActivePage = categoryHeights.map((value) => {
+      const pageActive = value.categoryId !== undefined ? value.categoryId === id : false;
+      
+      return {
+        ...value,
+        pageActive
+      };
+    });
+
+    setCategoryHeights(initializeActivePage)
+
     const distanceY = categoryHeights
       .filter((curr) => curr.categoryId < id)
       .reduce((acc, curr) => acc + curr.height + 10, 0);
-    console.log("distanceY", distanceY);
     scrollViewRef.current?.scrollTo({ y: 255 + distanceY, animated: true });
   };
+
+  // const checkActiveBorder = (id: number) => {
+  //   return categoryHeights.filter(({categoryId}) => categoryId === id)[0];
+  // }
+
+  const matchingCategory = (id: number) => categoryHeights.filter(({ categoryId }) => categoryId === id)[0];
 
   return (
     <SafeAreaView style={CheckoutStyle.container}>
@@ -232,7 +261,7 @@ const Checkout = ({ navigation }: Navigation) => {
             marginTop: 10,
             paddingLeft: 15,
             paddingRight: 15,
-            borderBottomWidth: 2,
+            borderBottomWidth: 1,
             borderColor: theme.gray.light2,
             backgroundColor: "white",
           }}
@@ -251,8 +280,10 @@ const Checkout = ({ navigation }: Navigation) => {
                     paddingBottom: 10,
                     paddingLeft: 5,
                     paddingRight: 5,
-                    marginRight:
-                      servicesByCategory.length - 1 === index ? 0 : 25,
+                    marginRight: servicesByCategory.length - 1 === index ? 0 : 25,
+                    // borderBottomWidth: 2,
+                    borderBottomWidth: matchingCategory(index) && matchingCategory(index).pageActive ? 2 : 0,
+                    borderColor: matchingCategory(index) && matchingCategory(index).pageActive ? theme.primary.color : ""
                   }}>
                   <Text
                     style={{
