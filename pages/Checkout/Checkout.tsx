@@ -47,6 +47,12 @@ type CategoryRouteProps = {
   >;
 };
 
+
+type Category = {
+  categoryId: number; 
+  height: number;
+}
+
 const Checkout = ({ navigation }: Navigation) => {
   const theme = useContext(ThemeContext);
 
@@ -169,14 +175,38 @@ const Checkout = ({ navigation }: Navigation) => {
   };
 
   const scrollViewRef = useRef<ScrollView>(null);
-  const firstViewRef = useRef<View>(null);
 
   const handleScroll = () => {
     // Assuming you want to scroll to a specific position, for example, 300 pixels from the top.
     // console.log("handlescroll" scrollViewRef.current?.s)
     scrollViewRef.current?.scrollTo({ y: 300, animated: true });
   };
+
+
+  const [categoryHeights, setCategoryHeights] = useState<Category[]>([]);
+  const categoryRefs = useRef<Array<View | null>>([]);
  
+  useEffect(() => {
+    getHeight()
+    // Cleanup function
+    return () => {
+      // Clear any resources or subscriptions here
+      setCategoryHeights([]);
+    };
+  }, [categoryRefs]);
+
+
+  const getHeight = () => {
+    const heights: Category[] = [];
+    categoryRefs.current.forEach((ref, i) => {
+      ref?.measureInWindow((x, y, width, height) => {
+        heights.push({categoryId: i, height})
+      });
+    });
+    setCategoryHeights(heights);
+    console.log('categoryHeights', categoryHeights);
+  };
+
 
   return (
     <SafeAreaView style={CheckoutStyle.container}>
@@ -243,7 +273,6 @@ const Checkout = ({ navigation }: Navigation) => {
             }}
           />
         </View>
-
         <View
           style={{
             width: "100%",
@@ -252,22 +281,19 @@ const Checkout = ({ navigation }: Navigation) => {
             paddingLeft: 15,
             paddingRight: 15,
           }}
-          // onLayout={measureView}
         >
           <View
             style={{
               marginTop: 10,
             }}
-            // ref={firstViewRef}
-            // ref={el => viewRefs.current[0]}
+            ref={el => categoryRefs.current[0] = el}
+            onLayout={getHeight}
           >
             <Text
               style={{
                 fontSize: 20,
                 fontWeight: "500",
               }}
-              
-            // ref={categeroyRef}
             >
               Cleaning
             </Text>
@@ -276,8 +302,6 @@ const Checkout = ({ navigation }: Navigation) => {
                 fontSize: 13,
                 marginTop: 5,
               }}
-              
-          // ref={(element) => itemEls.current.push(element)}
             >
               Cleaning parts
             </Text>
@@ -355,7 +379,8 @@ const Checkout = ({ navigation }: Navigation) => {
             style={{
               marginTop: 10
             }}
-            // ref={(el) => viewRefs.current[1]}
+            ref={el => categoryRefs.current[1] = el}
+            onLayout={getHeight}
           >
             <Text
               style={{
