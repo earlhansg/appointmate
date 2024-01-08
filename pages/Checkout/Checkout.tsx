@@ -201,7 +201,6 @@ const Checkout = ({ navigation }: Navigation) => {
     const heights: Category[] = [];
     categoryRefs.current.forEach((ref, i) => {
       ref?.measureInWindow((x, y, width, height) => {
-        // heights.push({ categoryId: i, height });
         heights.push({ categoryId: i, height, pageActive: false})
       });
     });
@@ -210,68 +209,28 @@ const Checkout = ({ navigation }: Navigation) => {
   };
 
   const handleClickScroll = (id: number) => {
-    // const distanceY = categoryHeights
-    //   .filter((curr) => curr.categoryId < id)
-    //   .reduce((acc, curr) => acc + curr.height + 10, 0);
-    // console.log("distanceY", distanceY);
-    // scrollViewRef.current?.scrollTo({ y: 255 + distanceY, animated: true });
 
-    const initializeActivePage = categoryHeights.map((value) => {
-      const pageActive = value.categoryId !== undefined ? value.categoryId === id : false;
-      
-      return {
-        ...value,
-        pageActive
-      };
-    });
+    const previousHeights = categoryHeights.slice(0, categoryHeights.findIndex(item => item.categoryId === id));
+    const defaultHeight = id !== 1 ? 265 : 255;
+    const totalHeight = previousHeights.reduce((sum, h) => sum + h.height, defaultHeight);
 
-    setCategoryHeights(initializeActivePage)
-
-    const distanceY = categoryHeights
-      .filter((curr) => curr.categoryId < id)
-      .reduce((acc, curr) => acc + curr.height + 10, 0);
-    // console.log("distanceY", distanceY);
-    scrollViewRef.current?.scrollTo({ y: 255 + distanceY, animated: true });
+    scrollViewRef.current?.scrollTo({ y: totalHeight, animated: true });
   };
-
-  const matchingCategory = (id: number) => categoryHeights.filter(({ categoryId }) => categoryId === id)[0];
-
-  // const handleScroll = (event: any) => {
-  //   Access scroll position using event.nativeEvent.contentOffset
-  //   const scrollPositionY = event.nativeEvent.contentOffset.y;
-  //   console.log("Position Y:", scrollPositionY);
-  //   const lastMatchCategory = categoryHeights.findLast((category, i) => {
-  //     const allHeights = categoryHeights
-  //     .filter(value => value.categoryId < category.categoryId)
-  //     .reduce((sum, value) => sum + value.height, 0);
-
-  //     console.log("prevSiblingHeight", allHeights);
-  //     if(i === 0) {
-  //       const height = 254 + value.height;
-  //     }
-  //   })
-  //   console.log("lastMatchCategory", lastMatchCategory);
-    
-  // };
-
-  // const [scrollPosition, setScrollPosition] = useState<number>(0);
 
   const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     const { contentOffset } = event.nativeEvent;
     const currentY = contentOffset.y;
-    // const currentIndex = Math.round(contentOffset.y / 400);
-    // const currentIndex = Math.round(contentOffset.y / categoryHeights.);
 
-     // Find the index of the first item whose height, when summed with previous items, exceeds the current scroll position
+      // Find the index of the first item whose height, when summed with previous items, exceeds the current scroll position
       const currentIndex = categoryHeights.findIndex((item, index) => {
         const previousHeights = categoryHeights.slice(0, index);
-        const totalHeight = previousHeights.reduce((sum, h) => sum + h.height, 0);
+        const totalHeight = previousHeights.reduce((sum, h) => sum + h.height, 265);
         return totalHeight > currentY;
       });
 
+      // Update scroll position if index is valid
       if(currentIndex>0) {
         setScrollPosition(currentIndex);
-        console.log('currentIndex', scrollPosition);
       }
   };
 
@@ -317,24 +276,16 @@ const Checkout = ({ navigation }: Navigation) => {
             renderItem={({ item, index }) => {
               return (
                 <TouchableOpacity
-                  // onPress={() => handleClickScroll(index)}
+                  onPress={() => handleClickScroll(item.id)}
                   style={{
                     paddingTop: 10,
                     paddingBottom: 10,
                     paddingLeft: 5,
                     paddingRight: 5,
                     marginRight:
-                      servicesByCategory.length - 1 === index ? 0 : 25,
-                    borderBottomWidth:
-                      matchingCategory(index) &&
-                      matchingCategory(index).pageActive
-                        ? 2
-                        : 0,
-                    borderColor:
-                      matchingCategory(index) &&
-                      matchingCategory(index).pageActive
-                        ? theme.primary.color
-                        : "",
+                    servicesByCategory.length - 1 === index ? 0 : 25,
+                    borderBottomWidth: item.id === scrollPosition ? 2 : 0,
+                    borderColor: item.id === scrollPosition ? theme.primary.color : ""
                   }}
                 >
                   <Text
