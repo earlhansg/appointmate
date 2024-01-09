@@ -211,7 +211,7 @@ const Checkout = ({ navigation }: Navigation) => {
   const handleClickScroll = (id: number) => {
 
     const previousHeights = categoryHeights.slice(0, categoryHeights.findIndex(item => item.categoryId === id));
-    const defaultHeight = id !== 1 ? 265 : 255;
+    const defaultHeight = id !== 1 ? 255 + (7 * id) : 255;
     const totalHeight = previousHeights.reduce((sum, h) => sum + h.height, defaultHeight);
 
     scrollViewRef.current?.scrollTo({ y: totalHeight, animated: true });
@@ -1147,6 +1147,166 @@ const Checkout = ({ navigation }: Navigation) => {
               fontWeight: "500",
             }}
           >
+            Disassemble
+          </Text>
+          <Text
+            style={{
+              fontSize: 13,
+              marginTop: 5,
+            }}
+          >
+            Disassemble
+          </Text>
+
+          <View
+            style={{
+              paddingTop: 20,
+              paddingBottom: 20,
+              borderBottomWidth: 2,
+              borderColor: theme.gray.light2,
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 15,
+                fontWeight: "500",
+              }}
+            >
+              Disassemble small part of unit 1
+            </Text>
+            <Text
+              style={{
+                fontSize: 13,
+                color: theme.gray.light3,
+              }}
+            >
+              Disassemble description for the item
+            </Text>
+            <Text
+              style={{
+                fontSize: 13,
+                marginTop: 10,
+              }}
+            >
+              from 150.00
+            </Text>
+          </View>
+          <View
+            style={{
+              paddingTop: 20,
+              paddingBottom: 20,
+              borderBottomWidth: 2,
+              borderColor: theme.gray.light2,
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 15,
+                fontWeight: "500",
+              }}
+            >
+              Disassemble small part of unit 1
+            </Text>
+            <Text
+              style={{
+                fontSize: 13,
+                color: theme.gray.light3,
+              }}
+            >
+              Disassemble description for the item
+            </Text>
+            <Text
+              style={{
+                fontSize: 13,
+                marginTop: 10,
+              }}
+            >
+              from 150.00
+            </Text>
+          </View>
+          <View
+            style={{
+              paddingTop: 20,
+              paddingBottom: 20,
+              borderBottomWidth: 2,
+              borderColor: theme.gray.light2,
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 15,
+                fontWeight: "500",
+              }}
+            >
+              Disassemble small part of unit 1
+            </Text>
+            <Text
+              style={{
+                fontSize: 13,
+                color: theme.gray.light3,
+              }}
+            >
+              Disassemble description for the item
+            </Text>
+            <Text
+              style={{
+                fontSize: 13,
+                marginTop: 10,
+              }}
+            >
+              from 150.00
+            </Text>
+          </View>
+          <View
+            style={{
+              paddingTop: 20,
+              paddingBottom: 20,
+              borderBottomWidth: 2,
+              borderColor: theme.gray.light2,
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 15,
+                fontWeight: "500",
+              }}
+            >
+              Disassemble small part of unit 1
+            </Text>
+            <Text
+              style={{
+                fontSize: 13,
+                color: theme.gray.light3,
+              }}
+            >
+              Disassemble description for the item
+            </Text>
+            <Text
+              style={{
+                fontSize: 13,
+                marginTop: 10,
+              }}
+            >
+              from 150.00
+            </Text>
+          </View>
+        </View>
+
+        <View
+          style={{
+            marginTop: 10,
+            marginLeft: 15,
+            marginRight: 15,
+          }}
+          ref={(el) => (categoryRefs.current[4] = el)}
+          onLayout={getHeight}
+        >
+          <Text
+            style={{
+              fontSize: 20,
+              fontWeight: "500",
+            }}
+          >
             Installation
           </Text>
           <Text
@@ -1232,7 +1392,101 @@ const Checkout = ({ navigation }: Navigation) => {
             marginLeft: 15,
             marginRight: 15,
           }}
-          ref={(el) => (categoryRefs.current[4] = el)}
+          ref={(el) => (categoryRefs.current[6] = el)}
+          onLayout={getHeight}
+        >
+          <Text
+            style={{
+              fontSize: 20,
+              fontWeight: "500",
+            }}
+          >
+            Troubleshoot Offer
+          </Text>
+          <Text
+            style={{
+              fontSize: 13,
+              marginTop: 5,
+            }}
+          >
+            Installation parts
+          </Text>
+
+          <View
+            style={{
+              paddingTop: 20,
+              paddingBottom: 20,
+              borderBottomWidth: 2,
+              borderColor: theme.gray.light2,
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 15,
+                fontWeight: "500",
+              }}
+            >
+              Troubleshoot small part of unit 1
+            </Text>
+            <Text
+              style={{
+                fontSize: 13,
+                color: theme.gray.light3,
+              }}
+            >
+              Troubleshoot description for the item
+            </Text>
+            <Text
+              style={{
+                fontSize: 13,
+                marginTop: 10,
+              }}
+            >
+              from 150.00
+            </Text>
+          </View>
+          <View
+            style={{
+              paddingTop: 20,
+              paddingBottom: 20,
+              borderBottomWidth: 2,
+              borderColor: theme.gray.light2,
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 15,
+                fontWeight: "500",
+              }}
+            >
+              Troubleshoot small part of unit 1
+            </Text>
+            <Text
+              style={{
+                fontSize: 13,
+                color: theme.gray.light3,
+              }}
+            >
+              Troubleshoot description for the item
+            </Text>
+            <Text
+              style={{
+                fontSize: 13,
+                marginTop: 10,
+              }}
+            >
+              from 150.00
+            </Text>
+          </View>
+        </View>
+
+        <View
+          style={{
+            marginTop: 10,
+            marginLeft: 15,
+            marginRight: 15,
+          }}
+          ref={(el) => (categoryRefs.current[6] = el)}
           onLayout={getHeight}
         >
           <Text
