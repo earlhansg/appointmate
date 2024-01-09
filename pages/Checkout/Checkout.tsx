@@ -1,31 +1,17 @@
 import React, {
-  ReactElement,
   useContext,
   useEffect,
   useRef,
   useState,
-  useMemo,
-  ElementRef,
-  Children,
-  useLayoutEffect,
+  useMemo
 } from "react";
 import {
-  Image,
   SafeAreaView,
   Text,
   View,
-  StyleSheet,
   FlatList,
-  Animated,
   ScrollView,
-  Dimensions,
-  Button,
-  Pressable,
-  TouchableHighlight,
   TouchableOpacity,
-  findNodeHandle,
-  UIManager,
-  MeasureInWindowOnSuccessCallback,
   NativeSyntheticEvent,
   NativeScrollEvent,
 } from "react-native";
@@ -34,9 +20,7 @@ import ButtonIcon from "../../components/Buttons/ButtonIcon";
 import { CheckoutData, Navigation } from "../model/Navigation";
 import { ThemeContext } from "../../components/ThemeContext/ThemeContext";
 import { useRoute, RouteProp } from "@react-navigation/native";
-import { Shop } from "../../components/TopShops/model/Shop";
 
-import { Feather, FontAwesome5 } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import CheckoutDetails from "../../components/CheckoutDetails/CheckoutDetails";
 
@@ -48,11 +32,6 @@ type CategoryRouteProps = {
     "Checkout"
   >;
 };
-
-// type Category = {
-//   categoryId: number;
-//   height: number;
-// };
 
 type Category = {
   categoryId: number;
@@ -185,6 +164,7 @@ const Checkout = ({ navigation }: Navigation) => {
 
   const [categoryHeights, setCategoryHeights] = useState<Category[]>([]);
   const categoryRefs = useRef<Array<View | null>>([]);
+  const flatListRef = useRef<FlatList | null>(null);
 
   const [scrollPosition, setScrollPosition] = useState<number>(0);
 
@@ -231,6 +211,7 @@ const Checkout = ({ navigation }: Navigation) => {
       // Update scroll position if index is valid
       if(currentIndex>0) {
         setScrollPosition(currentIndex);
+        flatListRef.current?.scrollToIndex({ animated: true, index: currentIndex - 1 })
       }
   };
 
@@ -270,6 +251,7 @@ const Checkout = ({ navigation }: Navigation) => {
         >
           <FlatList
             style={{ width: "100%" }}
+            ref={flatListRef}
             data={servicesByCategory}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
@@ -301,582 +283,6 @@ const Checkout = ({ navigation }: Navigation) => {
             }}
           />
         </View>
-
-        {/* <View
-          style={{
-            width: "100%",
-            paddingLeft: 15,
-            paddingRight: 15,
-          }}
-        >
-          <View
-            style={{
-              marginTop: 10,
-            }}
-            ref={(el) => (categoryRefs.current[0] = el)}
-            onLayout={getHeight}
-          >
-            <Text
-              style={{
-                fontSize: 20,
-                fontWeight: "500",
-              }}
-            >
-              Cleaning
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                marginTop: 5,
-              }}
-            >
-              Cleaning parts
-            </Text>
-
-            <View
-              style={{
-                paddingTop: 20,
-                paddingBottom: 20,
-                borderBottomWidth: 2,
-                borderColor: theme.gray.light2,
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 15,
-                  fontWeight: "500",
-                }}
-              >
-                Cleaning small part of unit 1
-              </Text>
-              <Text
-                style={{
-                  fontSize: 13,
-                  color: theme.gray.light3,
-                }}
-              >
-                Another description for the item
-              </Text>
-              <Text
-                style={{
-                  fontSize: 13,
-                  marginTop: 10,
-                }}
-              >
-                from 150.00
-              </Text>
-            </View>
-            <View
-              style={{
-                paddingTop: 20,
-                paddingBottom: 20,
-                borderBottomWidth: 2,
-                borderColor: theme.gray.light2,
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 15,
-                  fontWeight: "500",
-                }}
-              >
-                Cleaning small part of unit 1
-              </Text>
-              <Text
-                style={{
-                  fontSize: 13,
-                  color: theme.gray.light3,
-                }}
-              >
-                Another description for the item
-              </Text>
-              <Text
-                style={{
-                  fontSize: 13,
-                  marginTop: 10,
-                }}
-              >
-                from 150.00
-              </Text>
-            </View>
-          </View>
-
-          <View
-            style={{
-              marginTop: 10,
-            }}
-            ref={(el) => (categoryRefs.current[1] = el)}
-            onLayout={getHeight}
-          >
-            <Text
-              style={{
-                fontSize: 20,
-                fontWeight: "500",
-              }}
-            >
-              Repair
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                marginTop: 5,
-              }}
-            >
-              Repair
-            </Text>
-
-            <View
-              style={{
-                paddingTop: 20,
-                paddingBottom: 20,
-                borderBottomWidth: 2,
-                borderColor: theme.gray.light2,
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 15,
-                  fontWeight: "500",
-                }}
-              >
-                Repair small part of unit 1
-              </Text>
-              <Text
-                style={{
-                  fontSize: 13,
-                  color: theme.gray.light3,
-                }}
-              >
-                Another description for the item
-              </Text>
-              <Text
-                style={{
-                  fontSize: 13,
-                  marginTop: 10,
-                }}
-              >
-                from 150.00
-              </Text>
-            </View>
-            <View
-              style={{
-                paddingTop: 20,
-                paddingBottom: 20,
-                borderBottomWidth: 2,
-                borderColor: theme.gray.light2,
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 15,
-                  fontWeight: "500",
-                }}
-              >
-                Repair small part of unit 1
-              </Text>
-              <Text
-                style={{
-                  fontSize: 13,
-                  color: theme.gray.light3,
-                }}
-              >
-                Repair description for the item
-              </Text>
-              <Text
-                style={{
-                  fontSize: 13,
-                  marginTop: 10,
-                }}
-              >
-                from 150.00
-              </Text>
-            </View>
-            <View
-              style={{
-                paddingTop: 20,
-                paddingBottom: 20,
-                borderBottomWidth: 2,
-                borderColor: theme.gray.light2,
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 15,
-                  fontWeight: "500",
-                }}
-              >
-                Repair small part of unit 1
-              </Text>
-              <Text
-                style={{
-                  fontSize: 13,
-                  color: theme.gray.light3,
-                }}
-              >
-                Repair description for the item
-              </Text>
-              <Text
-                style={{
-                  fontSize: 13,
-                  marginTop: 10,
-                }}
-              >
-                from 150.00
-              </Text>
-            </View>
-            <View
-              style={{
-                paddingTop: 20,
-                paddingBottom: 20,
-                borderBottomWidth: 2,
-                borderColor: theme.gray.light2,
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 15,
-                  fontWeight: "500",
-                }}
-              >
-                Repair small part of unit 1
-              </Text>
-              <Text
-                style={{
-                  fontSize: 13,
-                  color: theme.gray.light3,
-                }}
-              >
-                Repair description for the item
-              </Text>
-              <Text
-                style={{
-                  fontSize: 13,
-                  marginTop: 10,
-                }}
-              >
-                from 150.00
-              </Text>
-            </View>
-          </View>
-
-          <View
-            style={{
-              marginTop: 10,
-            }}
-            ref={(el) => (categoryRefs.current[2] = el)}
-            onLayout={getHeight}
-          >
-            <Text
-              style={{
-                fontSize: 20,
-                fontWeight: "500",
-              }}
-            >
-              Dessemble
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                marginTop: 5,
-              }}
-            >
-              install
-            </Text>
-
-            <View
-              style={{
-                paddingTop: 20,
-                paddingBottom: 20,
-                borderBottomWidth: 2,
-                borderColor: theme.gray.light2,
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 15,
-                  fontWeight: "500",
-                }}
-              >
-                Repair small part of unit 1
-              </Text>
-              <Text
-                style={{
-                  fontSize: 13,
-                  color: theme.gray.light3,
-                }}
-              >
-                Another description for the item
-              </Text>
-              <Text
-                style={{
-                  fontSize: 13,
-                  marginTop: 10,
-                }}
-              >
-                from 150.00
-              </Text>
-            </View>
-            <View
-              style={{
-                paddingTop: 20,
-                paddingBottom: 20,
-                borderBottomWidth: 2,
-                borderColor: theme.gray.light2,
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 15,
-                  fontWeight: "500",
-                }}
-              >
-                Repair small part of unit 1
-              </Text>
-              <Text
-                style={{
-                  fontSize: 13,
-                  color: theme.gray.light3,
-                }}
-              >
-                Repair description for the item
-              </Text>
-              <Text
-                style={{
-                  fontSize: 13,
-                  marginTop: 10,
-                }}
-              >
-                from 150.00
-              </Text>
-            </View>
-            <View
-              style={{
-                paddingTop: 20,
-                paddingBottom: 20,
-                borderBottomWidth: 2,
-                borderColor: theme.gray.light2,
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 15,
-                  fontWeight: "500",
-                }}
-              >
-                Repair small part of unit 1
-              </Text>
-              <Text
-                style={{
-                  fontSize: 13,
-                  color: theme.gray.light3,
-                }}
-              >
-                Repair description for the item
-              </Text>
-              <Text
-                style={{
-                  fontSize: 13,
-                  marginTop: 10,
-                }}
-              >
-                from 150.00
-              </Text>
-            </View>
-            <View
-              style={{
-                paddingTop: 20,
-                paddingBottom: 20,
-                borderBottomWidth: 2,
-                borderColor: theme.gray.light2,
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 15,
-                  fontWeight: "500",
-                }}
-              >
-                Repair small part of unit 1
-              </Text>
-              <Text
-                style={{
-                  fontSize: 13,
-                  color: theme.gray.light3,
-                }}
-              >
-                Repair description for the item
-              </Text>
-              <Text
-                style={{
-                  fontSize: 13,
-                  marginTop: 10,
-                }}
-              >
-                from 150.00
-              </Text>
-            </View>
-          </View>
-
-
-
-          <View
-            style={{
-              marginTop: 10,
-            }}
-            ref={(el) => (categoryRefs.current[3] = el)}
-            onLayout={getHeight}
-          >
-            <Text
-              style={{
-                fontSize: 20,
-                fontWeight: "500",
-              }}
-            >
-              Installation
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                marginTop: 5,
-              }}
-            >
-              Special Offer
-            </Text>
-
-            <View
-              style={{
-                paddingTop: 20,
-                paddingBottom: 20,
-                borderBottomWidth: 2,
-                borderColor: theme.gray.light2,
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 15,
-                  fontWeight: "500",
-                }}
-              >
-                Repair small part of unit 1
-              </Text>
-              <Text
-                style={{
-                  fontSize: 13,
-                  color: theme.gray.light3,
-                }}
-              >
-                Another description for the item
-              </Text>
-              <Text
-                style={{
-                  fontSize: 13,
-                  marginTop: 10,
-                }}
-              >
-                from 150.00
-              </Text>
-            </View>
-            <View
-              style={{
-                paddingTop: 20,
-                paddingBottom: 20,
-                borderBottomWidth: 2,
-                borderColor: theme.gray.light2,
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 15,
-                  fontWeight: "500",
-                }}
-              >
-                Repair small part of unit 1
-              </Text>
-              <Text
-                style={{
-                  fontSize: 13,
-                  color: theme.gray.light3,
-                }}
-              >
-                Repair description for the item
-              </Text>
-              <Text
-                style={{
-                  fontSize: 13,
-                  marginTop: 10,
-                }}
-              >
-                from 150.00
-              </Text>
-            </View>
-            <View
-              style={{
-                paddingTop: 20,
-                paddingBottom: 20,
-                borderBottomWidth: 2,
-                borderColor: theme.gray.light2,
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 15,
-                  fontWeight: "500",
-                }}
-              >
-                Repair small part of unit 1
-              </Text>
-              <Text
-                style={{
-                  fontSize: 13,
-                  color: theme.gray.light3,
-                }}
-              >
-                Repair description for the item
-              </Text>
-              <Text
-                style={{
-                  fontSize: 13,
-                  marginTop: 10,
-                }}
-              >
-                from 150.00
-              </Text>
-            </View>
-            <View
-              style={{
-                paddingTop: 20,
-                paddingBottom: 20,
-                borderBottomWidth: 2,
-                borderColor: theme.gray.light2,
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 15,
-                  fontWeight: "500",
-                }}
-              >
-                Repair small part of unit 1
-              </Text>
-              <Text
-                style={{
-                  fontSize: 13,
-                  color: theme.gray.light3,
-                }}
-              >
-                Repair description for the item
-              </Text>
-              <Text
-                style={{
-                  fontSize: 13,
-                  marginTop: 10,
-                }}
-              >
-                from 150.00
-              </Text>
-            </View>
-          </View>
-        </View> */}
 
         <View
           style={{
@@ -1575,7 +981,6 @@ const Checkout = ({ navigation }: Navigation) => {
         </View>
 
       </ScrollView>
-      {/* <Button title="Scroll to 300 pixels" onPress={() => handleScroll(2)} /> */}
     </SafeAreaView>
   );
 };
