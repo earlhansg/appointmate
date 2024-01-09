@@ -274,6 +274,7 @@ const Checkout = ({ navigation }: Navigation) => {
                     style={{
                       fontSize: 14,
                       fontWeight: "500",
+                      color: item.id === scrollPosition ? theme.primary.color : theme.black.dark
                     }}
                   >
                     {item.categoryName}
