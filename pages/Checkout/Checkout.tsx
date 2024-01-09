@@ -23,6 +23,7 @@ import { useRoute, RouteProp } from "@react-navigation/native";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import CheckoutDetails from "../../components/CheckoutDetails/CheckoutDetails";
+import ScrollComponent from "./ScrollComponent/ScrollComponent";
 
 type CategoryRouteProps = {
   route: RouteProp<
@@ -33,7 +34,7 @@ type CategoryRouteProps = {
   >;
 };
 
-type Category = {
+export type Category = {
   categoryId: number;
   height: number;
   pageActive: boolean;
@@ -231,7 +232,7 @@ const Checkout = ({ navigation }: Navigation) => {
           />
         </View>
       </View>
-      <ScrollView
+      {/* <ScrollView
         stickyHeaderIndices={[1]}
         showsVerticalScrollIndicator={false}
         ref={scrollViewRef}
@@ -283,7 +284,9 @@ const Checkout = ({ navigation }: Navigation) => {
               );
             }}
           />
-        </View>
+        </View> */}
+
+        <ScrollComponent servicesByCategory={servicesByCategory} checkoutDetails={<CheckoutDetails checkoutData={checkoutData} deals={deals} />}>
 
         <View
           style={{
@@ -981,7 +984,8 @@ const Checkout = ({ navigation }: Navigation) => {
           </View>
         </View>
 
-      </ScrollView>
+      </ScrollComponent>
+      {/* </ScrollView> */}
     </SafeAreaView>
   );
 };
