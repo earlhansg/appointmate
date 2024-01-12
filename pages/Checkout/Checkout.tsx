@@ -266,7 +266,7 @@ const Checkout = ({ navigation }: Navigation) => {
               ref={(el) => (categoryRefs.current[service.id] = el)}
               onLayout={getHeight}
             >
-              <ScrollContentComponent servicesByCategory={service} />
+              <ScrollContentComponent key={service.id} servicesByCategory={service} />
             </View>
           ))}
         </>

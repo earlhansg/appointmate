@@ -14,20 +14,9 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { ThemeContext } from "../../../components/ThemeContext/ThemeContext";
-import { Category } from "../Checkout";
-
-type Service = {
-  id: number;
-  serviceName: string;
-  price: number;
-};
-
-type ServicesByCategory = {
-  id: number;
-  categoryName: string;
-  services: Service[];
-};
+import { ThemeContext } from "../../components/ThemeContext/ThemeContext";
+import { Category } from "../../pages/Checkout/Checkout";
+import { ServicesByCategory } from "./model/ServicesByCategory";
 
 type ScrollComponentProps = {
   servicesByCategory: ServicesByCategory[];

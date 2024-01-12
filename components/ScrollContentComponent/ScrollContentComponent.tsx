@@ -1,24 +1,12 @@
 import React, { useContext } from "react";
 import { View, Text } from "react-native";
-import { ThemeContext } from "../../../components/ThemeContext/ThemeContext";
+import { ThemeContext } from "../../components/ThemeContext/ThemeContext";
+import { ServicesByCategory } from "../ScrollComponent/model/ServicesByCategory";
 
-type Service = {
-    id: number;
-    serviceName: string;
-    caption: string;
-    price: number;
-  };
-  
-  type ServicesByCategory = {
-    id: number;
-    categoryName: string;
-    caption: string;
-    services: Service[];
-  };
 
-  type ScrollContentComponentProps = {
-    servicesByCategory: ServicesByCategory;
-  }
+type ScrollContentComponentProps = {
+  servicesByCategory: ServicesByCategory;
+}
 
 const ScrollContentComponent = ({servicesByCategory} : ScrollContentComponentProps) => {
   const theme = useContext(ThemeContext);
