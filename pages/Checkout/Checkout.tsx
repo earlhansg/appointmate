@@ -248,7 +248,7 @@ const Checkout = ({ navigation }: Navigation) => {
         <>
           {servicesByCategory.map((service) => (
             <View
-              key={service.id}
+              key={`parent_${service.id}`}
               style={{
                 marginTop: 10,
                 marginLeft: 15,
@@ -258,7 +258,7 @@ const Checkout = ({ navigation }: Navigation) => {
               onLayout={getHeight}
             >
               <ScrollContentComponent
-                key={service.id}
+                key={`child_${service.id}`}
                 servicesByCategory={service}
               />
             </View>
