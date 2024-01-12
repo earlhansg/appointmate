@@ -19,39 +19,17 @@ type Service = {
 type ScrollComponentProps = {
     servicesByCategory: ServicesByCategory[],
     checkoutDetails: ReactElement,
+    categoryHeights: Category[],
     children: ReactElement[]
 }
 
-const ScrollComponent = ({servicesByCategory, checkoutDetails, children} : ScrollComponentProps) => {
+const ScrollComponent = ({servicesByCategory, checkoutDetails, categoryHeights, children} : ScrollComponentProps) => {
   const theme = useContext(ThemeContext);
 
   const scrollViewRef = useRef<ScrollView>(null);
-
-  const [categoryHeights, setCategoryHeights] = useState<Category[]>([]);
-  const categoryRefs = useRef<Array<View | null>>([]);
   const flatListRef = useRef<FlatList | null>(null);
 
   const [scrollPosition, setScrollPosition] = useState<number>(0);
-
-  useEffect(() => {
-    getHeight();
-    // Cleanup function
-    return () => {
-      // Clear any resources or subscriptions here
-      setCategoryHeights([]);
-    };
-  }, [categoryRefs]);
-
-  const getHeight = () => {
-    const heights: Category[] = [];
-    categoryRefs.current.forEach((ref, i) => {
-      ref?.measureInWindow((x, y, width, height) => {
-        heights.push({ categoryId: i, height, pageActive: false})
-      });
-    });
-    setCategoryHeights(heights);
-    console.log("categoryHeights", categoryHeights);
-  };
 
   const handleClickScroll = (id: number) => {
 
