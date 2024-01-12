@@ -7,13 +7,7 @@ import React, {
 } from "react";
 import {
   SafeAreaView,
-  Text,
-  View,
-  FlatList,
-  ScrollView,
-  TouchableOpacity,
-  NativeSyntheticEvent,
-  NativeScrollEvent,
+  View
 } from "react-native";
 import { CheckoutStyle } from "./CheckoutStyle";
 import ButtonIcon from "../../components/Buttons/ButtonIcon";
@@ -24,6 +18,7 @@ import { useRoute, RouteProp } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import CheckoutDetails from "../../components/CheckoutDetails/CheckoutDetails";
 import ScrollComponent from "./ScrollComponent/ScrollComponent";
+import ScrollContentComponent from "./ScrollContentComponent/ScrollContentComponent";
 
 type CategoryRouteProps = {
   route: RouteProp<
@@ -51,83 +46,134 @@ const Checkout = ({ navigation }: Navigation) => {
       {
         id: 1,
         categoryName: "Cleaning",
+        caption: 'Cleaning Header',
         services: [
           {
             id: 1,
-            serviceName: "Cleaning half",
+            serviceName: "Cleaning 1",
+            caption: 'Cleaning 1',
             price: 500,
           },
           {
             id: 2,
-            serviceName: "Cleaning full",
+            serviceName: "Cleaning 2",
+            caption: 'Cleaning 2',
             price: 5800,
           },
+          {
+            id: 3,
+            serviceName: "Cleaning 3",
+            caption: 'Cleaning 3',
+            price: 5800,
+          },
+          {
+            id: 4,
+            serviceName: "Cleaning 4",
+            caption: 'Cleaning 4',
+            price: 5800,
+          }
         ],
       },
       {
         id: 2,
         categoryName: "Repair",
+        caption: 'Repair Header',
         services: [
           {
             id: 1,
-            serviceName: "Repair half",
+            serviceName: "Repair 1",
+            caption: 'Repair 1',
             price: 500,
           },
           {
             id: 2,
-            serviceName: "Repair full",
+            serviceName: "Repair 2",
+            caption: 'Repair 2',
             price: 5800,
           },
+          {
+            id: 3,
+            serviceName: "Repair 3",
+            caption: 'Repair 3',
+            price: 5800,
+          },
+          {
+            id: 4,
+            serviceName: "Repair 4",
+            caption: 'Repair 4',
+            price: 5800,
+          }
         ],
       },
       {
         id: 3,
         categoryName: "Disassemble",
+        caption: 'Disassemble Header',
         services: [
           {
             id: 1,
-            serviceName: "Repair half",
+            serviceName: "Disassemble 1",
+            caption: 'Disassemble 1',
             price: 500,
           },
           {
             id: 2,
-            serviceName: "Repair full",
+            serviceName: "Disassemble 2",
+            caption: 'Disassemble 2',
             price: 5800,
-          },
+          }
         ],
       },
       {
         id: 4,
         categoryName: "Installation",
+        caption: 'Installation Header',
         services: [
           {
             id: 1,
-            serviceName: "Repair half",
+            serviceName: "Installation 1",
+            caption: 'Installation 1',
             price: 500,
           },
           {
             id: 2,
-            serviceName: "Repair full",
+            serviceName: "Installation 2",
+            caption: 'Installation 2',
             price: 5800,
           },
-        ],
+          {
+            id: 3,
+            serviceName: "Installation 3",
+            caption: 'Installation 3',
+            price: 5800,
+          },
+          {
+            id: 4,
+            serviceName: "Installation 4",
+            caption: 'Installation 4',
+            price: 5800,
+          }
+        ]
       },
       {
         id: 5,
         categoryName: "Troubleshoot",
+        caption: 'Troubleshoot Header',
         services: [
           {
             id: 1,
-            serviceName: "Repair half",
+            serviceName: "Troubleshoot 1",
+            caption: 'Troubleshoot 1',
             price: 500,
           },
           {
             id: 2,
-            serviceName: "Repair full",
+            serviceName: "Troubleshoot 2",
+            caption: 'Troubleshoot 2',
             price: 5800,
-          },
-        ],
-      },
+          }
+        ]
+      }
     ],
     []
   );
@@ -201,761 +247,30 @@ const Checkout = ({ navigation }: Navigation) => {
         </View>
       </View>
 
-      {/* <ScrollView
-        stickyHeaderIndices={[1]}
-        showsVerticalScrollIndicator={false}
-        ref={scrollViewRef}
-        onScroll={handleScroll}
-        scrollEventThrottle={16}
+      <ScrollComponent
+        servicesByCategory={servicesByCategory}
+        categoryHeights={categoryHeights}
+        checkoutDetails={
+          <CheckoutDetails checkoutData={checkoutData} deals={deals} />
+        }
       >
-        <CheckoutDetails checkoutData={checkoutData} deals={deals} />
-        <View
-          style={{
-            marginTop: 10,
-            paddingLeft: 15,
-            paddingRight: 15,
-            borderBottomWidth: 1,
-            borderColor: theme.gray.light2,
-            backgroundColor: "white",
-          }}
-        >
-          <FlatList
-            style={{ width: "100%" }}
-            ref={flatListRef}
-            data={servicesByCategory}
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            renderItem={({ item, index }) => {
-              return (
-                <TouchableOpacity
-                  onPress={() => handleClickScroll(item.id)}
-                  style={{
-                    paddingTop: 10,
-                    paddingBottom: 10,
-                    paddingLeft: 5,
-                    paddingRight: 5,
-                    marginRight:
-                    servicesByCategory.length - 1 === index ? 0 : 25,
-                    borderBottomWidth: item.id === scrollPosition ? 2 : 0,
-                    borderColor: item.id === scrollPosition ? theme.primary.color : ""
-                  }}
-                >
-                  <Text
-                    style={{
-                      fontSize: 14,
-                      fontWeight: "500",
-                      color: item.id === scrollPosition ? theme.primary.color : theme.black.dark
-                    }}
-                  >
-                    {item.categoryName}
-                  </Text>
-                </TouchableOpacity>
-              );
-            }}
-          />
-        </View> */}
-
-        <ScrollComponent servicesByCategory={servicesByCategory} categoryHeights={categoryHeights}
-         checkoutDetails={<CheckoutDetails checkoutData={checkoutData} deals={deals} />}>
-
-        <View
-          style={{
-            marginTop: 10,
-            marginLeft: 15,
-            marginRight: 15,
-          }}
-          ref={(el) => (categoryRefs.current[1] = el)}
-          onLayout={getHeight}
-        >
-          <Text
-            style={{
-              fontSize: 20,
-              fontWeight: "500",
-            }}
-          >
-            Cleaning
-          </Text>
-          <Text
-            style={{
-              fontSize: 13,
-              marginTop: 5,
-            }}
-          >
-            Cleaning parts
-          </Text>
-
-          <View
-            style={{
-              paddingTop: 20,
-              paddingBottom: 20,
-              borderBottomWidth: 2,
-              borderColor: theme.gray.light2,
-            }}
-          >
-            <Text
+        <>
+          {servicesByCategory.map((service) => (
+            <View
+              key={service.id}
               style={{
-                fontSize: 15,
-                fontWeight: "500",
-              }}
-            >
-              Cleaning small part of unit 1
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                color: theme.gray.light3,
-              }}
-            >
-              Another description for the item
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
                 marginTop: 10,
+                marginLeft: 15,
+                marginRight: 15,
               }}
+              ref={(el) => (categoryRefs.current[service.id] = el)}
+              onLayout={getHeight}
             >
-              from 150.00
-            </Text>
-          </View>
-          <View
-            style={{
-              paddingTop: 20,
-              paddingBottom: 20,
-              borderBottomWidth: 2,
-              borderColor: theme.gray.light2,
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 15,
-                fontWeight: "500",
-              }}
-            >
-              Cleaning small part of unit 1
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                color: theme.gray.light3,
-              }}
-            >
-              Another description for the item
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                marginTop: 10,
-              }}
-            >
-              from 150.00
-            </Text>
-          </View>
-        </View>
-
-        <View
-          style={{
-            marginTop: 10,
-            marginLeft: 15,
-            marginRight: 15,
-          }}
-          ref={(el) => (categoryRefs.current[2] = el)}
-          onLayout={getHeight}
-        >
-          <Text
-            style={{
-              fontSize: 20,
-              fontWeight: "500",
-            }}
-          >
-            Repair
-          </Text>
-          <Text
-            style={{
-              fontSize: 13,
-              marginTop: 5,
-            }}
-          >
-            Repair
-          </Text>
-
-          <View
-            style={{
-              paddingTop: 20,
-              paddingBottom: 20,
-              borderBottomWidth: 2,
-              borderColor: theme.gray.light2,
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 15,
-                fontWeight: "500",
-              }}
-            >
-              Repair small part of unit 1
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                color: theme.gray.light3,
-              }}
-            >
-              Another description for the item
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                marginTop: 10,
-              }}
-            >
-              from 150.00
-            </Text>
-          </View>
-          <View
-            style={{
-              paddingTop: 20,
-              paddingBottom: 20,
-              borderBottomWidth: 2,
-              borderColor: theme.gray.light2,
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 15,
-                fontWeight: "500",
-              }}
-            >
-              Repair small part of unit 1
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                color: theme.gray.light3,
-              }}
-            >
-              Repair description for the item
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                marginTop: 10,
-              }}
-            >
-              from 150.00
-            </Text>
-          </View>
-          <View
-            style={{
-              paddingTop: 20,
-              paddingBottom: 20,
-              borderBottomWidth: 2,
-              borderColor: theme.gray.light2,
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 15,
-                fontWeight: "500",
-              }}
-            >
-              Repair small part of unit 1
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                color: theme.gray.light3,
-              }}
-            >
-              Repair description for the item
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                marginTop: 10,
-              }}
-            >
-              from 150.00
-            </Text>
-          </View>
-          <View
-            style={{
-              paddingTop: 20,
-              paddingBottom: 20,
-              borderBottomWidth: 2,
-              borderColor: theme.gray.light2,
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 15,
-                fontWeight: "500",
-              }}
-            >
-              Repair small part of unit 1
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                color: theme.gray.light3,
-              }}
-            >
-              Repair description for the item
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                marginTop: 10,
-              }}
-            >
-              from 150.00
-            </Text>
-          </View>
-        </View>
-
-        <View
-          style={{
-            marginTop: 10,
-            marginLeft: 15,
-            marginRight: 15,
-          }}
-          ref={(el) => (categoryRefs.current[3] = el)}
-          onLayout={getHeight}
-        >
-          <Text
-            style={{
-              fontSize: 20,
-              fontWeight: "500",
-            }}
-          >
-            Disassemble
-          </Text>
-          <Text
-            style={{
-              fontSize: 13,
-              marginTop: 5,
-            }}
-          >
-            Disassemble
-          </Text>
-
-          <View
-            style={{
-              paddingTop: 20,
-              paddingBottom: 20,
-              borderBottomWidth: 2,
-              borderColor: theme.gray.light2,
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 15,
-                fontWeight: "500",
-              }}
-            >
-              Disassemble small part of unit 1
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                color: theme.gray.light3,
-              }}
-            >
-              Disassemble description for the item
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                marginTop: 10,
-              }}
-            >
-              from 150.00
-            </Text>
-          </View>
-          <View
-            style={{
-              paddingTop: 20,
-              paddingBottom: 20,
-              borderBottomWidth: 2,
-              borderColor: theme.gray.light2,
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 15,
-                fontWeight: "500",
-              }}
-            >
-              Disassemble small part of unit 1
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                color: theme.gray.light3,
-              }}
-            >
-              Disassemble description for the item
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                marginTop: 10,
-              }}
-            >
-              from 150.00
-            </Text>
-          </View>
-          <View
-            style={{
-              paddingTop: 20,
-              paddingBottom: 20,
-              borderBottomWidth: 2,
-              borderColor: theme.gray.light2,
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 15,
-                fontWeight: "500",
-              }}
-            >
-              Disassemble small part of unit 1
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                color: theme.gray.light3,
-              }}
-            >
-              Disassemble description for the item
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                marginTop: 10,
-              }}
-            >
-              from 150.00
-            </Text>
-          </View>
-          <View
-            style={{
-              paddingTop: 20,
-              paddingBottom: 20,
-              borderBottomWidth: 2,
-              borderColor: theme.gray.light2,
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 15,
-                fontWeight: "500",
-              }}
-            >
-              Disassemble small part of unit 1
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                color: theme.gray.light3,
-              }}
-            >
-              Disassemble description for the item
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                marginTop: 10,
-              }}
-            >
-              from 150.00
-            </Text>
-          </View>
-        </View>
-
-        <View
-          style={{
-            marginTop: 10,
-            marginLeft: 15,
-            marginRight: 15,
-          }}
-          ref={(el) => (categoryRefs.current[4] = el)}
-          onLayout={getHeight}
-        >
-          <Text
-            style={{
-              fontSize: 20,
-              fontWeight: "500",
-            }}
-          >
-            Installation
-          </Text>
-          <Text
-            style={{
-              fontSize: 13,
-              marginTop: 5,
-            }}
-          >
-            Installation parts
-          </Text>
-
-          <View
-            style={{
-              paddingTop: 20,
-              paddingBottom: 20,
-              borderBottomWidth: 2,
-              borderColor: theme.gray.light2,
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 15,
-                fontWeight: "500",
-              }}
-            >
-              Installation small part of unit 1
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                color: theme.gray.light3,
-              }}
-            >
-              Installation description for the item
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                marginTop: 10,
-              }}
-            >
-              from 150.00
-            </Text>
-          </View>
-          <View
-            style={{
-              paddingTop: 20,
-              paddingBottom: 20,
-              borderBottomWidth: 2,
-              borderColor: theme.gray.light2,
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 15,
-                fontWeight: "500",
-              }}
-            >
-              Installation small part of unit 1
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                color: theme.gray.light3,
-              }}
-            >
-              Installation description for the item
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                marginTop: 10,
-              }}
-            >
-              from 150.00
-            </Text>
-          </View>
-        </View>
-
-        <View
-          style={{
-            marginTop: 10,
-            marginLeft: 15,
-            marginRight: 15,
-          }}
-          ref={(el) => (categoryRefs.current[6] = el)}
-          onLayout={getHeight}
-        >
-          <Text
-            style={{
-              fontSize: 20,
-              fontWeight: "500",
-            }}
-          >
-            Troubleshoot Offer
-          </Text>
-          <Text
-            style={{
-              fontSize: 13,
-              marginTop: 5,
-            }}
-          >
-            Installation parts
-          </Text>
-
-          <View
-            style={{
-              paddingTop: 20,
-              paddingBottom: 20,
-              borderBottomWidth: 2,
-              borderColor: theme.gray.light2,
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 15,
-                fontWeight: "500",
-              }}
-            >
-              Troubleshoot small part of unit 1
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                color: theme.gray.light3,
-              }}
-            >
-              Troubleshoot description for the item
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                marginTop: 10,
-              }}
-            >
-              from 150.00
-            </Text>
-          </View>
-          <View
-            style={{
-              paddingTop: 20,
-              paddingBottom: 20,
-              borderBottomWidth: 2,
-              borderColor: theme.gray.light2,
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 15,
-                fontWeight: "500",
-              }}
-            >
-              Troubleshoot small part of unit 1
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                color: theme.gray.light3,
-              }}
-            >
-              Troubleshoot description for the item
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                marginTop: 10,
-              }}
-            >
-              from 150.00
-            </Text>
-          </View>
-        </View>
-
-        <View
-          style={{
-            marginTop: 10,
-            marginLeft: 15,
-            marginRight: 15,
-          }}
-          ref={(el) => (categoryRefs.current[6] = el)}
-          onLayout={getHeight}
-        >
-          <Text
-            style={{
-              fontSize: 20,
-              fontWeight: "500",
-            }}
-          >
-            Special Offer
-          </Text>
-          <Text
-            style={{
-              fontSize: 13,
-              marginTop: 5,
-            }}
-          >
-            Installation parts
-          </Text>
-
-          <View
-            style={{
-              paddingTop: 20,
-              paddingBottom: 20,
-              borderBottomWidth: 2,
-              borderColor: theme.gray.light2,
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 15,
-                fontWeight: "500",
-              }}
-            >
-              Installation small part of unit 1
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                color: theme.gray.light3,
-              }}
-            >
-              Installation description for the item
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                marginTop: 10,
-              }}
-            >
-              from 150.00
-            </Text>
-          </View>
-          <View
-            style={{
-              paddingTop: 20,
-              paddingBottom: 20,
-              borderBottomWidth: 2,
-              borderColor: theme.gray.light2,
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 15,
-                fontWeight: "500",
-              }}
-            >
-              Installation small part of unit 1
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                color: theme.gray.light3,
-              }}
-            >
-              Installation description for the item
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                marginTop: 10,
-              }}
-            >
-              from 150.00
-            </Text>
-          </View>
-        </View>
-
+              <ScrollContentComponent servicesByCategory={service} />
+            </View>
+          ))}
+        </>
       </ScrollComponent>
-      {/* </ScrollView> */}
     </SafeAreaView>
   );
 };
