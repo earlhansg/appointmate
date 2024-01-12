@@ -1,14 +1,5 @@
-import React, {
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-  useMemo
-} from "react";
-import {
-  SafeAreaView,
-  View
-} from "react-native";
+import React, { useContext, useEffect, useRef, useState, useMemo } from "react";
+import { SafeAreaView, View } from "react-native";
 import { CheckoutStyle } from "./CheckoutStyle";
 import ButtonIcon from "../../components/Buttons/ButtonIcon";
 import { CheckoutData, Navigation } from "../model/Navigation";
@@ -46,134 +37,134 @@ const Checkout = ({ navigation }: Navigation) => {
       {
         id: 1,
         categoryName: "Cleaning",
-        caption: 'Cleaning Header',
+        caption: "Cleaning Header",
         services: [
           {
             id: 1,
             serviceName: "Cleaning 1",
-            caption: 'Cleaning 1',
+            caption: "Cleaning 1",
             price: 500,
           },
           {
             id: 2,
             serviceName: "Cleaning 2",
-            caption: 'Cleaning 2',
+            caption: "Cleaning 2",
             price: 5800,
           },
           {
             id: 3,
             serviceName: "Cleaning 3",
-            caption: 'Cleaning 3',
+            caption: "Cleaning 3",
             price: 5800,
           },
           {
             id: 4,
             serviceName: "Cleaning 4",
-            caption: 'Cleaning 4',
+            caption: "Cleaning 4",
             price: 5800,
-          }
+          },
         ],
       },
       {
         id: 2,
         categoryName: "Repair",
-        caption: 'Repair Header',
+        caption: "Repair Header",
         services: [
           {
             id: 1,
             serviceName: "Repair 1",
-            caption: 'Repair 1',
+            caption: "Repair 1",
             price: 500,
           },
           {
             id: 2,
             serviceName: "Repair 2",
-            caption: 'Repair 2',
+            caption: "Repair 2",
             price: 5800,
           },
           {
             id: 3,
             serviceName: "Repair 3",
-            caption: 'Repair 3',
+            caption: "Repair 3",
             price: 5800,
           },
           {
             id: 4,
             serviceName: "Repair 4",
-            caption: 'Repair 4',
+            caption: "Repair 4",
             price: 5800,
-          }
+          },
         ],
       },
       {
         id: 3,
         categoryName: "Disassemble",
-        caption: 'Disassemble Header',
+        caption: "Disassemble Header",
         services: [
           {
             id: 1,
             serviceName: "Disassemble 1",
-            caption: 'Disassemble 1',
+            caption: "Disassemble 1",
             price: 500,
           },
           {
             id: 2,
             serviceName: "Disassemble 2",
-            caption: 'Disassemble 2',
+            caption: "Disassemble 2",
             price: 5800,
-          }
+          },
         ],
       },
       {
         id: 4,
         categoryName: "Installation",
-        caption: 'Installation Header',
+        caption: "Installation Header",
         services: [
           {
             id: 1,
             serviceName: "Installation 1",
-            caption: 'Installation 1',
+            caption: "Installation 1",
             price: 500,
           },
           {
             id: 2,
             serviceName: "Installation 2",
-            caption: 'Installation 2',
+            caption: "Installation 2",
             price: 5800,
           },
           {
             id: 3,
             serviceName: "Installation 3",
-            caption: 'Installation 3',
+            caption: "Installation 3",
             price: 5800,
           },
           {
             id: 4,
             serviceName: "Installation 4",
-            caption: 'Installation 4',
+            caption: "Installation 4",
             price: 5800,
-          }
-        ]
+          },
+        ],
       },
       {
         id: 5,
         categoryName: "Troubleshoot",
-        caption: 'Troubleshoot Header',
+        caption: "Troubleshoot Header",
         services: [
           {
             id: 1,
             serviceName: "Troubleshoot 1",
-            caption: 'Troubleshoot 1',
+            caption: "Troubleshoot 1",
             price: 500,
           },
           {
             id: 2,
             serviceName: "Troubleshoot 2",
-            caption: 'Troubleshoot 2',
+            caption: "Troubleshoot 2",
             price: 5800,
-          }
-        ]
-      }
+          },
+        ],
+      },
     ],
     []
   );
@@ -223,7 +214,7 @@ const Checkout = ({ navigation }: Navigation) => {
     const heights: Category[] = [];
     categoryRefs.current.forEach((ref, i) => {
       ref?.measureInWindow((x, y, width, height) => {
-        heights.push({ categoryId: i, height, pageActive: false})
+        heights.push({ categoryId: i, height, pageActive: false });
       });
     });
     setCategoryHeights(heights);
@@ -266,7 +257,10 @@ const Checkout = ({ navigation }: Navigation) => {
               ref={(el) => (categoryRefs.current[service.id] = el)}
               onLayout={getHeight}
             >
-              <ScrollContentComponent key={service.id} servicesByCategory={service} />
+              <ScrollContentComponent
+                key={service.id}
+                servicesByCategory={service}
+              />
             </View>
           ))}
         </>

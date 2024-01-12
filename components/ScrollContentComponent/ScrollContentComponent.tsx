@@ -2,51 +2,38 @@ import React, { useContext } from "react";
 import { View, Text } from "react-native";
 import { ThemeContext } from "../../components/ThemeContext/ThemeContext";
 import { ServicesByCategory } from "../ScrollComponent/model/ServicesByCategory";
-
+import { ScrollContentComponentStyle } from "./ScrollContentComponentStyle";
 
 type ScrollContentComponentProps = {
   servicesByCategory: ServicesByCategory;
-}
+};
 
-const ScrollContentComponent = ({servicesByCategory} : ScrollContentComponentProps) => {
+const ScrollContentComponent = ({
+  servicesByCategory,
+}: ScrollContentComponentProps) => {
   const theme = useContext(ThemeContext);
 
   return (
     <>
-      <Text
-        style={{
-          fontSize: 20,
-          fontWeight: "500",
-        }}
-      >
+      <Text style={ScrollContentComponentStyle.categoryNameText}>
         {servicesByCategory.categoryName}
       </Text>
-      <Text
-        style={{
-          fontSize: 13,
-          marginTop: 5,
-        }}
-      >
+      <Text style={ScrollContentComponentStyle.categoryCaptionText}>
         {servicesByCategory.caption}
       </Text>
 
-      {servicesByCategory.services.map((service, index) => (
+      {servicesByCategory.services.map((service) => (
         <>
           <View
             key={service.id}
-            style={{
-              paddingTop: 20,
-              paddingBottom: 20,
-              borderBottomWidth: 2,
-              borderColor: theme.gray.light2,
-            }}
+            style={[
+              {
+                borderColor: theme.gray.light2,
+              },
+              ScrollContentComponentStyle.serviceContainer,
+            ]}
           >
-            <Text
-              style={{
-                fontSize: 15,
-                fontWeight: "500",
-              }}
-            >
+            <Text style={ScrollContentComponentStyle.serviceName}>
               {service.serviceName}
             </Text>
             <Text
@@ -57,12 +44,7 @@ const ScrollContentComponent = ({servicesByCategory} : ScrollContentComponentPro
             >
               {service.caption}
             </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                marginTop: 10,
-              }}
-            >
+            <Text style={ScrollContentComponentStyle.servicePrice}>
               {service.price}
             </Text>
           </View>

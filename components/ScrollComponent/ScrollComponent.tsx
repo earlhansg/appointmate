@@ -1,10 +1,4 @@
-import React, {
-  ReactElement,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { ReactElement, useContext, useRef, useState } from "react";
 import {
   FlatList,
   NativeScrollEvent,
@@ -17,6 +11,7 @@ import {
 import { ThemeContext } from "../../components/ThemeContext/ThemeContext";
 import { Category } from "../../pages/Checkout/Checkout";
 import { ServicesByCategory } from "./model/ServicesByCategory";
+import { ScrollComponentStyle } from "./ScrollComponentStyle";
 
 type ScrollComponentProps = {
   servicesByCategory: ServicesByCategory[];
@@ -84,17 +79,14 @@ const ScrollComponent = ({
       onScroll={handleScroll}
       scrollEventThrottle={16}
     >
-      {/* <CheckoutDetails checkoutData={checkoutData} deals={deals} /> */}
       {checkoutDetails}
       <View
-        style={{
-          marginTop: 10,
-          paddingLeft: 15,
-          paddingRight: 15,
-          borderBottomWidth: 1,
-          borderColor: theme.gray.light2,
-          backgroundColor: "white",
-        }}
+        style={[
+          {
+            borderColor: theme.gray.light2,
+          },
+          ScrollComponentStyle.flatListContainer,
+        ]}
       >
         <FlatList
           style={{ width: "100%" }}
@@ -106,26 +98,27 @@ const ScrollComponent = ({
             return (
               <TouchableOpacity
                 onPress={() => handleClickScroll(item.id)}
-                style={{
-                  paddingTop: 10,
-                  paddingBottom: 10,
-                  paddingLeft: 5,
-                  paddingRight: 5,
-                  marginRight: servicesByCategory.length - 1 === index ? 0 : 25,
-                  borderBottomWidth: item.id === scrollPosition ? 2 : 0,
-                  borderColor:
-                    item.id === scrollPosition ? theme.primary.color : "",
-                }}
+                style={[
+                  {
+                    marginRight:
+                      servicesByCategory.length - 1 === index ? 0 : 25,
+                    borderBottomWidth: item.id === scrollPosition ? 2 : 0,
+                    borderColor:
+                      item.id === scrollPosition ? theme.primary.color : "",
+                  },
+                  ScrollComponentStyle.touchableOpacityContainer,
+                ]}
               >
                 <Text
-                  style={{
-                    fontSize: 14,
-                    fontWeight: "500",
-                    color:
-                      item.id === scrollPosition
-                        ? theme.primary.color
-                        : theme.black.dark,
-                  }}
+                  style={[
+                    {
+                      color:
+                        item.id === scrollPosition
+                          ? theme.primary.color
+                          : theme.black.dark,
+                    },
+                    ScrollComponentStyle.categoryNameText,
+                  ]}
                 >
                   {item.categoryName}
                 </Text>
