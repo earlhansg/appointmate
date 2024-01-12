@@ -17,8 +17,8 @@ import { useRoute, RouteProp } from "@react-navigation/native";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import CheckoutDetails from "../../components/CheckoutDetails/CheckoutDetails";
-import ScrollComponent from "./ScrollComponent/ScrollComponent";
-import ScrollContentComponent from "./ScrollContentComponent/ScrollContentComponent";
+import ScrollComponent from "../../components/ScrollComponent/ScrollComponent";
+import ScrollContentComponent from "../../components/ScrollContentComponent/ScrollContentComponent";
 
 type CategoryRouteProps = {
   route: RouteProp<
