@@ -10,6 +10,7 @@ export const ScrollContentComponentStyle = StyleSheet.create({
     marginTop: 5,
   },
   serviceContainer: {
+    flexDirection: "row",
     paddingTop: 20,
     paddingBottom: 20,
     borderBottomWidth: 2,
@@ -21,5 +22,13 @@ export const ScrollContentComponentStyle = StyleSheet.create({
   servicePrice: {
     fontSize: 13,
     marginTop: 10,
-  }
+  },
+  imageContainer: {
+    marginRight: 5,
+    justifyContent: "center",
+  },
+  image: {
+    width: 75,
+    height: 50,
+  },
 });

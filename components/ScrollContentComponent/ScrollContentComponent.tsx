@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 import { ThemeContext } from "../../components/ThemeContext/ThemeContext";
 import { ServicesByCategory } from "../ScrollComponent/model/ServicesByCategory";
 import { ScrollContentComponentStyle } from "./ScrollContentComponentStyle";
@@ -12,6 +12,8 @@ const ScrollContentComponent = ({
   servicesByCategory,
 }: ScrollContentComponentProps) => {
   const theme = useContext(ThemeContext);
+
+  const logo = require("../../assets/checkout-images/air-conditioner-3.png");
 
   return (
     <>
@@ -33,20 +35,30 @@ const ScrollContentComponent = ({
               ScrollContentComponentStyle.serviceContainer,
             ]}
           >
-            <Text style={ScrollContentComponentStyle.serviceName}>
-              {service.serviceName}
-            </Text>
-            <Text
-              style={{
-                fontSize: 13,
-                color: theme.gray.light3,
-              }}
-            >
-              {service.caption}
-            </Text>
-            <Text style={ScrollContentComponentStyle.servicePrice}>
-              {service.price}
-            </Text>
+            <View style={{marginRight: "auto"}}>
+              <Text style={ScrollContentComponentStyle.serviceName}>
+                {service.serviceName}
+              </Text>
+              <Text
+                style={{
+                  fontSize: 13,
+                  color: theme.gray.light3,
+                }}
+              >
+                {service.caption}
+              </Text>
+              <Text style={ScrollContentComponentStyle.servicePrice}>
+                {service.price}
+              </Text>
+            </View>
+            <View style={ScrollContentComponentStyle.imageContainer}>
+              <Image
+                source={logo}
+                resizeMode="cover"
+                style={ScrollContentComponentStyle.image}
+              />
+            </View>
+
           </View>
         </>
       ))}
