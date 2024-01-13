@@ -42,6 +42,15 @@ const ShopDeals = ({
   const appTheme = useContext(ThemeContext);
   const screen = useContext(NavigationContext);
   const keyExtractor = (item: Shop) => item.id.toString();
+
+  const handlePress = (item: Shop) => {
+    console.log("press")
+    if (screen && screen.navigateToCheckout) {
+      console.log("press")
+      screen.navigateToCheckout(item);
+    }
+  };
+
   return (
     <>
       <FlatList
@@ -57,7 +66,7 @@ const ShopDeals = ({
                     : verticalStyles?.imageButton
                 }
                 underlayColor={showInHorizontal ? settings.underlayColor : ''}
-                onPress={() => screen?.navigate(item)}
+                onPress={() => handlePress(item)}
               >
                 <View
                   style={

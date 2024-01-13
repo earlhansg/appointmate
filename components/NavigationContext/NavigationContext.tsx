@@ -1,23 +1,33 @@
 import React, { createContext, ReactNode } from "react";
 import { Freelancers } from "../TopFreelancers/model/Freelancer";
 import { Shop } from "../TopShops/model/Shop";
+import { Service } from "../ScrollComponent/model/ServicesByCategory";
 
 type NavigationContextProps = {
-  navigate: (data: Freelancers | Shop) => void;
-}
+  navigateToCheckout?: (data: Freelancers | Shop) => void;
+  navigateToServiceCheckout?: () => void;
+};
 
 type NavigationContextProviderProps = {
   children: ReactNode;
-  screen: (checkoutData: Freelancers | Shop) => void;
-}
-
-export const NavigationContext = createContext<{navigate: (checkoutData: Freelancers | Shop) => void } | null>(null);
-
-const NavigationContextProvider: React.FC<NavigationContextProviderProps> = ({ children, screen }: NavigationContextProviderProps) => {
-
-const contextValue: NavigationContextProps = {
-  navigate: screen
+  checkout?: (checkoutData: Freelancers | Shop) => void;
+  serviceCheckout?: () => void;
 };
+
+export const NavigationContext = createContext<NavigationContextProps>({
+  navigateToCheckout: () => {},
+  navigateToServiceCheckout: () => {}
+});
+
+const NavigationContextProvider: React.FC<NavigationContextProviderProps> = ({
+  children,
+  checkout,
+  serviceCheckout
+}: NavigationContextProviderProps) => {
+  const contextValue: NavigationContextProps = {
+    navigateToCheckout: checkout,
+    navigateToServiceCheckout: serviceCheckout
+  };
 
   return (
     <NavigationContext.Provider value={contextValue}>

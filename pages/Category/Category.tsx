@@ -104,7 +104,7 @@ const Category = ({ navigation }: Navigation) => {
     navigation?.navigate("Home");
   };
   return (
-    <NavigationContextProvider screen={(data) => navigate(data)}>
+    <NavigationContextProvider checkout={(data) => navigate(data)}>
       <SafeAreaView style={CategoryStyle.container}>
         <View style={CategoryStyle.headerContainer}>
           <View style={CategoryStyle.headerIconContainer}>

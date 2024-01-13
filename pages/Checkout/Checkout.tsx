@@ -10,6 +10,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import CheckoutDetails from "../../components/CheckoutDetails/CheckoutDetails";
 import ScrollComponent from "../../components/ScrollComponent/ScrollComponent";
 import ScrollContentComponent from "../../components/ScrollContentComponent/ScrollContentComponent";
+import NavigationContextProvider from "../../components/NavigationContext/NavigationContext";
 
 type CategoryRouteProps = {
   route: RouteProp<
@@ -221,51 +222,58 @@ const Checkout = ({ navigation }: Navigation) => {
     console.log("categoryHeights", categoryHeights);
   };
 
-  return (
-    <SafeAreaView style={CheckoutStyle.container}>
-      <View style={CheckoutStyle.headerContainer}>
-        <View style={CheckoutStyle.headerIconContainer}>
-          <ButtonIcon
-            renderIcon={(settings) => (
-              <MaterialCommunityIcons
-                name="arrow-left"
-                color={theme.primary.color}
-                size={20}
-              />
-            )}
-            onClick={handleClickMenuBar}
-          />
-        </View>
-      </View>
+  const navigate = () => {
+    console.log("going back to home")
+    navigation?.navigate("Profile");
+  }
 
-      <ScrollComponent
-        servicesByCategory={servicesByCategory}
-        categoryHeights={categoryHeights}
-        checkoutDetails={
-          <CheckoutDetails checkoutData={checkoutData} deals={deals} />
-        }
-      >
-        <>
-          {servicesByCategory.map((service) => (
-            <View
-              key={`parent_${service.id}`}
-              style={{
-                marginTop: 10,
-                marginLeft: 15,
-                marginRight: 15,
-              }}
-              ref={(el) => (categoryRefs.current[service.id] = el)}
-              onLayout={getHeight}
-            >
-              <ScrollContentComponent
-                key={`child_${service.id}`}
-                servicesByCategory={service}
-              />
-            </View>
-          ))}
-        </>
-      </ScrollComponent>
-    </SafeAreaView>
+  return (
+    <NavigationContextProvider serviceCheckout={navigate}>
+      <SafeAreaView style={CheckoutStyle.container}>
+        <View style={CheckoutStyle.headerContainer}>
+          <View style={CheckoutStyle.headerIconContainer}>
+            <ButtonIcon
+              renderIcon={(settings) => (
+                <MaterialCommunityIcons
+                  name="arrow-left"
+                  color={theme.primary.color}
+                  size={20}
+                />
+              )}
+              onClick={() => navigation?.navigate("Home")}
+            />
+          </View>
+        </View>
+
+        <ScrollComponent
+          servicesByCategory={servicesByCategory}
+          categoryHeights={categoryHeights}
+          checkoutDetails={
+            <CheckoutDetails checkoutData={checkoutData} deals={deals} />
+          }
+        >
+          <>
+            {servicesByCategory.map((service) => (
+              <View
+                key={`parent_${service.id}`}
+                style={{
+                  marginTop: 10,
+                  marginLeft: 15,
+                  marginRight: 15,
+                }}
+                ref={(el) => (categoryRefs.current[service.id] = el)}
+                onLayout={getHeight}
+              >
+                <ScrollContentComponent
+                  key={`child_${service.id}`}
+                  servicesByCategory={service}
+                />
+              </View>
+            ))}
+          </>
+        </ScrollComponent>
+      </SafeAreaView>
+    </NavigationContextProvider>
   );
 };
 
