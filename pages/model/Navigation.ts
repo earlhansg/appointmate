@@ -34,11 +34,12 @@ type RootStackParamList = {
   Favourites: undefined;
   Category: CategoryData;
   Checkout: CheckoutData;
+  ServiceCheckout: undefined;
 };
 
 export type Navigation = {
   navigation?: DrawerNavigationProp<
     RootStackParamList,
-    "Home" | "Notifications" | "Profile" | "Update" | "Favourites" | "Category" | "Checkout"
+    "Home" | "Notifications" | "Profile" | "Update" | "Favourites" | "Category" | "Checkout" | "ServiceCheckout"
   >;
 };

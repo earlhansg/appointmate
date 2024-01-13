@@ -194,11 +194,6 @@ const Checkout = ({ navigation }: Navigation) => {
 
   const logo = require("../../assets/logo-images/logo1.png");
 
-  const handleClickMenuBar = () => {
-    console.log("open drawer");
-    navigation?.navigate("Home");
-  };
-
   const [categoryHeights, setCategoryHeights] = useState<Category[]>([]);
   const categoryRefs = useRef<Array<View | null>>([]);
 
@@ -224,7 +219,7 @@ const Checkout = ({ navigation }: Navigation) => {
 
   const navigate = () => {
     console.log("going back to home")
-    navigation?.navigate("Profile");
+    navigation?.navigate("ServiceCheckout");
   }
 
   return (
