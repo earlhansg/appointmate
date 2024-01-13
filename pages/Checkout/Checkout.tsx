@@ -42,7 +42,7 @@ const Checkout = ({ navigation }: Navigation) => {
           {
             id: 1,
             serviceName: "Cleaning 1",
-            caption: "Cleaning 1",
+            caption: "Cleaning 1 Cleaning 1 Cleaning 1 Cleaning 1 Cleaning 1 Cleaning 1 Cleaning 1 Cleaning 1",
             price: 500,
           },
           {

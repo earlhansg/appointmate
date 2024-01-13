@@ -43,6 +43,7 @@ const ScrollContentComponent = ({
                 style={{
                   fontSize: 13,
                   color: theme.gray.light3,
+                  maxWidth: 220,
                 }}
               >
                 {service.caption}
