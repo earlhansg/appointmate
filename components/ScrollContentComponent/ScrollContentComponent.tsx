@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, TouchableWithoutFeedback } from "react-native";
 import { ThemeContext } from "../../components/ThemeContext/ThemeContext";
 import { ServicesByCategory } from "../ScrollComponent/model/ServicesByCategory";
 import { ScrollContentComponentStyle } from "./ScrollContentComponentStyle";
@@ -15,6 +15,8 @@ const ScrollContentComponent = ({
 
   const logo = require("../../assets/checkout-images/air-conditioner-3.png");
 
+  const onPress = () => {};
+
   return (
     <>
       <Text style={ScrollContentComponentStyle.categoryNameText}>
@@ -25,9 +27,8 @@ const ScrollContentComponent = ({
       </Text>
 
       {servicesByCategory.services.map((service) => (
-        <>
+        <TouchableWithoutFeedback onPress={onPress}>
           <View
-            key={service.id}
             style={[
               {
                 borderColor: theme.gray.light2,
@@ -35,7 +36,7 @@ const ScrollContentComponent = ({
               ScrollContentComponentStyle.serviceContainer,
             ]}
           >
-            <View style={{marginRight: "auto"}}>
+            <View style={{ marginRight: "auto" }}>
               <Text style={ScrollContentComponentStyle.serviceName}>
                 {service.serviceName}
               </Text>
@@ -59,9 +60,8 @@ const ScrollContentComponent = ({
                 style={ScrollContentComponentStyle.image}
               />
             </View>
-
           </View>
-        </>
+        </TouchableWithoutFeedback>
       ))}
     </>
   );
