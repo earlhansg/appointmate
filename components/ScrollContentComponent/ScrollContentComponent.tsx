@@ -33,7 +33,7 @@ const ScrollContentComponent = ({
       </Text>
 
       {servicesByCategory.services.map((service) => (
-        <TouchableWithoutFeedback onPress={handlePress}>
+        <TouchableWithoutFeedback key={service.id} onPress={handlePress}>
           <View
             style={[
               {
