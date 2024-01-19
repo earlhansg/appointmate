@@ -19,7 +19,7 @@ const ScrollContentComponent = ({
   const theme = useContext(ThemeContext);
   const screen = useContext(NavigationContext);
 
-  const logo = require("../../assets/checkout-images/air-conditioner-3.png");
+  const aircon = require("../../assets/checkout-images/air-conditioner-3.png");
 
   const handlePress = (serviceCheckoutData: Service) => {
     if (screen && screen.navigateToServiceCheckout) {
@@ -66,7 +66,7 @@ const ScrollContentComponent = ({
             </View>
             <View style={ScrollContentComponentStyle.imageContainer}>
               <Image
-                source={logo}
+                source={aircon}
                 resizeMode="cover"
                 style={ScrollContentComponentStyle.image}
               />
