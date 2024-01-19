@@ -10,8 +10,8 @@ type ServiceCheckoutProps = {
 
 type NavigationContextProps = {
   navigateToCheckout?: (data: Freelancers | Shop) => void;
+  navigateToServiceCheckout?: (checkoutData: Freelancers | Shop, serviceCheckoutData: Service) => void;
   // navigateToServiceCheckout?: (props: ServiceCheckoutProps) => void;
-  navigateToServiceCheckout?: (props: ServiceCheckoutProps) => void;
 };
 
 type NavigationContextProviderProps = {

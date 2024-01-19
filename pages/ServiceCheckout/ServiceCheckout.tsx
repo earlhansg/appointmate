@@ -62,7 +62,7 @@ const ServiceCheckout = ({ navigation }: Navigation) => {
               <Text style={{marginTop: 5, fontSize:13, color: theme.gray.light3}}>Cleaning 1 Cleaning 1 Cleaning 1 Cleaning 1 Cleaning 1 Cleaning 1 Cleaning 1</Text>
             </View>
             <Text style={{flex: 1, 
-            textAlign: "center", marginTop: 10, fontSize:13, fontWeight: "500"}}>from 156.00</Text>
+            textAlign: "center", marginTop: 10, fontSize:13, fontWeight: "500"}}>156.00</Text>
           </View>
         </View>
       </SafeAreaView>

@@ -23,7 +23,7 @@ const ScrollContentComponent = ({
 
   const handlePress = (serviceCheckoutData: Service) => {
     if (screen && screen.navigateToServiceCheckout) {
-      screen.navigateToServiceCheckout({checkoutData, serviceCheckoutData});
+      screen.navigateToServiceCheckout(checkoutData, serviceCheckoutData);
     }
   };
 
