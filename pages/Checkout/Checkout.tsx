@@ -6,11 +6,14 @@ import { CheckoutData, Navigation } from "../model/Navigation";
 import { ThemeContext } from "../../components/ThemeContext/ThemeContext";
 import { useRoute, RouteProp } from "@react-navigation/native";
 
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons, } from "@expo/vector-icons";
 import CheckoutDetails from "../../components/CheckoutDetails/CheckoutDetails";
 import ScrollComponent from "../../components/ScrollComponent/ScrollComponent";
 import ScrollContentComponent from "../../components/ScrollContentComponent/ScrollContentComponent";
 import NavigationContextProvider from "../../components/NavigationContext/NavigationContext";
+import { Shop } from "../../components/TopShops/model/Shop";
+import { Freelancers } from "../../components/TopFreelancers/model/Freelancer";
+import { Service } from "../../components/ScrollComponent/model/ServicesByCategory";
 
 type CategoryRouteProps = {
   route: RouteProp<
@@ -217,9 +220,12 @@ const Checkout = ({ navigation }: Navigation) => {
     console.log("categoryHeights", categoryHeights);
   };
 
-  const navigate = () => {
+  const navigate = (checkoutData: Freelancers | Shop, serviceCheckoutData: Service) => {
     console.log("going back to home")
-    navigation?.navigate("ServiceCheckout");
+    navigation?.navigate("ServiceCheckout", {
+      checkoutData, serviceCheckoutData
+    });
+    
   }
 
   return (
@@ -262,6 +268,7 @@ const Checkout = ({ navigation }: Navigation) => {
                 <ScrollContentComponent
                   key={`child_${service.id}`}
                   servicesByCategory={service}
+                  checkoutData={checkoutData}
                 />
               </View>
             ))}

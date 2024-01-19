@@ -1,17 +1,23 @@
 import React, { createContext, ReactNode } from "react";
 import { Freelancers } from "../TopFreelancers/model/Freelancer";
 import { Shop } from "../TopShops/model/Shop";
-import { Service } from "../ScrollComponent/model/ServicesByCategory";
+import { Service, ServicesByCategory } from "../ScrollComponent/model/ServicesByCategory";
+
+type ServiceCheckoutProps = {
+  checkoutData: Freelancers | Shop;
+  serviceCheckoutData: Service;
+};
 
 type NavigationContextProps = {
   navigateToCheckout?: (data: Freelancers | Shop) => void;
-  navigateToServiceCheckout?: () => void;
+  // navigateToServiceCheckout?: (props: ServiceCheckoutProps) => void;
+  navigateToServiceCheckout?: (props: ServiceCheckoutProps) => void;
 };
 
 type NavigationContextProviderProps = {
   children: ReactNode;
-  checkout?: (checkoutData: Freelancers | Shop) => void;
-  serviceCheckout?: () => void;
+  checkout?: NavigationContextProps["navigateToCheckout"];
+  serviceCheckout?: NavigationContextProps["navigateToServiceCheckout"];
 };
 
 export const NavigationContext = createContext<NavigationContextProps>({

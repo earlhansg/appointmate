@@ -1,25 +1,29 @@
 import React, { useContext } from "react";
 import { View, Text, Image, TouchableWithoutFeedback } from "react-native";
 import { ThemeContext } from "../../components/ThemeContext/ThemeContext";
-import { ServicesByCategory } from "../ScrollComponent/model/ServicesByCategory";
+import { Service, ServicesByCategory } from "../ScrollComponent/model/ServicesByCategory";
 import { ScrollContentComponentStyle } from "./ScrollContentComponentStyle";
 import { NavigationContext } from "../NavigationContext/NavigationContext";
+import { Freelancers } from "../TopFreelancers/model/Freelancer";
+import { Shop } from "../TopShops/model/Shop";
 
 type ScrollContentComponentProps = {
   servicesByCategory: ServicesByCategory;
+  checkoutData: Freelancers | Shop;
 };
 
 const ScrollContentComponent = ({
   servicesByCategory,
+  checkoutData
 }: ScrollContentComponentProps) => {
   const theme = useContext(ThemeContext);
   const screen = useContext(NavigationContext);
 
   const logo = require("../../assets/checkout-images/air-conditioner-3.png");
 
-  const handlePress = () => {
+  const handlePress = (serviceCheckoutData: Service) => {
     if (screen && screen.navigateToServiceCheckout) {
-      screen.navigateToServiceCheckout();
+      screen.navigateToServiceCheckout({checkoutData, serviceCheckoutData});
     }
   };
 
@@ -33,7 +37,8 @@ const ScrollContentComponent = ({
       </Text>
 
       {servicesByCategory.services.map((service) => (
-        <TouchableWithoutFeedback key={service.id} onPress={handlePress}>
+        // <TouchableWithoutFeedback key={service.id} onPress={handlePress}>
+        <TouchableWithoutFeedback key={service.id} onPress={() => handlePress(service)}>
           <View
             style={[
               {

@@ -1,6 +1,7 @@
 import { DrawerNavigationProp } from "@react-navigation/drawer";
 import { Freelancers } from "../../components/TopFreelancers/model/Freelancer";
 import { Shop } from "../../components/TopShops/model/Shop";
+import { Service, ServicesByCategory } from "../../components/ScrollComponent/model/ServicesByCategory";
 
 
 type UserData = {
@@ -25,6 +26,11 @@ export type CheckoutData = {
   checkoutData: Freelancers | Shop
 }
 
+export type ServiceCheckoutData = {
+  checkoutData: Freelancers | Shop
+  serviceCheckoutData: Service
+}
+
 
 type RootStackParamList = {
   Home: undefined;
@@ -34,7 +40,7 @@ type RootStackParamList = {
   Favourites: undefined;
   Category: CategoryData;
   Checkout: CheckoutData;
-  ServiceCheckout: undefined;
+  ServiceCheckout: ServiceCheckoutData;
 };
 
 export type Navigation = {
