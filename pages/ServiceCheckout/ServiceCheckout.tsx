@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Image, SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import ButtonIcon from '../../components/Buttons/ButtonIcon'
 
-import { Entypo } from "@expo/vector-icons";
+import { Entypo, MaterialIcons  } from "@expo/vector-icons";
 import { ServiceCheckoutStyle } from './ServiceCheckoutStyle';
 import { ThemeContext } from '../../components/ThemeContext/ThemeContext';
 import { Navigation, ServiceCheckoutData } from '../model/Navigation';
@@ -87,6 +87,28 @@ const ServiceCheckout = ({ navigation }: Navigation) => {
               }}>In Shop</Text>
             </View>
           </View>
+
+          <View style={{margin: 10, padding: 10, borderTopWidth: 1, borderBottomWidth: 2, borderLeftWidth: 2, borderRightWidth: 2, borderColor: theme.gray.light1, borderRadius: 10, }}>
+            <View style={{flexDirection:"row", gap: 7}}>
+              <MaterialIcons name="payment" 
+              size={20} color={theme.primary.color} />
+              <Text style={{
+                fontSize: 14,
+                fontWeight: "500"
+              }}>Payment method</Text>
+            </View>
+            <View style={{flexDirection:"row", gap: 5, marginTop: 10}}>
+              <Entypo name="plus" 
+              size={20} color={theme.primary.color} />
+              <Text style={{
+                fontSize: 12,
+                fontWeight: "500",
+                alignSelf:"center",
+                color: theme.primary.color
+              }}>Add a payment method</Text>
+            </View>
+          </View>
+
         </View>
 
       </SafeAreaView>
