@@ -217,11 +217,11 @@ const Checkout = ({ navigation }: Navigation) => {
       });
     });
     setCategoryHeights(heights);
-    console.log("categoryHeights", categoryHeights);
+    // console.log("categoryHeights", categoryHeights);
   };
 
   const navigate = (checkoutData: Freelancers | Shop, serviceCheckoutData: Service) => {
-    console.log("going back to home")
+    // console.log("going back to home")
     navigation?.navigate("ServiceCheckout", {
       checkoutData, serviceCheckoutData
     });

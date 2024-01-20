@@ -12,6 +12,9 @@ type SlideShopsScreenProps = {
 
 const SlideShopsScreen = ({ shopDeals }: SlideShopsScreenProps) => {
 const theme = useContext(ThemeContext);
+
+console.log("SlideShopsScreen");
+
   return (
     <View style={{ flex: 1 }}>
       <View

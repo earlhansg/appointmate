@@ -46,7 +46,7 @@ const ShopDeals = ({
   const handlePress = (item: Shop) => {
     console.log("press")
     if (screen && screen.navigateToCheckout) {
-      console.log("press")
+      // console.log("press")
       screen.navigateToCheckout(item);
     }
   };

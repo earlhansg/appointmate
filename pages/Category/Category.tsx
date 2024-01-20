@@ -100,7 +100,7 @@ const Category = ({ navigation }: Navigation) => {
   ];
 
   const handleClickMenuBar = () => {
-    console.log("open drawer");
+    // console.log("open drawer");
     navigation?.navigate("Home");
   };
   return (

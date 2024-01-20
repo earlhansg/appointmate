@@ -19,6 +19,8 @@ const ScrollContentComponent = ({
   const theme = useContext(ThemeContext);
   const screen = useContext(NavigationContext);
 
+  console.log('ScrollContentComponentProps')
+
   const aircon = require("../../assets/checkout-images/air-conditioner-3.png");
 
   const handlePress = (serviceCheckoutData: Service) => {

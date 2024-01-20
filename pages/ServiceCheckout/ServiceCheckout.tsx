@@ -64,7 +64,31 @@ const ServiceCheckout = ({ navigation }: Navigation) => {
             <Text style={{flex: 1, 
             textAlign: "center", marginTop: 10, fontSize:13, fontWeight: "500"}}>156.00</Text>
           </View>
+
+          <View style={{margin: 10, padding: 10, borderTopWidth: 1, borderBottomWidth: 2, borderLeftWidth: 2, borderRightWidth: 2, borderColor: theme.gray.light1, borderRadius: 10, }}>
+            <Text style={{
+              fontSize: 14,
+              fontWeight: "500"
+            }}>Service Options</Text>
+            <View style={{
+              paddingTop: 15, paddingBottom: 15, paddingLeft: 10, paddingRight: 10, borderWidth: 2, borderColor: theme.primary.color, borderRadius: 10, marginTop: 10
+            }}>
+              <Text style={{
+                fontSize: 12,
+                fontWeight: "500"
+              }}>Home Service</Text>
+            </View>
+            <View style={{
+              paddingTop: 15, paddingBottom: 15, paddingLeft: 10, paddingRight: 10, borderWidth: 2, borderColor: theme.gray.light1, borderRadius: 10, marginTop: 10
+            }}>
+              <Text style={{
+                fontSize: 12,
+                fontWeight: "500"
+              }}>In Shop</Text>
+            </View>
+          </View>
         </View>
+
       </SafeAreaView>
   )
 }

@@ -9,6 +9,8 @@ import { Freelancers } from '../TopFreelancers/model/Freelancer'
 const SlideFreelancersScreen = ({freelancers}: {freelancers: Freelancers[]}) => {
   const theme = useContext(ThemeContext);
 
+  console.log("SlideFreelancersScreen");
+
   const keyExtractor = (item: Freelancers) => item.id.toString();
 
   return (

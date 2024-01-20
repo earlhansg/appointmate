@@ -28,6 +28,8 @@ const ScrollComponent = ({
 }: ScrollComponentProps) => {
   const theme = useContext(ThemeContext);
 
+  console.log('ScrollComponent')
+
   const scrollViewRef = useRef<ScrollView>(null);
   const flatListRef = useRef<FlatList | null>(null);
 
