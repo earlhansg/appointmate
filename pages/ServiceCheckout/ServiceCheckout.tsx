@@ -8,7 +8,10 @@ import { ThemeContext } from "../../components/ThemeContext/ThemeContext";
 import { Navigation, ServiceCheckoutData } from "../model/Navigation";
 
 import { useRoute, RouteProp } from "@react-navigation/native";
-import { Calendar } from "react-native-calendars";
+import { Calendar, TimelineList, TimelineEventProps, CalendarUtils, CalendarProvider } from "react-native-calendars";
+
+import { groupBy } from 'lodash';
+
 
 type ServiceRouteProps = {
   route: RouteProp<
@@ -18,6 +21,35 @@ type ServiceRouteProps = {
     "ServiceCheckout"
   >;
 };
+
+const EVENT_COLOR = '#e6add8';
+const today = new Date();
+export const getDate = (offset = 0) => CalendarUtils.getCalendarDateString(new Date().setDate(today.getDate() + offset));
+
+const timelineEvents: TimelineEventProps[] = [
+  {
+    start: `${getDate(-1)} 09:20:00`,
+    end: `${getDate(-1)} 12:00:00`,
+    title: 'Merge Request to React Native Calendars',
+    summary: 'Merge Timeline Calendar to React Native Calendars'
+  },
+  {
+    start: `${getDate()} 01:15:00`,
+    end: `${getDate()} 02:30:00`,
+    title: 'Meeting A',
+    summary: 'Summary for meeting A',
+    color: EVENT_COLOR
+  },
+  {
+    start: `${getDate()} 01:30:00`,
+    end: `${getDate()} 02:30:00`,
+    title: 'Meeting B',
+    summary: 'Summary for meeting B',
+    color: EVENT_COLOR
+  }
+]
+
+const EVENTS: TimelineEventProps[] = timelineEvents;
 
 const ServiceCheckout = ({ navigation }: Navigation) => {
   const theme = useContext(ThemeContext);
@@ -29,8 +61,13 @@ const ServiceCheckout = ({ navigation }: Navigation) => {
 
 
   const vacation = {key: 'vacation', color: 'red', selectedDotColor: 'blue'};
-const massage = {key: 'massage', color: 'blue', selectedDotColor: 'blue'};
-const workout = {key: 'workout', color: 'green'};
+  const massage = {key: 'massage', color: 'blue', selectedDotColor: 'blue'};
+  const workout = {key: 'workout', color: 'green'};
+
+  const eventsByDate = groupBy(EVENTS, (e) => CalendarUtils.getCalendarDateString(e.start));
+  
+
+  
   return (
     <SafeAreaView style={ServiceCheckoutStyle.container}>
       <View
@@ -330,6 +367,9 @@ const workout = {key: 'workout', color: 'green'};
               </View>
             </View>
             
+
+            <CalendarProvider date={getDate()}>
+            
             <Calendar
               minDate={"2024-01-01"}
               onDayPress={(day) => {
@@ -344,6 +384,15 @@ const workout = {key: 'workout', color: 'green'};
                 "2024-01-26": { dots: [massage, workout], disabled: true },
               }}
             />
+              <TimelineList
+                events={eventsByDate}
+                // timelineProps={this.timelineProps}
+                showNowIndicator
+                // scrollToNow
+                scrollToFirst
+                initialTime={{hour: 9, minutes: 0}}
+              />
+            </CalendarProvider>
           </View>
 
         </ScrollView>
