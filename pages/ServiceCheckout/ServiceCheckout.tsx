@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useCallback, useContext, useMemo, useState } from "react";
 import { Image, SafeAreaView, StyleSheet, Text, View, ScrollView } from "react-native";
 import ButtonIcon from "../../components/Buttons/ButtonIcon";
 
@@ -8,10 +8,12 @@ import { ThemeContext } from "../../components/ThemeContext/ThemeContext";
 import { Navigation, ServiceCheckoutData } from "../model/Navigation";
 
 import { useRoute, RouteProp } from "@react-navigation/native";
-import { Calendar, TimelineList, TimelineEventProps, CalendarUtils, CalendarProvider } from "react-native-calendars";
+import { Calendar, TimelineList, TimelineEventProps, CalendarUtils, CalendarProvider, ExpandableCalendar, DateData } from "react-native-calendars";
 
 import { groupBy } from 'lodash';
 
+const today = new Date();
+export const getInitialDate = (offset = 0) => CalendarUtils.getCalendarDateString(new Date().setDate(today.getDate() + offset));
 
 type ServiceRouteProps = {
   route: RouteProp<
@@ -22,50 +24,72 @@ type ServiceRouteProps = {
   >;
 };
 
-const EVENT_COLOR = '#e6add8';
-const today = new Date();
-export const getDate = (offset = 0) => CalendarUtils.getCalendarDateString(new Date().setDate(today.getDate() + offset));
-
-const timelineEvents: TimelineEventProps[] = [
-  {
-    start: `${getDate(-1)} 09:20:00`,
-    end: `${getDate(-1)} 12:00:00`,
-    title: 'Merge Request to React Native Calendars',
-    summary: 'Merge Timeline Calendar to React Native Calendars'
-  },
-  {
-    start: `${getDate()} 01:15:00`,
-    end: `${getDate()} 02:30:00`,
-    title: 'Meeting A',
-    summary: 'Summary for meeting A',
-    color: EVENT_COLOR
-  },
-  {
-    start: `${getDate()} 01:30:00`,
-    end: `${getDate()} 02:30:00`,
-    title: 'Meeting B',
-    summary: 'Summary for meeting B',
-    color: EVENT_COLOR
-  }
-]
-
-const EVENTS: TimelineEventProps[] = timelineEvents;
+const INITIAL_DATE = getInitialDate();
 
 const ServiceCheckout = ({ navigation }: Navigation) => {
   const theme = useContext(ThemeContext);
+
 
   const route = useRoute<ServiceRouteProps["route"]>();
   const { checkoutData, serviceCheckoutData } = route.params || { data: {} };
 
   const aircon = require("../../assets/checkout-images/air-conditioner-3.png");
 
+  const [selected, setSelected] = useState(INITIAL_DATE);
+  const [currentMonth, setCurrentMonth] = useState(INITIAL_DATE);
 
-  const vacation = {key: 'vacation', color: 'red', selectedDotColor: 'blue'};
-  const massage = {key: 'massage', color: 'blue', selectedDotColor: 'blue'};
-  const workout = {key: 'workout', color: 'green'};
+  const getDate = (count: number) => {
+    const date = new Date(INITIAL_DATE);
+    const newDate = date.setDate(date.getDate() + count);
+    return CalendarUtils.getCalendarDateString(newDate);
+  };
 
-  const eventsByDate = groupBy(EVENTS, (e) => CalendarUtils.getCalendarDateString(e.start));
-  
+  const onDayPress = useCallback((day: DateData) => {
+    setSelected(day.dateString);
+  }, []);
+
+  const marked = useMemo(() => {
+    return {
+      ["2024-01-28"]: {
+        // dotColor: 'red'
+        disabled: true
+      },
+      ["2024-01-30"]: {
+        // dotColor: 'red',
+        disabled: true
+      },
+      [selected]: {
+        selected: true,
+        disableTouchEvent: true,
+        selectedColor: 'orange',
+        selectedTextColor: 'red'
+      }
+    };
+  }, [selected]);
+
+  const unAvailableDates = useMemo(() => {
+    return {
+      ["2024-01-3"]: {
+        // dotColor: 'red'
+        disabled: true
+      },
+      ["2024-01-30"]: {
+        // dotColor: 'red',
+        disabled: true
+      }
+    };
+  }, [selected]);
+
+  const selectedDay = useMemo(() => {
+    return {
+      [selected]: {
+        selected: true,
+        disableTouchEvent: true,
+        // selectedColor: 'orange',
+        // selectedTextColor: 'red'
+      }
+    };
+  }, [selected]);
 
   
   return (
@@ -368,31 +392,55 @@ const ServiceCheckout = ({ navigation }: Navigation) => {
             </View>
             
 
-            <CalendarProvider date={getDate()}>
-            
-            <Calendar
-              minDate={"2024-01-01"}
-              onDayPress={(day) => {
-                console.log("selected day", day);
-              }}
-              enableSwipeMonths={true}
-              markedDates={{
-                "2024-01-25": {
-                  dots: [vacation, massage, workout],
-                  disabled: true,
-                },
-                "2024-01-26": { dots: [massage, workout], disabled: true },
-              }}
-            />
-              <TimelineList
-                events={eventsByDate}
-                // timelineProps={this.timelineProps}
-                showNowIndicator
-                // scrollToNow
-                scrollToFirst
-                initialTime={{hour: 9, minutes: 0}}
+            {/* <CalendarProvider date={getDate()}>
+              <Calendar
+                minDate={"2024-01-01"}
+                onDayPress={(day) => {
+                  console.log("selected day", day);
+                }}
+                enableSwipeMonths={true}
+                markedDates={{
+                  "2024-01-25": {
+                    dots: [vacation, massage, workout],
+                    disabled: true,
+                  },
+                  "2024-01-26": { dots: [massage, workout], disabled: true },
+                }}
               />
-            </CalendarProvider>
+                <TimelineList
+                  events={eventsByDate}
+                  // timelineProps={this.timelineProps}
+                  showNowIndicator
+                  // scrollToNow
+                  scrollToFirst
+                  initialTime={{hour: 9, minutes: 0}}
+                />
+            </CalendarProvider> */}
+
+              {/* <Calendar
+                minDate={"2024-01-01"}
+                onDayPress={(day) => {
+                  console.log("selected day", day);
+                }}
+                enableSwipeMonths={true}
+                markedDates={markedDates}
+                disableAllTouchEventsForDisabledDays
+              /> */}
+
+        {/* <Calendar
+          enableSwipeMonths
+          current={INITIAL_DATE}
+          onDayPress={onDayPress}
+          markedDates={marked}
+        /> */}
+
+        <Calendar
+          enableSwipeMonths
+          current={INITIAL_DATE}
+          onDayPress={onDayPress}
+          markedDates={{...unAvailableDates, ...selectedDay}}
+        />
+
           </View>
 
         </ScrollView>
