@@ -85,7 +85,7 @@ const ServiceCheckout = ({ navigation }: Navigation) => {
       [selected]: {
         selected: true,
         disableTouchEvent: true,
-        // selectedColor: 'orange',
+        selectedColor: theme.primary.color,
         // selectedTextColor: 'red'
       }
     };
@@ -435,6 +435,11 @@ const ServiceCheckout = ({ navigation }: Navigation) => {
         /> */}
 
         <Calendar
+        
+        theme={{
+          todayTextColor: theme.primary.color,
+          arrowColor: theme.primary.color
+        }}
           enableSwipeMonths
           current={INITIAL_DATE}
           onDayPress={onDayPress}
