@@ -1,5 +1,12 @@
 import React, { useCallback, useContext, useMemo, useState } from "react";
-import { Image, SafeAreaView, StyleSheet, Text, View, ScrollView } from "react-native";
+import {
+  Image,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+} from "react-native";
 import ButtonIcon from "../../components/Buttons/ButtonIcon";
 
 import { Entypo, MaterialIcons, Feather, Octicons } from "@expo/vector-icons";
@@ -8,12 +15,23 @@ import { ThemeContext } from "../../components/ThemeContext/ThemeContext";
 import { Navigation, ServiceCheckoutData } from "../model/Navigation";
 
 import { useRoute, RouteProp } from "@react-navigation/native";
-import { Calendar, TimelineList, TimelineEventProps, CalendarUtils, CalendarProvider, ExpandableCalendar, DateData } from "react-native-calendars";
+import {
+  Calendar,
+  TimelineList,
+  TimelineEventProps,
+  CalendarUtils,
+  CalendarProvider,
+  ExpandableCalendar,
+  DateData,
+} from "react-native-calendars";
 
-import { groupBy } from 'lodash';
+import { groupBy } from "lodash";
 
 const today = new Date();
-export const getInitialDate = (offset = 0) => CalendarUtils.getCalendarDateString(new Date().setDate(today.getDate() + offset));
+export const getInitialDate = (offset = 0) =>
+  CalendarUtils.getCalendarDateString(
+    new Date().setDate(today.getDate() + offset)
+  );
 
 type ServiceRouteProps = {
   route: RouteProp<
@@ -28,7 +46,6 @@ const INITIAL_DATE = getInitialDate();
 
 const ServiceCheckout = ({ navigation }: Navigation) => {
   const theme = useContext(ThemeContext);
-
 
   const route = useRoute<ServiceRouteProps["route"]>();
   const { checkoutData, serviceCheckoutData } = route.params || { data: {} };
@@ -52,18 +69,18 @@ const ServiceCheckout = ({ navigation }: Navigation) => {
     return {
       ["2024-01-28"]: {
         // dotColor: 'red'
-        disabled: true
+        disabled: true,
       },
       ["2024-01-30"]: {
         // dotColor: 'red',
-        disabled: true
+        disabled: true,
       },
       [selected]: {
         selected: true,
         disableTouchEvent: true,
-        selectedColor: 'orange',
-        selectedTextColor: 'red'
-      }
+        selectedColor: "orange",
+        selectedTextColor: "red",
+      },
     };
   }, [selected]);
 
@@ -71,12 +88,12 @@ const ServiceCheckout = ({ navigation }: Navigation) => {
     return {
       ["2024-01-3"]: {
         // dotColor: 'red'
-        disabled: true
+        disabled: true,
       },
       ["2024-01-30"]: {
         // dotColor: 'red',
-        disabled: true
-      }
+        disabled: true,
+      },
     };
   }, [selected]);
 
@@ -87,16 +104,13 @@ const ServiceCheckout = ({ navigation }: Navigation) => {
         disableTouchEvent: true,
         selectedColor: theme.primary.color,
         // selectedTextColor: 'red'
-      }
+      },
     };
   }, [selected]);
 
-  
   return (
     <SafeAreaView style={ServiceCheckoutStyle.container}>
-      <View
-        style={ServiceCheckoutStyle.headerContainer}
-      >
+      <View style={ServiceCheckoutStyle.headerContainer}>
         <ScrollView
           stickyHeaderIndices={[1]}
           scrollEventThrottle={16}
@@ -364,7 +378,8 @@ const ServiceCheckout = ({ navigation }: Navigation) => {
             </View>
           </View>
 
-          <View style={{
+          <View
+            style={{
               margin: 10,
               paddingBottom: 10,
               borderTopWidth: 1,
@@ -373,13 +388,24 @@ const ServiceCheckout = ({ navigation }: Navigation) => {
               borderRightWidth: 2,
               borderColor: theme.gray.light1,
               borderRadius: 5,
-            }}>
-
-            <View style={{ flexDirection: "row", paddingTop: 10, paddingLeft: 10, paddingRight: 10 }}>
+            }}
+          >
+            <View
+              style={{
+                flexDirection: "row",
+                paddingTop: 10,
+                paddingLeft: 10,
+                paddingRight: 10,
+              }}
+            >
               <View
                 style={{ flexDirection: "row", gap: 5, marginRight: "auto" }}
               >
-                <MaterialIcons name="schedule" size={20} color={theme.primary.color} />
+                <MaterialIcons
+                  name="schedule"
+                  size={20}
+                  color={theme.primary.color}
+                />
                 <Text
                   style={{
                     fontSize: 14,
@@ -390,7 +416,6 @@ const ServiceCheckout = ({ navigation }: Navigation) => {
                 </Text>
               </View>
             </View>
-            
 
             {/* <CalendarProvider date={getDate()}>
               <Calendar
@@ -417,7 +442,7 @@ const ServiceCheckout = ({ navigation }: Navigation) => {
                 />
             </CalendarProvider> */}
 
-              {/* <Calendar
+            {/* <Calendar
                 minDate={"2024-01-01"}
                 onDayPress={(day) => {
                   console.log("selected day", day);
@@ -427,27 +452,74 @@ const ServiceCheckout = ({ navigation }: Navigation) => {
                 disableAllTouchEventsForDisabledDays
               /> */}
 
-        {/* <Calendar
+            {/* <Calendar
           enableSwipeMonths
           current={INITIAL_DATE}
           onDayPress={onDayPress}
           markedDates={marked}
         /> */}
 
-        <Calendar
-        
-        theme={{
-          todayTextColor: theme.primary.color,
-          arrowColor: theme.primary.color
-        }}
-          enableSwipeMonths
-          current={INITIAL_DATE}
-          onDayPress={onDayPress}
-          markedDates={{...unAvailableDates, ...selectedDay}}
-        />
-
+            <Calendar
+              theme={{
+                todayTextColor: theme.primary.color,
+                arrowColor: theme.primary.color,
+              }}
+              enableSwipeMonths
+              current={INITIAL_DATE}
+              onDayPress={onDayPress}
+              markedDates={{ ...unAvailableDates, ...selectedDay }}
+            />
           </View>
 
+          <View style={{
+                paddingTop: 10,
+                marginBottom: 10,
+                paddingLeft: 10,
+                paddingRight: 10,
+              }}>
+              <View style={{display:"flex", gap: 3, marginBottom: 5}}>
+                <Text style={{fontWeight: "500", fontSize: 14}}>Pick a time</Text>
+                <Text style={{fontSize: 14, color: theme.gray.light3}}>5 available slots</Text>
+              </View>
+              <View style={{display: "flex", gap: 10}}>
+                <View style={{
+                  backgroundColor: theme.primary.lightColor,
+                  paddingTop: 10,
+                  paddingBottom: 10,
+                }}>
+                  <Text style={{textAlign: "center", color: theme.primary.color, fontWeight: "500"}}>
+                    8:00 AM
+                  </Text>
+                </View>
+                <View style={{
+                  backgroundColor: theme.primary.lightColor,
+                  paddingTop: 10,
+                  paddingBottom: 10,
+                }}>
+                  <Text style={{textAlign: "center", color: theme.primary.color, fontWeight: "500"}}>
+                    9:00 AM
+                  </Text>
+                </View>
+                <View style={{
+                  backgroundColor: theme.primary.lightColor,
+                  paddingTop: 10,
+                  paddingBottom: 10,
+                }}>
+                  <Text style={{textAlign: "center", color: theme.primary.color, fontWeight: "500"}}>
+                    10:00 AM
+                  </Text>
+                </View>
+                <View style={{
+                  backgroundColor: theme.primary.lightColor,
+                  paddingTop: 10,
+                  paddingBottom: 10,
+                }}>
+                  <Text style={{textAlign: "center", color: theme.primary.color, fontWeight: "500"}}>
+                    11:00 AM
+                  </Text>
+                </View>
+              </View>
+            </View>
         </ScrollView>
       </View>
     </SafeAreaView>
