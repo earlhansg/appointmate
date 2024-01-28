@@ -484,14 +484,15 @@ const ServiceCheckout = ({ navigation }: Navigation) => {
               <View style={{display: "flex", gap: 10}}>
                 <View style={{
                   backgroundColor: theme.primary.lightColor,
-                  paddingTop: 10,
-                  paddingBottom: 10,
+                  paddingTop: 11,
+                  paddingBottom: 11,
+                  borderRadius: 5
                 }}>
                   <Text style={{textAlign: "center", color: theme.primary.color, fontWeight: "500"}}>
                     8:00 AM
                   </Text>
                 </View>
-                <View style={{
+                {/* <View style={{
                   backgroundColor: theme.primary.lightColor,
                   paddingTop: 10,
                   paddingBottom: 10,
@@ -499,11 +500,30 @@ const ServiceCheckout = ({ navigation }: Navigation) => {
                   <Text style={{textAlign: "center", color: theme.primary.color, fontWeight: "500"}}>
                     9:00 AM
                   </Text>
+                </View> */}
+                <View style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: 10
+                }}>
+                  <Text style={{ borderColor: theme.primary.lightColor, borderWidth: 1, textAlign: "center", fontWeight: "500", paddingTop: 10,
+                  paddingBottom: 10, flexGrow: 4, borderRadius: 5}}>
+                    9:00 AM
+                  </Text>
+                  <Text style={{ borderColor: theme.gray.light1, borderWidth: 1, textAlign: "center", fontWeight: "500", paddingTop: 10,
+                  paddingBottom: 10, flexGrow: 1, borderRadius: 5}} >
+                    Cancel
+                  </Text>
+                  <Text style={{ backgroundColor: theme.primary.color, color: theme.white.color, textAlign: "center", fontWeight: "500", paddingTop: 10,
+                  paddingBottom: 10, flexGrow: 1, borderRadius: 5}} >
+                    Confirm
+                  </Text>
                 </View>
                 <View style={{
                   backgroundColor: theme.primary.lightColor,
-                  paddingTop: 10,
-                  paddingBottom: 10,
+                  paddingTop: 11,
+                  paddingBottom: 11,
+                  borderRadius: 5
                 }}>
                   <Text style={{textAlign: "center", color: theme.primary.color, fontWeight: "500"}}>
                     10:00 AM
@@ -511,8 +531,9 @@ const ServiceCheckout = ({ navigation }: Navigation) => {
                 </View>
                 <View style={{
                   backgroundColor: theme.primary.lightColor,
-                  paddingTop: 10,
-                  paddingBottom: 10,
+                  paddingTop: 11,
+                  paddingBottom: 11,
+                  borderRadius: 5
                 }}>
                   <Text style={{textAlign: "center", color: theme.primary.color, fontWeight: "500"}}>
                     11:00 AM
