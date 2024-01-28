@@ -99,6 +99,8 @@ const ServiceCheckout = ({ navigation }: Navigation) => {
   const [selected, setSelected] = useState(INITIAL_DATE);
   const [currentMonth, setCurrentMonth] = useState(INITIAL_DATE);
 
+  const timeList = listOfTimeIntervals(currentDate);
+
   const getDate = (count: number) => {
     const date = new Date(INITIAL_DATE);
     const newDate = date.setDate(date.getDate() + count);
@@ -538,20 +540,19 @@ const ServiceCheckout = ({ navigation }: Navigation) => {
                 </View> */}
 
                 {
-
+                  timeList.map((value, i) => (
+                    <View key={i} style={{
+                      backgroundColor: theme.primary.lightColor,
+                      paddingTop: 11,
+                      paddingBottom: 11,
+                      borderRadius: 5
+                    }}>
+                      <Text style={{ textAlign: "center", color: theme.primary.color, fontWeight: "500" }}>
+                        {value}
+                      </Text>
+                    </View>
+                  ))
                 }
-
-
-
-                {/* <View style={{
-                  backgroundColor: theme.primary.lightColor,
-                  paddingTop: 10,
-                  paddingBottom: 10,
-                }}>
-                  <Text style={{textAlign: "center", color: theme.primary.color, fontWeight: "500"}}>
-                    9:00 AM
-                  </Text>
-                </View>
                 <View style={{
                   display: "flex",
                   flexDirection: "row",
@@ -570,26 +571,7 @@ const ServiceCheckout = ({ navigation }: Navigation) => {
                     Confirm
                   </Text>
                 </View>
-                <View style={{
-                  backgroundColor: theme.primary.lightColor,
-                  paddingTop: 11,
-                  paddingBottom: 11,
-                  borderRadius: 5
-                }}>
-                  <Text style={{textAlign: "center", color: theme.primary.color, fontWeight: "500"}}>
-                    10:00 AM
-                  </Text>
-                </View>
-                <View style={{
-                  backgroundColor: theme.primary.lightColor,
-                  paddingTop: 11,
-                  paddingBottom: 11,
-                  borderRadius: 5
-                }}>
-                  <Text style={{textAlign: "center", color: theme.primary.color, fontWeight: "500"}}>
-                    11:00 AM
-                  </Text>
-                </View> */}
+            
               </View>
             </View>
         </ScrollView>
