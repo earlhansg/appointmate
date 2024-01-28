@@ -44,6 +44,50 @@ type ServiceRouteProps = {
 
 const INITIAL_DATE = getInitialDate();
 
+const timeSettings = {
+  start: {
+    hour: 6,
+    minutes: 30
+  },
+  end: {
+    hour: 17,
+    minutes: 30
+  },
+  break: {
+    hour: 1,
+    minutes: 0
+  }
+}
+
+// Function to print time in half-hour intervals between 6:30 AM and 5:30 PM for a given date
+const listOfTimeIntervals = (date: Date) => {
+  // Set the desired start and end times (in hours and minutes)
+  const intervals = [];
+  const startHour = timeSettings.start.hour;
+  const startMinute = timeSettings.start.minutes;
+  const endHour = timeSettings.end.hour;
+  const endMinute = timeSettings.end.minutes;
+
+  // Create new Date objects for the same date at the start and end times
+  const startTime = new Date(date.getFullYear(), date.getMonth(), date.getDate(), startHour, startMinute, 0);
+  const endTime = new Date(date.getFullYear(), date.getMonth(), date.getDate(), endHour, endMinute, 0);
+
+  // Loop through the half-hour intervals and print them
+  while (startTime <= endTime) {
+    // console.log(startTime.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }));
+    intervals.push(startTime.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }))
+    startTime.setMinutes(startTime.getMinutes() + timeSettings.break.minutes);
+    startTime.setHours(startTime.getHours() + timeSettings.break.hour);
+  }
+  return intervals;
+}
+
+// Example usage
+const currentDate = new Date(2023-1-29); // Current date and time
+// console.log("Half-hour intervals between 6:30 AM and 5:30 PM:");
+console.log("listOfTimeIntervals", listOfTimeIntervals(currentDate));
+
+
 const ServiceCheckout = ({ navigation }: Navigation) => {
   const theme = useContext(ThemeContext);
 
@@ -482,7 +526,7 @@ const ServiceCheckout = ({ navigation }: Navigation) => {
                 <Text style={{fontSize: 14, color: theme.gray.light3}}>5 available slots</Text>
               </View>
               <View style={{display: "flex", gap: 10}}>
-                <View style={{
+                {/* <View style={{
                   backgroundColor: theme.primary.lightColor,
                   paddingTop: 11,
                   paddingBottom: 11,
@@ -491,7 +535,14 @@ const ServiceCheckout = ({ navigation }: Navigation) => {
                   <Text style={{textAlign: "center", color: theme.primary.color, fontWeight: "500"}}>
                     8:00 AM
                   </Text>
-                </View>
+                </View> */}
+
+                {
+
+                }
+
+
+
                 {/* <View style={{
                   backgroundColor: theme.primary.lightColor,
                   paddingTop: 10,
@@ -500,7 +551,7 @@ const ServiceCheckout = ({ navigation }: Navigation) => {
                   <Text style={{textAlign: "center", color: theme.primary.color, fontWeight: "500"}}>
                     9:00 AM
                   </Text>
-                </View> */}
+                </View>
                 <View style={{
                   display: "flex",
                   flexDirection: "row",
@@ -538,7 +589,7 @@ const ServiceCheckout = ({ navigation }: Navigation) => {
                   <Text style={{textAlign: "center", color: theme.primary.color, fontWeight: "500"}}>
                     11:00 AM
                   </Text>
-                </View>
+                </View> */}
               </View>
             </View>
         </ScrollView>
