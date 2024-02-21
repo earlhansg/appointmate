@@ -249,7 +249,7 @@ const ServiceCheckout = ({ navigation }: Navigation) => {
                 fontWeight: "500",
               }}
             >
-              Service optionssss
+              Service options
             </Text>
             <View
               style={{
